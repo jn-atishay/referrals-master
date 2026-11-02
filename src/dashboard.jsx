@@ -38,6 +38,24 @@ const REFERRERS = (D.REFERRERS_RAW || []).map((r) => ({
   signups: r[5], obs: r[6], acts: r[7], gift: GIFT[r[8]] || r[8], cohort: COHORT[r[9]] || r[9],
 }));
 const SHOW_NAMES = REFERRERS.some((r) => r.name);
+const DETAIL = D.REFERRER_DETAIL || {};
+const FX_RATE = D.FX || 95;
+const BAND = { "0_10K_USD": "Under $10K", "UNDER_10L_INR": "Under $10K", "10_20K_USD": "$10K to $20K", "20_50K_USD": "$20K to $50K",
+  "50_100K_USD": "$50K to $100K", ">100K_USD": "Over $100K", "OVER_10L_INR": "Over $10K", "": "" };
+const STATE = { SIGNUP_COMPLETE: "Signed up", ONBOARDING_COMPLETE: "Onboarded", ACHIEVED: "Activated" };
+const usd = (inr) => {
+  const v = inr / FX_RATE;
+  return v >= 1e6 ? "$" + (v / 1e6).toFixed(2) + "M" : v >= 1e3 ? "$" + (v / 1e3).toFixed(1) + "K" : "$" + Math.round(v);
+};
+const monthsSince = (iso) => {
+  if (!iso) return 0;
+  const days = (Date.now() - new Date(iso + "T00:00:00+05:30").getTime()) / 864e5;
+  return Math.max(1, Math.ceil(days / 30.44));
+};
+const profile = (name, bt, obd, actd, band, n, vol, firstTx) => ({
+  name: name || "", bt: BT[bt] || bt || "", onboarded: obd || "", activated: actd || "", band: BAND[band] || band || "",
+  txCount: n || 0, volume: vol || 0, monthly: n ? (vol || 0) / monthsSince(firstTx || actd) : 0, months: n ? monthsSince(firstTx || actd) : 0,
+});
 
 const sumBy = (rows, k) => rows.reduce((a, r) => a + r[k], 0);
 const HEADLINE = (() => {
@@ -243,6 +261,22 @@ html, body { background: var(--page); margin: 0; }
 .app .tablewrap.short thead th.num, .app .tablewrap.short td.num { padding-right: 0; }
 .app .sortable th { cursor: pointer; user-select: none; }
 .app .sortable th:hover { color: var(--ink); }
+.app tr.clickable { cursor: pointer; }
+.app tr.clickable:hover td { background: var(--accent-soft); }
+.app tr.clickable:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.app .modalbg { position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 50; display: flex; align-items: flex-start; justify-content: center; padding: 4vh 16px; overflow-y: auto; }
+.app .modal { background: var(--page); color: var(--ink); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px 16px; width: min(1040px, 100%); max-height: 92vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.25); }
+.app .modalhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.app .modalhead h3 { margin: 0 0 2px; font-size: 18px; font-weight: 600; }
+.app .modal h4 { margin: 16px 0 8px; font-size: 14px; font-weight: 600; }
+.app .modal h4 .muted { font-weight: 400; margin-left: 6px; }
+.app .profile { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.app .prow { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.app .prow span { font-size: 12px; color: var(--ink2); }
+.app .prow b { font-weight: 500; font-size: 13.5px; }
+.app .modaltable { max-height: 48vh; }
+.app .modaltable td, .app .modaltable th { padding-right: 12px; white-space: nowrap; }
+.app .modaltable td.name { white-space: normal; min-width: 140px; }
 .app .sortable th .arrow { display: inline-block; width: 10px; margin-left: 4px; color: var(--accent); font-size: 11px; }
 .app .sortable td { padding-top: 5px; padding-bottom: 5px; white-space: nowrap; }
 .app .sortable td.name { white-space: normal; min-width: 180px; }
@@ -379,6 +413,87 @@ function PaceTrack() {
 // REFERRER TABLE
 // ============================================================================
 
+function ProfileRow({ label, value, muted }) {
+  return <div className="prow"><span>{label}</span><b className={muted ? "muted" : ""}>{value}</b></div>;
+}
+
+function ReferrerModal({ id, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+  const raw = DETAIL[String(id)];
+  const row = REFERRERS.find((r) => r.id === id) || {};
+  if (!raw) {
+    return (
+      <div className="modalbg" onClick={onClose}>
+        <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+          <div className="modalhead"><h3>Exporter {id}</h3><button className="btn" onClick={onClose}>Close</button></div>
+          <p className="sub">No detail record yet. It appears after the next hourly refresh.</p>
+        </div>
+      </div>
+    );
+  }
+  const p = profile(raw[0], raw[1], raw[2], raw[3], raw[4], raw[5], raw[6], raw[7]);
+  const referees = (raw[9] || []).map((x) => ({ id: x[0], state: STATE[x[9]] || x[9], signup: x[3], ...profile(x[1], x[2], x[4], x[5], x[6], x[7], x[8], x[5]) }));
+  const refObs = referees.filter((r) => r.onboarded).length, refActs = referees.filter((r) => r.activated).length;
+  const refVol = referees.reduce((a, r) => a + r.volume, 0), refTx = referees.reduce((a, r) => a + r.txCount, 0);
+  const volCell = (r) => r.txCount ? <>{usd(r.monthly)}<span className="muted"> /mo, {usd(r.volume)} total</span></> : <span className="muted">none</span>;
+  return (
+    <div className="modalbg" onClick={onClose}>
+      <div className="modal" onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true">
+        <div className="modalhead">
+          <div>
+            <h3>{p.name ? p.name : "Exporter " + id}</h3>
+            <p className="sub">Exporter {id}{p.bt ? ", " + p.bt.toLowerCase() : ""}{row.cohort ? ". " + row.cohort : ""}{row.gift ? ". Gift claimed: " + row.gift : ""}</p>
+          </div>
+          <button className="btn" onClick={onClose} aria-label="Close">Close</button>
+        </div>
+        <div className="profile">
+          <ProfileRow label="Business type" value={p.bt || "not set"} muted={!p.bt} />
+          <ProfileRow label="Onboarded" value={p.onboarded || "not yet"} muted={!p.onboarded} />
+          <ProfileRow label="Activated" value={p.activated || "not yet"} muted={!p.activated} />
+          <ProfileRow label="Transactions" value={p.txCount ? fmt(p.txCount) + (raw[8] ? ", last on " + raw[8] : "") : "none"} muted={!p.txCount} />
+          <ProfileRow label="Monthly volume" value={p.txCount ? usd(p.monthly) + " a month over " + p.months + (p.months === 1 ? " month" : " months") : "none"} muted={!p.txCount} />
+          <ProfileRow label="Total volume" value={p.txCount ? usd(p.volume) : "none"} muted={!p.txCount} />
+          <ProfileRow label="Stated volume" value={p.band || "not stated"} muted={!p.band} />
+          <ProfileRow label="This campaign" value={`${referees.length} signups, ${refObs} onboarded, ${refActs} activated`} />
+        </div>
+        <h4>Referees <span className="muted">{referees.length}, together {fmt(refTx)} transactions and {usd(refVol)} total volume</span></h4>
+        <div className="tablewrap modaltable">
+          <table>
+            <thead>
+              <tr>
+                <th className="num">Exporter ID</th>{SHOW_NAMES && <th>Name</th>}<th>Business type</th><th>Signed up</th><th>Onboarded</th><th>Activated</th>
+                <th>Stated volume</th><th className="num">Transactions</th><th>Monthly volume</th><th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {referees.map((r) => (
+                <tr key={r.id}>
+                  <td className="num">{r.id}</td>
+                  {SHOW_NAMES && <td className="name">{r.name || <span className="muted">not set</span>}</td>}
+                  <td>{r.bt || <span className="muted">not set</span>}</td>
+                  <td>{r.signup}</td>
+                  <td>{r.onboarded || <span className="muted">not yet</span>}</td>
+                  <td>{r.activated || <span className="muted">not yet</span>}</td>
+                  <td>{r.band || <span className="muted">not stated</span>}</td>
+                  <td className="num">{r.txCount || <span className="muted">0</span>}</td>
+                  <td>{volCell(r)}</td>
+                  <td><span className={"pill " + (r.state === "Activated" ? "" : "gray")}>{r.state}</span></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="sub" style={{ marginTop: 10 }}>Volumes are settled payouts converted at {FX_RATE} rupees to the dollar. Monthly volume is total volume divided by months since the first payout. Stated volume is what the exporter said at onboarding.</p>
+      </div>
+    </div>
+  );
+}
+
 const REF_COLS_ALL = [
   { key: "id", label: "Exporter ID", num: true },
   { key: "bt", label: "Business type" },
@@ -398,6 +513,8 @@ function ReferrerTable() {
   const [cohort, setCohort] = useState("all");
   const [bt, setBt] = useState("all");
   const [q, setQ] = useState("");
+  const [open, setOpen] = useState(null);
+  const close = () => setOpen(null);
   const onSort = (key) => {
     if (key === sortKey) setDir(-dir);
     else { setSortKey(key); setDir(REF_COLS.find((c) => c.key === key).num ? -1 : 1); }
@@ -426,7 +543,7 @@ function ReferrerTable() {
           <option value="all">All business types</option>
           {["Freelancer", "Sole prop", "Company", "LLP", "Partnership", "HUF"].map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
-        <span>{rows.length} referrers, {sum("signups")} signups, {sum("obs")} onboarded, {sum("acts")} activated. Click a header to sort.</span>
+        <span>{rows.length} referrers, {sum("signups")} signups, {sum("obs")} onboarded, {sum("acts")} activated. Click a header to sort, a row for referrer and referee details.</span>
       </div>
       <div className="tablewrap">
         <table className="sortable">
@@ -441,7 +558,7 @@ function ReferrerTable() {
           </thead>
           <tbody>
             {rows.map((r) => (
-              <tr key={r.id}>
+              <tr key={r.id} className="clickable" tabIndex={0} onClick={() => setOpen(r.id)} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(r.id); } }}>
                 <td className="num">{r.id}</td>
                 {SHOW_NAMES && <td className="name">{r.name}</td>}
                 <td>{r.bt}</td>
@@ -457,6 +574,7 @@ function ReferrerTable() {
           </tbody>
         </table>
       </div>
+      {open !== null && <ReferrerModal id={open} onClose={close} />}
     </>
   );
 }

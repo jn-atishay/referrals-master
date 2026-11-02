@@ -11,7 +11,7 @@ except Exception as e:
     print("data.json is not valid JSON:", e); sys.exit(1)
 
 need = ["SNAPSHOT", "PACE", "DAILY", "POPUP", "CLAIMS", "WEEKLY", "COHORTS", "COHORT_LABELS", "QUALITY",
-        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "TRENDS", "GOLD", "CAMPAIGNS", "notes"]
+        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "REFERRER_DETAIL", "TRENDS", "GOLD", "CAMPAIGNS", "notes"]
 for k in need:
     if k not in d: errors.append(f"missing key {k}")
 
@@ -25,6 +25,12 @@ if not errors:
     excluded = set(cfg["always_excluded_referrers"] + cfg["flagged_referrers"])
     leaked = [r[0] for r in refs if r[0] in excluded]
     if leaked: errors.append(f"excluded referrers present: {leaked}")
+    detail = d["REFERRER_DETAIL"]
+    missing = [r[0] for r in refs if str(r[0]) not in detail]
+    if missing: errors.append(f"{len(missing)} referrers have no detail record, e.g. {missing[:3]}")
+    for k, v in detail.items():
+        if len(v) != 10 or not isinstance(v[9], list) or any(len(x) != 10 for x in v[9]):
+            errors.append(f"malformed detail record for {k}"); break
     if not cfg.get("show_customer_names") and any(r[1] for r in refs):
         errors.append("customer names present but show_customer_names is false")
     # Personal data guard: no emails or Indian mobile numbers anywhere in the file

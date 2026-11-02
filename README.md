@@ -9,6 +9,7 @@ Tabs: Overview (program-wide trends), Milestone campaign (the Sep to Oct 2026 la
 - `data.json` the only file the refresh job changes.
 - `config.json` campaign ids and dates, monthly targets, excluded and flagged referrers, the gold coin campaign, the campaign history list, whether customer names are shown.
 - `queries/` the SQL the refresh runs. Placeholders (`{{EXCLUDED}}`, `{{ALWAYS_EXCLUDED}}`, `{{CAMPAIGN_ID}}`, `{{GOLD_CAMPAIGN_ID}}`, ...) are filled from `config.json`.
+- `queries/09_referrer_detail.sql` feeds the popup on the Referrers tab (referrer profile plus every referee: business type, dates, stated band, transaction count, settled volume).
 - `scripts/refresh.py` runs every query plus the Mixpanel counts and rebuilds `data.json` (about 20 seconds). `--notes-only` merges `raw/notes.json` into `data.json` without querying.
 - `scripts/validate.py` blocks a commit if data is malformed or contains customer emails, phone numbers or unwanted names.
 - `ROUTINE.md` the prompt for the scheduled job: run the script, write the notes, validate, push.

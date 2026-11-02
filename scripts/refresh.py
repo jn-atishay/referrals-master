@@ -375,6 +375,7 @@ def main():
     trend_rows = query(src, cfg, "06_trends.sql")
     gold_rows = query(src, cfg, "07_goldcoin.sql")
     hist_rows = query(src, cfg, "08_campaigns.sql")
+    detail_rows = query(src, cfg, "09_referrer_detail.sql")
 
     data = {k: v for k, v in old.items()}  # keep every key the current file has
     data["SNAPSHOT"] = {"asOf": f"{today.day} {MONTHS[today.month - 1]} {today.year}, {now:%H:%M} IST", "asOfIso": now.isoformat(timespec="minutes"),
@@ -387,6 +388,7 @@ def main():
     prev_m = today.replace(day=1) - dt.timedelta(days=1)
     data["COHORT_LABELS"] = {"now": MONTHS[today.month - 1], "prev": MONTHS[prev_m.month - 1]}
     data["REFERRERS_RAW"] = json.loads(ref_rows[0][4]) if ref_rows and ref_rows[0][4] else []
+    data["REFERRER_DETAIL"] = json.loads(detail_rows[0][0]) if detail_rows and detail_rows[0][0] else {}
     data["TRENDS"] = build_trends(trend_rows, today)
     data["GOLD"] = build_gold(gold_rows, cfg, today, src)
     data["CAMPAIGNS"] = build_campaigns(hist_rows, cfg, today)
