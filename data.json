@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "5 Nov 2026, 11:01 IST",
-  "asOfIso": "2026-11-05T11:01+05:30",
+  "asOf": "5 Nov 2026, 12:00 IST",
+  "asOfIso": "2026-11-05T12:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -39,7 +39,7 @@
    15
   ],
   "sepToDate": 66,
-  "todaySoFar": 5,
+  "todaySoFar": 6,
   "monthName": "November",
   "monthShort": "Nov",
   "daysInMonth": 30
@@ -807,8 +807,8 @@
   {
    "week": "2 Nov",
    "period": "campaign",
-   "signups": 84,
-   "referrers": 73,
+   "signups": 85,
+   "referrers": 74,
    "perRef": 1.15
   }
  ],
@@ -850,7 +850,7 @@
    "id": "1.1",
    "label": "transacted this month",
    "indent": 1,
-   "base": 3246,
+   "base": 3254,
    "refNow": 13,
    "rateNow": 0.4,
    "refPrev": 6,
@@ -861,7 +861,7 @@
    "id": "1.2",
    "label": "recently dormant (txn in prev 3 mo)",
    "indent": 1,
-   "base": 11184,
+   "base": 11176,
    "refNow": 34,
    "rateNow": 0.3,
    "refPrev": 43,
@@ -883,30 +883,30 @@
    "id": "2",
    "label": "New activations this month (M0)",
    "indent": 0,
-   "base": 250,
-   "refNow": 3,
-   "rateNow": 1.2,
+   "base": 288,
+   "refNow": 4,
+   "rateNow": 1.39,
    "refPrev": 5,
-   "ratePrev": 0.46,
-   "delta": 160.9
+   "ratePrev": 0.45,
+   "delta": 208.9
   },
   {
    "id": "3",
    "label": "Not activated, onboarded this month",
    "indent": 0,
-   "base": 384,
+   "base": 382,
    "refNow": 3,
-   "rateNow": 0.78,
+   "rateNow": 0.79,
    "refPrev": 2,
-   "ratePrev": 0.86,
-   "delta": -9.3
+   "ratePrev": 0.87,
+   "delta": -9.2
   },
   {
    "id": "4",
    "label": "Not activated, old onboarder",
    "indent": 0,
-   "base": 37473,
-   "refNow": 15,
+   "base": 37436,
+   "refNow": 14,
    "rateNow": 0.04,
    "refPrev": 9,
    "ratePrev": 0.03,
@@ -933,8 +933,8 @@
    "ob1d": 49.7,
    "ob7d": 56.7,
    "obSoFar": 66.8,
-   "actOfOb": 53.6,
-   "medianDays": 15.3
+   "actOfOb": 54.4,
+   "medianDays": 15.4
   },
   {
    "week": "14 Sep",
@@ -942,8 +942,8 @@
    "ob1d": 42.9,
    "ob7d": 51.9,
    "obSoFar": 59.8,
-   "actOfOb": 48.7,
-   "medianDays": 12.1
+   "actOfOb": 49.6,
+   "medianDays": 12.6
   },
   {
    "week": "21 Sep",
@@ -960,8 +960,8 @@
    "ob1d": 54.1,
    "ob7d": 65.1,
    "obSoFar": 70.3,
-   "actOfOb": 48.3,
-   "medianDays": 14.1
+   "actOfOb": 49.7,
+   "medianDays": 14.8
   },
   {
    "week": "5 Oct",
@@ -969,8 +969,8 @@
    "ob1d": 50.5,
    "ob7d": 62.0,
    "obSoFar": 69.7,
-   "actOfOb": 49.7,
-   "medianDays": 9.1
+   "actOfOb": 51.7,
+   "medianDays": 9.9
   },
   {
    "week": "12 Oct",
@@ -978,7 +978,7 @@
    "ob1d": 44.0,
    "ob7d": 53.6,
    "obSoFar": 60.1,
-   "actOfOb": 36.6,
+   "actOfOb": 37.6,
    "medianDays": 10.0
   },
   {
@@ -987,8 +987,8 @@
    "ob1d": 43.9,
    "ob7d": 54.4,
    "obSoFar": 55.6,
-   "actOfOb": 34.0,
-   "medianDays": 7.6
+   "actOfOb": 35.0,
+   "medianDays": 8.0
   },
   {
    "week": "26 Oct",
@@ -996,8 +996,8 @@
    "ob1d": 47.4,
    "ob7d": 55.6,
    "obSoFar": 56.0,
-   "actOfOb": 12.3,
-   "medianDays": 3.4
+   "actOfOb": 15.4,
+   "medianDays": 4.0
   },
   {
    "week": "2 Nov",
@@ -1444,6 +1444,18 @@
    "R3"
   ],
   [
+   238933,
+   "Sudeshna Bhattacharya",
+   "SP",
+   "2026-09-21",
+   "2026-11-05",
+   4,
+   4,
+   3,
+   "",
+   "FT"
+  ],
+  [
    252071,
    "Shivam Bhatia",
    "F",
@@ -1576,6 +1588,18 @@
    "FT"
   ],
   [
+   247807,
+   "Prince Rai",
+   "F",
+   "2026-08-24",
+   "2026-09-10",
+   27,
+   13,
+   2,
+   "P",
+   "FT"
+  ],
+  [
    38154,
    "Akshay Vinod Nanvatkar",
    "SP",
@@ -1634,6 +1658,18 @@
    2,
    "",
    "R1"
+  ],
+  [
+   78424,
+   "Mukund Goenka",
+   "SP",
+   "2025-04-19",
+   "2025-04-28",
+   4,
+   3,
+   2,
+   "",
+   "R3"
   ],
   [
    269426,
@@ -1756,18 +1792,6 @@
    "FT"
   ],
   [
-   247807,
-   "Prince Rai",
-   "F",
-   "2026-08-24",
-   "2026-09-10",
-   27,
-   13,
-   1,
-   "P",
-   "FT"
-  ],
-  [
    239093,
    "Seema Seth",
    "SP",
@@ -1792,6 +1816,18 @@
    "RN"
   ],
   [
+   168733,
+   "Atishay Jain",
+   "LLP",
+   "2026-02-02",
+   "2026-02-04",
+   15,
+   6,
+   1,
+   "",
+   "R1"
+  ],
+  [
    208483,
    "Vidhi Toshniwal",
    "SP",
@@ -1814,18 +1850,6 @@
    1,
    "",
    "R1"
-  ],
-  [
-   238933,
-   "Sudeshna Bhattacharya",
-   "SP",
-   "2026-09-21",
-   null,
-   4,
-   4,
-   1,
-   "",
-   "FT"
   ],
   [
    252121,
@@ -1864,18 +1888,6 @@
    "R1"
   ],
   [
-   78424,
-   "Mukund Goenka",
-   "SP",
-   "2025-04-19",
-   "2025-04-28",
-   4,
-   3,
-   1,
-   "",
-   "R3"
-  ],
-  [
    102054,
    "Jatin Budhwar",
    "F",
@@ -1898,6 +1910,18 @@
    1,
    "",
    "R1"
+  ],
+  [
+   35703,
+   "Dominic Deepan",
+   "C",
+   "2024-10-21",
+   "2024-11-26",
+   3,
+   2,
+   1,
+   "",
+   "RN"
   ],
   [
    43841,
@@ -2536,6 +2560,18 @@
    "R3"
   ],
   [
+   20259,
+   "Yash Vardhan Padhi",
+   "SP",
+   "2025-05-27",
+   "2025-06-26",
+   1,
+   1,
+   1,
+   "",
+   "R1"
+  ],
+  [
    20417,
    "Himanshu Garg",
    "C",
@@ -3074,6 +3110,18 @@
    1,
    "",
    "RN"
+  ],
+  [
+   96998,
+   "Somenath Paul",
+   "C",
+   "2025-06-12",
+   "2025-06-25",
+   1,
+   1,
+   1,
+   "",
+   "R1"
   ],
   [
    98799,
@@ -3892,6 +3940,18 @@
    "R1"
   ],
   [
+   170224,
+   "Pilli Kalyani",
+   "SP",
+   "2026-02-07",
+   "2026-04-08",
+   1,
+   1,
+   1,
+   "",
+   "R1"
+  ],
+  [
    170265,
    "Sidharth Giri",
    "F",
@@ -4480,6 +4540,18 @@
    "R1"
   ],
   [
+   208141,
+   "Mahima Shubham Pansari",
+   "SP",
+   "2026-06-25",
+   "2026-07-07",
+   1,
+   1,
+   1,
+   "P",
+   "R1"
+  ],
+  [
    209108,
    "Mohammed Sufiyan Saqib",
    "SP",
@@ -4502,6 +4574,18 @@
    1,
    "P",
    "R1"
+  ],
+  [
+   210382,
+   "Suraj Rajendra Jangam",
+   "F",
+   "2026-05-28",
+   "2026-06-04",
+   1,
+   1,
+   1,
+   "",
+   "FT"
   ],
   [
    210944,
@@ -5536,6 +5620,18 @@
    "FT"
   ],
   [
+   267841,
+   "Madhumitha Palanisamy",
+   "SP",
+   "2026-09-30",
+   "2026-11-05",
+   1,
+   1,
+   1,
+   "",
+   "FT"
+  ],
+  [
    269065,
    "Pramod N P",
    "C",
@@ -5608,6 +5704,18 @@
    "FT"
   ],
   [
+   272532,
+   "Ajith George",
+   "SP",
+   "2026-10-12",
+   "2026-11-05",
+   1,
+   1,
+   1,
+   "",
+   "FT"
+  ],
+  [
    273388,
    "Tapas Adhikary",
    "SP",
@@ -5624,7 +5732,7 @@
    "Komal",
    "F",
    "2026-10-14",
-   null,
+   "2026-11-05",
    1,
    1,
    1,
@@ -5680,18 +5788,6 @@
    "FT"
   ],
   [
-   168733,
-   "Atishay Jain",
-   "LLP",
-   "2026-02-02",
-   "2026-02-04",
-   15,
-   6,
-   0,
-   "",
-   "R1"
-  ],
-  [
    268064,
    "Malay Acharya",
    "F",
@@ -5732,7 +5828,7 @@
    "Chandni Yadav",
    "F",
    "2026-10-09",
-   null,
+   "2026-11-05",
    4,
    4,
    0,
@@ -5846,18 +5942,6 @@
    0,
    "",
    "R1"
-  ],
-  [
-   35703,
-   "Dominic Deepan",
-   "C",
-   "2024-10-21",
-   "2024-11-26",
-   3,
-   2,
-   0,
-   "",
-   "RN"
   ],
   [
    79059,
@@ -6808,18 +6892,6 @@
    "R3"
   ],
   [
-   20259,
-   "Yash Vardhan Padhi",
-   "SP",
-   "2025-05-27",
-   "2025-06-26",
-   1,
-   1,
-   0,
-   "",
-   "R1"
-  ],
-  [
    21620,
    "Sahil Shashikant Pabale",
    "SP",
@@ -7370,18 +7442,6 @@
    0,
    "",
    "FT"
-  ],
-  [
-   96998,
-   "Somenath Paul",
-   "C",
-   "2025-06-12",
-   "2025-06-25",
-   1,
-   1,
-   0,
-   "",
-   "R1"
   ],
   [
    97229,
@@ -8020,18 +8080,6 @@
    "FT"
   ],
   [
-   170224,
-   "Pilli Kalyani",
-   "SP",
-   "2026-02-07",
-   "2026-04-08",
-   1,
-   1,
-   0,
-   "",
-   "R1"
-  ],
-  [
    170264,
    "Suraj Bhalla",
    "F",
@@ -8548,18 +8596,6 @@
    "R1"
   ],
   [
-   208141,
-   "Mahima Shubham Pansari",
-   "SP",
-   "2026-06-25",
-   "2026-07-07",
-   1,
-   1,
-   0,
-   "",
-   "R1"
-  ],
-  [
    209807,
    "Rohit Kumar",
    "F",
@@ -8577,18 +8613,6 @@
    "F",
    "2026-05-26",
    "2026-06-15",
-   1,
-   1,
-   0,
-   "",
-   "FT"
-  ],
-  [
-   210382,
-   "Suraj Rajendra Jangam",
-   "F",
-   "2026-05-28",
-   "2026-06-04",
    1,
    1,
    0,
@@ -9524,7 +9548,7 @@
    "Shaik Shabeena",
    "SP",
    "2026-09-29",
-   null,
+   "2026-11-05",
    1,
    1,
    0,
@@ -9547,18 +9571,6 @@
    267706,
    "Daram Haveela",
    "F",
-   "2026-09-30",
-   null,
-   1,
-   1,
-   0,
-   "",
-   "FT"
-  ],
-  [
-   267841,
-   "Madhumitha Palanisamy",
-   "SP",
    "2026-09-30",
    null,
    1,
@@ -9669,18 +9681,6 @@
    "F",
    "2026-10-12",
    "2026-10-23",
-   1,
-   1,
-   0,
-   "",
-   "FT"
-  ],
-  [
-   272532,
-   "Ajith George",
-   "SP",
-   "2026-10-12",
-   null,
    1,
    1,
    0,
@@ -13098,49 +13098,49 @@
  ],
  "qualityRefreshedOn": "2026-11-05",
  "notes": {
-  "pace": "No onboarding target is set for November, so this is a projection only. Four full days in, the month has banked 66 onboardings plus 5 already today, running at about 16.5 a day over the last week. On a straight line that points to roughly 495 by month end, and the shape of past months puts the likely landing near 528, somewhere between 411 and 670. For context August finished at 465, September 611 and October 670, but by this day of the month those months had banked only about 10 to 16 percent of their totals, so it is still early and the range is wide. There are 26 days left including today.",
-  "daily": "Campaign signups have effectively stopped since the ladder referral window closed at the end of October: 0 on 2 Nov after a single signup, then 0 on both 3 and 4 Nov, against 26 on 31 Oct. The last full weeks ran 228, then a peak of 291 from 182 referrers in the week of 26 Oct, before dropping to 84 in the week of 2 Nov as the window closed. What continues is the back half of the funnel: the last full day, Wednesday 4 Nov, brought no new signups but still 1 onboarding, 17 activations and 5 claims from signups already in the pipe. No referrer sent more than 25 signups in the last 24 hours.",
-  "ladder": "996 referrers are in the ladder, with 437 still carrying referred signups that have not activated anyone yet. 374 have crossed at least the first rung and 220 have claimed something. At the top, 5 referrers have reached 8 activations and all 5 have claimed the iPhone 17, led by exporter 133487 at 9. Exporter 103270 has crossed the 5-activation rung and claimed the Meta Ray-Ban glasses, the first to do so. 14 referrers sit at exactly 2 activations, one away from the AirPods rung, and 6 sit at 4, one away from Ray-Ban.",
-  "cohorts": "November is only four days old, so every cohort rate is a partial-month reading and sits well below a full month, with most cohorts down against October. The lift is carried by people who activated before the month began but referred in the past, now referring at 0.65 percent, and by this month's brand-new activations, a tiny base of 250 referring at 1.2 percent, up from 0.46. Never-referrers, cohort 1a with a base of 17,917, ticked up rather than down: 0.14 percent this month against 0.12 percent last, a small rise in exporters trying a referral for the first time, though still the lowest rate of any group.",
-  "mix": "First-time referrers are the bulk of activity: 644 of them sent 1,142 signups, about 1.77 each, 58 percent onboarded, for 301 activations. Repeat referrers do more per head. The 58 who have referred three or more times sent 2.88 signups each, and the 195 who referred once before came in at 1.84 each with the highest onboarding rate at 68 percent. Depth of past referring, not breadth, is what lifts volume per referrer.",
-  "weeklyQuality": "Onboarding quality of referred signups is steady, with recent weeks landing in the mid-40s percent onboarded within a day and the mid-50s within a week. The week of 26 Oct shows 232 signups at 47 percent first-day onboarding. Activation of those onboarded looks low for the newest weeks, 12 percent for 26 Oct, but that is maturity not quality: median time to onboard is only 3.4 days and those cohorts have barely aged. Older weeks that have matured sit near 50 to 67 percent activation.",
-  "claims": "Rewards claimed to date: 202 Polaroid cameras at the one-activation rung, 12 AirPods at three, one Meta Ray-Ban at five claimed on 4 Nov for the first time, and 5 iPhone 17s at eight, the most recent on 3 Nov. The ladder is doing what it should, with the entry reward broad and the top rewards rare.",
-  "popupHeader": "Referral popup, 1 Sep to 4 Nov",
+  "pace": "No onboarding target is set for November, so this is a projection only. Referral onboardings stand at 66 through the first four full days plus 6 so far today, running about 16.5 a day over the last week. A straight line lands the month near 495; the wider model centres on about 528, in a range of roughly 411 on the low side to 670 on the high side, which would match October's 670. August finished at 465 and September at 611, but by this day those months had banked only about 10 to 16 percent of their totals, so it is early and the range is wide. 26 days remain including today.",
+  "daily": "Campaign signups have fallen to near zero in the first days of November after a very strong October. The last few full weeks ran 228, then a peak of 291 from 182 referrers in the week of 26 Oct, before dropping to 85 so far in the week of 2 Nov as the ladder window closed. What continues is the back half of the funnel: the last full day, Wednesday 4 Nov, brought no new campaign signups but still 1 onboarding, 17 activations and 5 reward claims from signups already in the pipe. No referrer sent more than 25 signups in the last 24 hours.",
+  "ladder": "996 referrers are in the ladder, 383 have unlocked at least one reward and 221 have claimed one; 422 are still building toward their first rung. 37 referrers sit at three or more activations, with 6 at the iPhone rung of eight. 16 referrers are at exactly two activations, one away from the AirPods rung, and 6 are at four, one away from the Ray-Ban rung. One referrer crossed the Ray-Ban rung for the first time on 4 Nov.",
+  "cohorts": "Pre-month activated exporters refer at 0.24 percent this month, down from 0.27 in October. The lift keeps coming from people who have referred before (cohort 1b) at 0.65 percent and from those who transacted this month at 0.40 percent, both softer than October. Never-referrers (cohort 1a) are the one bright spot: their rate edged up from 0.12 to 0.14 percent, the only large cohort improving month on month.",
+  "mix": "First-time referrers are the engine: 644 of them sent 1,142 signups, about 1.77 each, onboarding 58 percent and driving 307 activations. Repeat referrers send more per head, with the three-plus group at 2.88 signups each and 60 percent onboarding, while the single-repeat group onboards at 68 percent. Volume sits with newcomers; conversion quality sits with the repeats.",
+  "weeklyQuality": "Signup weeks from late September onward onboard around 55 to 70 percent within the first week, holding steady. Activation of those onboarded reads 50 to 67 percent for the older weeks but drops to about 35 percent for mid-October and 15 percent for the week of 26 Oct, which is expected since those cohorts are still young and the median time to activate runs one to two weeks.",
+  "claims": "Rewards claimed to date: 202 Polaroid cameras at one referral, 12 AirPods at three, 5 iPhones at eight, and the first Meta Ray-Ban smartglasses at five, claimed on 4 Nov. The iPhone claims span 8 Oct to 3 Nov, all landing at exactly the eight-referral threshold.",
+  "popupHeader": "Claim popup, 1 Sep to 4 Nov",
   "popup": [
-   "25,080 unique users saw the referral widget over the window. 197 clicked through to claim a reward and 181 confirmed the claim, a clean pass from intent to confirmation.",
-   "Only 7 users chose to keep referring instead of claiming, so almost everyone who reaches the reward screen takes the reward rather than pushing for the next rung."
+   "25,080 unique users opened the reward widget over the window. 197 clicked through to claim a reward and 181 confirmed the claim, a tight drop-off from intent to confirmation.",
+   "Only 7 users chose to keep referring instead of claiming, so almost everyone who engaged took the reward when offered."
   ],
   "referrers": [
-   "996 referrers have produced 1,831 signups, 1,118 onboardings and 506 activations over the program.",
-   "778 referred just once and convert well at 70 percent onboarded; the 218 who referred more sent 1,053 signups but onboard at 55 percent, the usual trade of volume for quality.",
-   "The widest reach came from exporter 260681 with 64 signups, 17 onboarded and 6 activated, a genuinely productive referrer.",
-   "By contrast exporter 5561 sent 56 signups but only 1 activated, and 38154 sent 46 with 2 activated, so raw signup counts flatter some who convert poorly.",
-   "273 referrers have 351 signups between them with nobody onboarded yet, a pool still worth nudging.",
-   "163 referrers have never activated themselves yet still drove 408 signups and 177 onboardings, showing the widget pulls in people who are not active customers."
+   "996 referrers have sent 1,831 signups, of which 1,118 onboarded and 519 activated.",
+   "778 referrers sent a single signup and onboard at 70 percent; the 218 multi-referrers sent 1,053 signups but onboard at 55 percent with 241 activations.",
+   "The top referrer by volume, exporter 260681, sent 64 signups with 17 onboarded and 6 activated.",
+   "Exporter 5561 sent 56 signups but only 1 activated, and exporter 38154 sent 46 with 2 activated, so raw volume is not converting at the top.",
+   "273 referrers have no onboardings at all from their 351 signups.",
+   "157 referrers never activated their own account yet still produced 396 signups, 165 onboardings and 45 activations."
   ],
   "refereeQuality": [
-   "October's 982 referred signups onboarded at 48 percent within a day and 58 percent within a week, with 21 percent of the matured ones activating by day 10.",
-   "The typical first payment from an activated October referral was about 160,000 rupees, roughly 1,685 dollars, so these are real transacting customers not token signups.",
-   "November's referred signups are too few and too fresh to read, 73 from single-signup referrers and 19 from repeat referrers, with onboarding tracking October but no mature activation data yet.",
-   "By business type, freelancers make up 54 percent of referred signups and sole proprietors another 30 percent, the same shape as before the campaigns.",
-   "By volume, 54 percent state under 10,000 dollars a month and 43 percent state nothing, so the referred base skews small and early-stage."
+   "October referrals, 982 of them, onboard at 48 percent within a day and 58 percent within a week, with 21 percent of the mature group activating.",
+   "The median first invoice for October referrals is about 160,120 rupees, close to 1,685 dollars.",
+   "November single-signup referrers, 73 so far, onboard a touch faster at 53 percent in a day, but the cohort is too young to read activation.",
+   "November two-plus referrers, just 19, onboard more slowly at 32 percent, worth watching as the month fills in.",
+   "By business type, freelancers are the biggest share of referred signups at 54 percent, with sole proprietors next; companies and LLPs stay small."
   ],
-  "qualityHeader": "Referral quality, refreshed 5 Nov",
-  "qualityWindow": "Activation measured at day 10; first-payment values converted at 95 rupees to the dollar, refreshed 5 Nov.",
+  "qualityHeader": "Referee quality, October cohort matured vs November so far",
+  "qualityWindow": "Figures refreshed 5 Nov 2026. First-invoice amounts converted at 95 rupees to the dollar. October referrals are mature enough to judge; November cohorts are still early.",
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
-   "November is partial, only four days in. Signups ran 628 in August, 950 in September and 984 in October; the 99 so far this month cannot be compared yet. Referral onboardings climbed 465, 611, then 670 across those months.",
-   "The referral share of all onboardings rose steadily to 19.5 percent in October from 12.6 percent in August, while the overall share rate dipped to 2.78 percent in October from 3.21 in September. The partial November figures, 16.0 percent share and 0.48 percent share rate, are not yet meaningful.",
-   "Worth attention: referral activations already total 103 this month in just four days against 422 for all of October, as the large October referral cohort matures and activates. The back half of the funnel is healthy even though new signups have paused."
+   "Signups grew from 628 in August to 950 in September and 984 in October; November shows only 100 in its first few partial days, so it is not comparable yet. Referral onboardings followed the same climb, 465 to 611 to 670, with 72 so far in November.",
+   "Referral activations rose each month, 293 then 356 then 422, and already stand at 117 part way through November. The referral share of all onboardings has climbed from 12.6 to 15.8 to 19.5 percent.",
+   "The monthly share rate held near 3 percent through October and reads 0.5 percent in the partial November window; the thing to watch is whether the post-campaign lull in new signups pulls that share rate down once the month completes."
   ],
   "gold": [
-   "The gold coin campaign pinned about 10,062 never-referrers on 16 Oct, now 21 days in. 129 of them became first-ever referrers and 166 referrers in total drove 189 signups and 114 onboardings. The numbers are small, so read them as early signal not trend.",
-   "The weekly share rate of this pinned group jumped from a pre-pin baseline of 0.43 percent to 1.44 percent in the first week and 1.96 percent in the second, before a partial third week at 1.0 percent, roughly three to four times the baseline. First referrals clustered around 4 to 10 days after the pin, peaking at day 10.",
-   "On the reward end, 26 referrers have reached the coin threshold and 25 have claimed, a 96 percent claim rate, with several of those claims in the last two days. Activation is still shallow at this age, so expect the achieved count to keep climbing as the onboarded pipeline ages."
+   "The gold coin campaign is on day 21. Of the 10,062 never-referrers pinned on 16 Oct, 129 have referred for the first time ever, producing 190 signups, 115 onboardings, 27 reaching the coin and 26 claiming it.",
+   "The pinned group's weekly share rate jumped from about 0.43 percent in the nine weeks before the pin to 1.44, then 1.96, then 0.97 percent in the partial latest week, a clear lift even on small numbers.",
+   "First referrals came fairly quickly, clustering around four to ten days after the pin, with the single busiest day at ten days out. These are early, small counts, so read them as direction rather than proof."
   ],
   "campaigns": [
-   "The live Moonshot ladder is pulling far more volume than any past gift campaign, 27.3 signups a day over 67 days against 17.2 for the Tommy bag and 11.6 for the power bank. It onboards at 61 percent and activates at 45 percent, below the roughly 70 percent both-ways that the finished gift campaigns settled at, which is expected while it is still live and maturing.",
-   "The live gold coin 2026 campaign runs 9 signups a day, onboards at 60 percent and has a 96 percent claim rate among the few who reached the reward, though activation is only 23 percent at 21 days in. Finished gift campaigns like the coffee machine and Tommy bag claimed at 92 to 95 percent once matured, so the gold coin is tracking that pattern early."
+   "The live Moonshot ladder leads all campaigns on volume at about 27 signups a day, but onboards at 61 percent and activates at 46 percent, below past gift campaigns like the Tommy bag and power bank that hit roughly 70 percent onboarding and activation.",
+   "The live gold coin campaign runs about 9 signups a day and has claimed 96 percent of rewards reached, matching older gift campaigns on claim rate, though its 23 percent activation is still low because the cohort is young."
   ]
  },
  "TRENDS": [
@@ -13327,16 +13327,16 @@
   {
    "ym": "2026-11",
    "month": "Nov 26",
-   "signups": 99,
-   "referrers": 86,
+   "signups": 100,
+   "referrers": 87,
    "firstTimers": 47,
-   "refOnboardings": 71,
-   "refActivations": 103,
-   "allOnboardings": 444,
-   "transactors": 3969,
-   "sharers": 19,
-   "shareRate": 0.48,
-   "refShare": 16.0,
+   "refOnboardings": 72,
+   "refActivations": 117,
+   "allOnboardings": 461,
+   "transactors": 4170,
+   "sharers": 21,
+   "shareRate": 0.5,
+   "refShare": 15.6,
    "partial": true
   }
  ],
@@ -13355,11 +13355,11 @@
    "referredBefore": 91
   },
   "funnel": {
-   "signups": 189,
-   "referrers": 166,
-   "onboarded": 114,
-   "achieved": 26,
-   "claimed": 25,
+   "signups": 190,
+   "referrers": 167,
+   "onboarded": 115,
+   "achieved": 27,
+   "claimed": 26,
    "firstEverReferrers": 129
   },
   "daily": [
@@ -13540,15 +13540,15 @@
     "signups": 26,
     "referrers": 23,
     "onboarded": 11,
-    "achieved": 0,
+    "achieved": 1,
     "partial": false
    },
    {
     "day": "5 Nov",
     "date": "2026-11-05",
-    "signups": 7,
-    "referrers": 7,
-    "onboarded": 2,
+    "signups": 8,
+    "referrers": 8,
+    "onboarded": 3,
     "achieved": 0,
     "partial": true
    }
@@ -13693,10 +13693,10 @@
     "partial": true,
     "referrers": 30,
     "signups": 31,
-    "onboarded": 19,
+    "onboarded": 20,
     "achieved": 2,
-    "transactors": 3000,
-    "shareRate": 1.0
+    "transactors": 3090,
+    "shareRate": 0.97
    }
   ],
   "claims": [
@@ -13750,13 +13750,19 @@
    },
    {
     "date": "30 Oct",
-    "id": 245671,
+    "id": 210199,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "30 Oct",
-    "id": 210199,
+    "id": 245671,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "2 Nov",
+    "id": 253379,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -13773,8 +13779,20 @@
     "source": "AUTO"
    },
    {
-    "date": "2 Nov",
-    "id": 253379,
+    "date": "3 Nov",
+    "id": 263146,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "3 Nov",
+    "id": 211538,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "3 Nov",
+    "id": 184564,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -13797,24 +13815,6 @@
     "source": "AUTO"
    },
    {
-    "date": "3 Nov",
-    "id": 211538,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "3 Nov",
-    "id": 263146,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "3 Nov",
-    "id": 184564,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
     "date": "4 Nov",
     "id": 250509,
     "status": "CLAIMED",
@@ -13822,19 +13822,7 @@
    },
    {
     "date": "4 Nov",
-    "id": 201410,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "4 Nov",
-    "id": 211048,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "4 Nov",
-    "id": 248297,
+    "id": 185731,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -13846,7 +13834,25 @@
    },
    {
     "date": "4 Nov",
-    "id": 185731,
+    "id": 248297,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "4 Nov",
+    "id": 211048,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "4 Nov",
+    "id": 201410,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "5 Nov",
+    "id": 113310,
     "status": "CLAIMED",
     "source": "AUTO"
    }
@@ -14099,12 +14105,12 @@
    "signups": 1831,
    "referrers": 996,
    "onboarded": 1118,
-   "achieved": 506,
-   "claimed": 220,
+   "achieved": 519,
+   "claimed": 221,
    "perDay": 27.33,
    "obRate": 61.1,
-   "actRate": 45.3,
-   "claimRate": 43.5
+   "actRate": 46.4,
+   "claimRate": 42.6
   },
   {
    "id": 29,
@@ -14117,15 +14123,15 @@
    "endLabel": "live",
    "live": true,
    "days": 21,
-   "signups": 189,
-   "referrers": 166,
-   "onboarded": 114,
-   "achieved": 26,
-   "claimed": 25,
-   "perDay": 9.0,
-   "obRate": 60.3,
-   "actRate": 22.8,
-   "claimRate": 96.2
+   "signups": 190,
+   "referrers": 167,
+   "onboarded": 115,
+   "achieved": 27,
+   "claimed": 26,
+   "perDay": 9.05,
+   "obRate": 60.5,
+   "actRate": 23.5,
+   "claimRate": 96.3
   }
  ],
  "REFERRER_DETAIL": {
@@ -14754,12 +14760,12 @@
    "Ajith George",
    "SP",
    "2026-10-12",
-   null,
+   "2026-11-05",
    "",
-   0,
-   0,
-   null,
-   null,
+   1,
+   241984,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      278859,
@@ -14767,11 +14773,11 @@
      "SP",
      "2026-10-24",
      "2026-10-26",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     266182,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -15656,12 +15662,12 @@
    "Sudeshna Bhattacharya",
    "SP",
    "2026-09-21",
-   null,
+   "2026-11-05",
    "",
-   0,
-   0,
-   null,
-   null,
+   1,
+   378259,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      265569,
@@ -15693,11 +15699,11 @@
      "SP",
      "2026-09-30",
      "2026-09-30",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     224154,
+     "ACHIEVED"
     ],
     [
      271508,
@@ -15705,11 +15711,11 @@
      "F",
      "2026-10-09",
      "2026-10-09",
-     null,
+     "2026-11-05",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     322221,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -16445,10 +16451,10 @@
    "2025-04-10",
    "2025-04-22",
    "0_10K_USD",
-   36,
-   2865825,
+   38,
+   2871302,
    "2025-04-22",
-   "2026-06-08",
+   "2026-11-05",
    [
     [
      253874,
@@ -17544,10 +17550,10 @@
    "2026-10-09",
    "2026-10-13",
    "",
-   1,
-   575038,
+   3,
+   2379430,
    "2026-10-13",
-   "2026-10-13",
+   "2026-11-05",
    [
     [
      280097,
@@ -18344,10 +18350,10 @@
    "2025-11-25",
    "2025-12-03",
    "0_10K_USD",
-   12,
-   1062133,
+   13,
+   1219245,
    "2025-12-03",
-   "2026-10-05",
+   "2026-11-05",
    [
     [
      269965,
@@ -18576,10 +18582,10 @@
    "2026-09-29",
    "2026-10-05",
    "UNDER_10L_INR",
-   1,
-   287486,
+   2,
+   570988,
    "2026-10-05",
-   "2026-10-05",
+   "2026-11-05",
    [
     [
      268845,
@@ -18589,8 +18595,8 @@
      "2026-10-02",
      "2026-10-16",
      "UNDER_10L_INR",
-     1,
-     21324,
+     2,
+     47899,
      "ACHIEVED"
     ]
    ]
@@ -18758,11 +18764,11 @@
      "LLP",
      "2026-09-15",
      "2026-09-15",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     423727,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -19671,11 +19677,11 @@
      "F",
      "2026-10-09",
      "2026-07-03",
-     null,
+     "2026-11-05",
      "10_20K_USD",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     36352,
+     "ACHIEVED"
     ],
     [
      271498,
@@ -23492,11 +23498,11 @@
      "F",
      "2026-10-26",
      "2026-10-26",
-     null,
+     "2026-11-05",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     12369,
+     "ACHIEVED"
     ],
     [
      279852,
@@ -25860,10 +25866,10 @@
    "2026-08-26",
    "2026-09-03",
    "0_10K_USD",
-   2,
-   362459,
+   3,
+   513051,
    "2026-09-03",
-   "2026-10-05",
+   "2026-11-05",
    [
     [
      253236,
@@ -25873,8 +25879,8 @@
      "2026-09-29",
      "2026-10-05",
      "UNDER_10L_INR",
-     1,
-     287486,
+     2,
+     570988,
      "ACHIEVED"
     ]
    ]
@@ -26766,10 +26772,10 @@
    "2026-06-25",
    "2026-07-07",
    "",
-   4,
-   1106832,
+   5,
+   1371208,
    "2026-07-07",
-   "2026-10-07",
+   "2026-11-05",
    [
     [
      254271,
@@ -26777,11 +26783,11 @@
      "F",
      "2026-10-26",
      "2026-09-08",
-     null,
+     "2026-11-05",
      "0_10K_USD",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     215946,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -27123,11 +27129,11 @@
      "PT",
      "2026-10-27",
      "2026-10-29",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     94420,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -27273,11 +27279,11 @@
      "F",
      "2026-09-12",
      "2026-09-22",
-     null,
+     "2026-11-05",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     94137,
+     "ACHIEVED"
     ],
     [
      258032,
@@ -30964,12 +30970,12 @@
    "Madhumitha Palanisamy",
    "SP",
    "2026-09-30",
-   null,
+   "2026-11-05",
    "",
-   0,
-   0,
-   null,
-   null,
+   1,
+   224154,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      270010,
@@ -30977,11 +30983,11 @@
      "SP",
      "2026-10-05",
      "2026-10-05",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     224154,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -32068,10 +32074,10 @@
    "2025-07-28",
    "2025-09-05",
    "",
-   24,
-   4515843,
+   25,
+   4596631,
    "2025-09-05",
-   "2026-10-07",
+   "2026-11-05",
    [
     [
      262343,
@@ -32118,10 +32124,10 @@
    "2025-07-07",
    "2025-08-05",
    "0_10K_USD",
-   15,
-   7782854,
+   16,
+   8327487,
    "2025-08-05",
-   "2026-10-06",
+   "2026-11-05",
    [
     [
      268327,
@@ -34180,10 +34186,10 @@
    "2026-05-06",
    "2026-05-11",
    "0_10K_USD",
-   6,
-   1978740,
+   7,
+   2297640,
    "2026-05-11",
-   "2026-10-06",
+   "2026-11-05",
    [
     [
      280718,
@@ -34574,10 +34580,10 @@
    "2026-04-13",
    "2026-07-03",
    "0_10K_USD",
-   4,
-   2865631,
+   5,
+   4087780,
    "2026-07-03",
-   "2026-10-07",
+   "2026-11-05",
    [
     [
      260482,
@@ -35653,10 +35659,10 @@
    "2026-05-25",
    "2026-07-10",
    "0_10K_USD",
-   5,
-   666712,
+   6,
+   894831,
    "2026-07-10",
-   "2026-10-05",
+   "2026-11-05",
    [
     [
      259417,
@@ -36595,11 +36601,11 @@
      "SP",
      "2026-09-29",
      "2026-09-29",
-     null,
+     "2026-11-05",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     12736,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -37678,11 +37684,11 @@
      "F",
      "2026-10-12",
      "2026-10-12",
-     null,
+     "2026-11-05",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     2,
+     97725,
+     "ACHIEVED"
     ],
     [
      272972,
@@ -38447,8 +38453,8 @@
      "2026-09-03",
      "2026-10-27",
      "",
-     2,
-     349500,
+     3,
+     1241020,
      "ACHIEVED"
     ]
    ]
@@ -40219,10 +40225,10 @@
    "2026-02-19",
    "2026-03-20",
    "",
-   31,
-   8405225,
+   38,
+   10144399,
    "2026-03-20",
-   "2026-10-15",
+   "2026-11-05",
    [
     [
      274141,
@@ -40267,12 +40273,12 @@
    "Chandni Yadav",
    "F",
    "2026-10-09",
-   null,
+   "2026-11-05",
    "UNDER_10L_INR",
-   0,
-   0,
-   null,
-   null,
+   1,
+   322221,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      271613,
@@ -43217,11 +43223,11 @@
      "SP",
      "2026-10-27",
      "2026-10-27",
-     null,
+     "2026-11-05",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     417744,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -44348,12 +44354,12 @@
    "Komal",
    "F",
    "2026-10-14",
-   null,
+   "2026-11-05",
    "UNDER_10L_INR",
-   0,
-   0,
-   null,
-   null,
+   1,
+   83278,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      274547,
@@ -45631,10 +45637,10 @@
    "2025-09-02",
    "2025-09-04",
    "0_10K_USD",
-   7,
-   721173,
+   8,
+   854048,
    "2025-09-04",
-   "2026-10-05",
+   "2026-11-05",
    [
     [
      264610,
@@ -45644,8 +45650,8 @@
      "2026-09-24",
      "2026-10-05",
      "UNDER_10L_INR",
-     1,
-     190824,
+     2,
+     527476,
      "ACHIEVED"
     ]
    ]
@@ -46347,12 +46353,12 @@
    "Shaik Shabeena",
    "SP",
    "2026-09-29",
-   null,
+   "2026-11-05",
    "UNDER_10L_INR",
-   0,
-   0,
-   null,
-   null,
+   1,
+   12736,
+   "2026-11-05",
+   "2026-11-05",
    [
     [
      267706,
