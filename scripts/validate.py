@@ -11,7 +11,7 @@ except Exception as e:
     print("data.json is not valid JSON:", e); sys.exit(1)
 
 need = ["SNAPSHOT", "PACE", "DAILY", "POPUP", "CLAIMS", "WEEKLY", "COHORTS", "COHORT_LABELS", "QUALITY",
-        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "REFERRER_DETAIL", "TRENDS", "GOLD", "CAMPAIGNS", "MONTH", "notes"]
+        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "REFERRER_DETAIL", "TRENDS", "GOLD", "CAMPAIGNS", "MONTH", "GRID", "EVENTS", "notes"]
 for k in need:
     if k not in d: errors.append(f"missing key {k}")
 
@@ -73,8 +73,15 @@ if not errors:
         pj = mo.get("proj", {}).get(k)
         if not pj or not isinstance(pj.get("toDate"), int): errors.append(f"MONTH.proj.{k} missing")
     if mo.get("fullDays") != d["SNAPSHOT"].get("fullDays"): errors.append("MONTH.fullDays does not match SNAPSHOT.fullDays")
+    if len(mo.get("recent", [])) != 35: errors.append("MONTH.recent should hold 35 days")
+    gr = d["GRID"]
+    if len(gr.get("months", [])) < 13 or not gr.get("latestFull"): errors.append("GRID needs at least 13 months")
+    for code in ("1A", "2A", "1B", "1Ba", "1Bb", "6A", "1A:new", "1A:old"):
+        if code not in gr.get("cells", {}): errors.append(f"GRID.cells.{code} missing")
+    if gr.get("cells", {}).get("1A", {}).get(gr.get("latestFull"), [0])[0] < 5000: errors.append("GRID 1A base looks wrong for the latest full month")
+    if not d["EVENTS"]: errors.append("EVENTS is empty")
     for k in ["pace", "daily", "ladder", "cohorts", "mix", "weeklyQuality", "claims", "popupHeader", "popup", "referrers", "refereeQuality",
-              "qualityHeader", "qualityWindow", "overview", "gold", "campaigns", "month"]:
+              "qualityHeader", "qualityWindow", "overview", "gold", "campaigns", "month", "cohortGrid", "dailyRead"]:
         if k not in d["notes"]: errors.append(f"notes.{k} missing")
     if "—" in raw: errors.append("em dash found in notes; use plain punctuation")
 

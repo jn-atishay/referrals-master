@@ -83,5 +83,79 @@
       "label": "Group A: Gold coin 2026",
       "gift": "24K gold coin"
     }
+  ],
+  "events": [
+    {
+      "date": "2025-10-05",
+      "title": "Diwali gold coin",
+      "note": "Gift instead of $30 on the first achieved referral",
+      "who": "All referrers"
+    },
+    {
+      "date": "2025-11-01",
+      "title": "Diwali ends",
+      "note": "Back to the standard $30 + $30",
+      "who": "All referrers"
+    },
+    {
+      "date": "2026-02-09",
+      "title": "Alexa Echo Dot",
+      "note": "15-day window after activation; Echo Dot if a signup from that window activates",
+      "who": "New activations"
+    },
+    {
+      "date": "2026-05-08",
+      "title": "Mokobara",
+      "note": "First monthly gift, instead of $30 on the first achieved referral",
+      "who": "Activated never-achievers"
+    },
+    {
+      "date": "2026-06-01",
+      "title": "Coffee machine",
+      "note": "Monthly gift",
+      "who": "Activated never-referrers"
+    },
+    {
+      "date": "2026-06-10",
+      "title": "Repeat referrers eligible",
+      "note": "Repeat referrers can win the monthly gift every month",
+      "who": "Repeat referrers"
+    },
+    {
+      "date": "2026-07-01",
+      "title": "Power bank",
+      "note": "Monthly gift, ran till 23 Jul",
+      "who": "Monthly gift audience"
+    },
+    {
+      "date": "2026-07-15",
+      "title": "Non-activated eligible",
+      "note": "Onboarded but not activated users can win the gift too",
+      "who": "Columns 5 and 6"
+    },
+    {
+      "date": "2026-07-24",
+      "title": "Tommy Hilfiger trolley",
+      "note": "Monthly gift, ran till 31 Aug",
+      "who": "Monthly gift audience"
+    },
+    {
+      "date": "2026-09-01",
+      "title": "Milestone ladder",
+      "note": "Rewards at 1, 3, 5 and 8 achieved referrals; replaced Alexa and the monthly gift; ran till 31 Oct",
+      "who": "All referrers"
+    },
+    {
+      "date": "2026-10-16",
+      "title": "Gold coin pilot",
+      "note": "10,062 active never-referrers pinned to a 24K gold coin for their first activated referral",
+      "who": "Pinned never-referrers"
+    },
+    {
+      "date": "2026-11-01",
+      "title": "Gold coin for everyone",
+      "note": "The coin becomes the offer for every referrer; the ladder ends. Referrers still inside an Alexa window that month see the $30 default",
+      "who": "All referrers"
+    }
   ]
 }

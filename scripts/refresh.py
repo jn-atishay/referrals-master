@@ -98,6 +98,15 @@ class Sources:
             raise RuntimeError(f"Metabase: {r.get('error') or r}")
         return r["data"]["rows"]
 
+    def mixpanel_daily(self, event, where, frm, to):
+        """Unique users per day, {iso date: n}."""
+        q = urllib.parse.urlencode({"project_id": self.c["mp_project"], "event": event, "from_date": frm.isoformat(), "to_date": to.isoformat(),
+                                    "type": "unique", "unit": "day", "where": where})
+        auth = base64.b64encode(f"{self.c['mp_user']}:{self.c['mp_secret']}".encode()).decode()
+        req = urllib.request.Request(f"https://mixpanel.com/api/query/segmentation?{q}", headers={"Authorization": "Basic " + auth, "Accept": "application/json"})
+        r = self._get(req, 120)
+        return {k: int(v) for k, v in r["data"]["values"].get(event, {}).items()}
+
     def mixpanel_unique(self, event, where, frm, to):
         days = (to - frm).days + 1
         q = urllib.parse.urlencode({"project_id": self.c["mp_project"], "event": event, "from_date": frm.isoformat(), "to_date": to.isoformat(),
@@ -309,6 +318,11 @@ def build_month(rows, cfg, today):
     for i in range(1, today.day + 1):
         iso = m0.replace(day=i).isoformat()
         daily.append({"dom": i, "day": lbl(iso), "date": iso, **vals(iso), "partial": i == today.day})
+    recent = []
+    for i in range(34, -1, -1):
+        day = today - dt.timedelta(days=i)
+        iso = day.isoformat()
+        recent.append({"dom": day.day, "day": lbl(iso), "date": iso, "dow": day.strftime("%a"), **vals(iso), "partial": day == today})
     prev = []
     pm_end = m0 - dt.timedelta(days=1)
     for _ in range(3):
@@ -359,12 +373,75 @@ def build_month(rows, cfg, today):
     return {"ym": today.strftime("%Y-%m"), "monthName": MONTH_NAMES[today.month - 1], "monthShort": MONTHS[today.month - 1], "daysInMonth": dim, "fullDays": full, "daysLeft": left,
             "openToAll": gc.get("open_to_all"), "openToAllLabel": lbl(gc["open_to_all"]) if gc.get("open_to_all") else None, "unitCostInr": gc.get("unit_cost_inr"),
             "target": (cfg["targets"].get(today.strftime("%Y-%m")) or {}).get("target"),
-            "daily": daily, "prev": prev, "proj": proj, "groups": groups, "tags": tags, "pipeline": pipeline}
+            "daily": daily, "recent": recent, "prev": prev, "proj": proj, "groups": groups, "tags": tags, "pipeline": pipeline}
+
+
+GRID_CODES = [f"{c}{r}" for r in ("A", "Ba", "Bb") for c in range(1, 7)]
+
+
+def build_grid(rows, today):
+    """Cohort grid: cells[code][ym] = [base, referrers in the month, referrers in the first N days]. B rows are Ba + Bb."""
+    months = sorted({r[0] for r in rows})
+    cells = {}
+    for ym, code, base, refs, refs_n in rows:
+        cells.setdefault(code, {})[ym] = [int(base), int(refs), int(refs_n or 0)]
+    for c in range(1, 7):
+        b = {}
+        for ym in months:
+            a, i = cells.get(f"{c}Ba", {}).get(ym, [0, 0, 0]), cells.get(f"{c}Bb", {}).get(ym, [0, 0, 0])
+            b[ym] = [a[0] + i[0], a[1] + i[1], a[2] + i[2]]
+        cells[f"{c}B"] = b
+    for code in GRID_CODES + ["1A:new", "1A:mid", "1A:old"]:
+        cells.setdefault(code, {})
+        for ym in months:
+            cells[code].setdefault(ym, [0, 0, 0])
+    cur = today.strftime("%Y-%m")
+    full_months = [m for m in months if m != cur]
+    return {"months": months, "current": cur, "latestFull": full_months[-1] if full_months else None, "compare": full_months[-4:-1],
+            "fullDays": today.day - 1, "cells": cells}
 
 
 # ----------------------------------------------------------------------------------------------------------------
 # Summary for the notes writer
 # ----------------------------------------------------------------------------------------------------------------
+GRID_LABELS = {"1A": "Active, never referred", "2A": "New activations, never referred", "1B": "Active repeat referrers", "1Ba": "Active, referral achievers",
+               "1Bb": "Active, referral intent only", "6A": "Not activated, new onboarders", "5A": "Not activated, old onboarders",
+               "1A:new": "Active never-referrers, first paid under 6 months ago", "1A:mid": "Active never-referrers, 6 to 12 months", "1A:old": "Active never-referrers, 12+ months"}
+
+
+def grid_summary(g):
+    cells, cur, lf, cmp_ = g["cells"], g["current"], g["latestFull"], g["compare"]
+    rate = lambda v: round(100.0 * v[1] / v[0], 2) if v[0] else None
+    rate_n = lambda v: round(100.0 * v[2] / v[0], 2) if v[0] else None
+    out = {"latestFull": lf, "compareMonths": cmp_, "current": cur, "fullDays": g["fullDays"], "fullMonth": {}, "monthToDate": {}}
+    for code, label in GRID_LABELS.items():
+        c = cells.get(code, {})
+        v = c.get(lf, [0, 0, 0]); prev = [rate(c.get(m, [0, 0, 0])) for m in cmp_ if c.get(m, [0, 0, 0])[0]]
+        avg_prev = round(sum(prev) / len(prev), 2) if prev else None
+        out["fullMonth"][code] = {"label": label, "users": v[0], "referrers": v[1], "shareRate": rate(v), "prior3AvgRate": avg_prev,
+                                  "deltaPts": round(rate(v) - avg_prev, 2) if rate(v) is not None and avg_prev is not None else None}
+        vc = c.get(cur, [0, 0, 0]); prev_n = [rate_n(c.get(m, [0, 0, 0])) for m in g["months"][-4:-1] if c.get(m, [0, 0, 0])[0]]
+        avg_n = round(sum(prev_n) / len(prev_n), 2) if prev_n else None
+        out["monthToDate"][code] = {"label": label, "users": vc[0], "referrersFirstNDays": vc[2], "shareRateFirstNDays": rate_n(vc), "prior3AvgFirstNDays": avg_n,
+                                    "deltaPts": round(rate_n(vc) - avg_n, 2) if rate_n(vc) is not None and avg_n is not None else None}
+    tot = lambda m: sum(cells[c].get(m, [0, 0, 0])[1] for c in GRID_CODES)
+    out["totalReferrers"] = {"latestFull": tot(lf), "prior3Avg": round(sum(tot(m) for m in cmp_) / len(cmp_), 1) if cmp_ else None, "currentMonthToDate": tot(cur)}
+    return out
+
+
+def daily_summary(M):
+    rec = [r for r in M["recent"] if not r["partial"]]
+    keys = ["signups", "goldSignups", "referrers", "firstTimers", "onboardings", "activations", "coins"]
+    wd = M.get("widgetDaily") or {}
+    def block(rows):
+        return {k: sum(r[k] for r in rows) for k in keys} | {"days": len(rows), "widgetUsers": sum(wd.get(r["date"], 0) for r in rows) if wd else None}
+    y = rec[-1] if rec else None
+    return {"yesterday": ({k: y[k] for k in keys} | {"date": y["date"], "day": y["day"], "dow": y["dow"], "widgetUsers": wd.get(y["date"])}) if y else None,
+            "last7": block(rec[-7:]), "previous7": block(rec[-14:-7]), "sameWeekdayLastWeek": ({k: rec[-8][k] for k in keys} | {"day": rec[-8]["day"]}) if len(rec) >= 8 else None,
+            "weeks": [{"weekOf": rec[i]["day"], **block(rec[i:i + 7])} for i in range(max(0, len(rec) - 28), len(rec) - 6, 7)] if len(rec) >= 7 else [],
+            "openToAll": M.get("openToAllLabel"), "widgetDailyError": M.get("widgetDailyError")}
+
+
 def summarise(data, top24h, cfg, today):
     P, S = data["PACE"], data["SNAPSHOT"]
     refs = data["REFERRERS_RAW"]
@@ -418,7 +495,9 @@ def summarise(data, top24h, cfg, today):
                  "preWeeks": {"n": len(pre), "avgReferrers": round(sum(w["referrers"] for w in pre) / len(pre), 1) if pre else None, "avgShareRate": round(sum((w["shareRate"] or 0) for w in pre) / len(pre), 2) if pre else None},
                  "postWeeks": post},
         "campaigns": data["CAMPAIGNS"],
-        "month": {k: v for k, v in data["MONTH"].items() if k not in ("daily", "prev")} | {
+        "cohortGrid": grid_summary(data["GRID"]),
+        "dailyRead": daily_summary(data["MONTH"]),
+        "month": {k: v for k, v in data["MONTH"].items() if k not in ("daily", "prev", "recent", "widgetDaily")} | {
             "lastDays": [{k2: v2 for k2, v2 in x.items() if k2 != "date"} for x in data["MONTH"]["daily"][-8:]],
             "prevMonths": [{"month": m["month"], "full": m["full"], "firstN": m["firstN"]} for m in data["MONTH"]["prev"]]},
     }
@@ -458,6 +537,7 @@ def main():
     hist_rows = query(src, cfg, "08_campaigns.sql")
     detail_rows = query(src, cfg, "09_referrer_detail.sql")
     month_rows = query(src, cfg, "10_month.sql")
+    grid_rows = query(src, cfg, "11_cohort_grid.sql")
 
     data = {k: v for k, v in old.items()}  # keep every key the current file has
     data["SNAPSHOT"] = {"asOf": f"{today.day} {MONTHS[today.month - 1]} {today.year}, {now:%H:%M} IST", "asOfIso": now.isoformat(timespec="minutes"),
@@ -475,6 +555,14 @@ def main():
     data["GOLD"] = build_gold(gold_rows, cfg, today, src)
     data["CAMPAIGNS"] = build_campaigns(hist_rows, cfg, today)
     data["MONTH"] = build_month(month_rows, cfg, today)
+    data["GRID"] = build_grid(grid_rows, today)
+    data["EVENTS"] = [{**e, "label": lbl(e["date"]) + " " + str(d(e["date"]).year)[2:], "ym": e["date"][:7]} for e in cfg.get("events", [])]
+    try:
+        wt = cfg["gold_coin"]["widget_type"]
+        data["MONTH"]["widgetDaily"] = src.mixpanel_daily("referral_widget_loaded", f'properties["type"] == "{wt}"', today - dt.timedelta(days=34), today)
+    except Exception as e:  # noqa: BLE001
+        data["MONTH"]["widgetDaily"] = (old.get("MONTH") or {}).get("widgetDaily") or {}
+        data["MONTH"]["widgetDailyError"] = str(e)[:200]
 
     if "--force-quality" in args or old.get("qualityRefreshedOn") != today.isoformat() or not all(k in old for k in ("Q_FUNNEL", "Q_BT", "Q_VOL", "FX")):
         data["Q_FUNNEL"], data["Q_BT"], data["Q_VOL"], data["FX"] = build_quality(query(src, cfg, "05_referee_quality.sql"), today)

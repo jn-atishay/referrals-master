@@ -260,7 +260,9 @@ html, body { background: var(--page); margin: 0; }
 .app .tablewrap.short thead th { background: var(--page); }
 .app .tablewrap.short thead th:first-child, .app .tablewrap.short td:first-child { padding-left: 0; }
 .app .tablewrap.short thead th.num, .app .tablewrap.short td.num { padding-right: 0; }
-.app .projtable th, .app .projtable td { white-space: nowrap; padding-left: 14px; } .app .projtable th:first-child, .app .projtable td:first-child { padding-left: 0; }
+.app .defs > div { padding: 7px 0; border-bottom: 1px solid var(--grid); font-size: 13px; } .app .defs b { display: block; } .app .defs span { color: var(--ink2); }
+.app .evkey { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-top: 8px; font-size: 12px; color: var(--muted); } .app .evkey b { display: inline-block; min-width: 16px; height: 16px; line-height: 15px; text-align: center; border: 1px solid var(--muted); border-radius: 50%; font-size: 10px; color: var(--ink); margin-right: 2px; }
+.app .tablewrap table.projtable th, .app .tablewrap table.projtable td { white-space: nowrap; padding-left: 14px; } .app .tablewrap table.projtable th:first-child, .app .tablewrap table.projtable td:first-child { padding-left: 0; } .app .tablewrap:not(.short) table.projtable th:first-child, .app .tablewrap:not(.short) table.projtable td:first-child { padding-left: 12px; }
 .app .sortable th { cursor: pointer; user-select: none; }
 .app .sortable th:hover { color: var(--ink); }
 .app tr.clickable { cursor: pointer; }
@@ -618,6 +620,10 @@ function Overview({ T, go }) {
       <section>
         <div className="sechead"><h2>What is running</h2></div>
         <div className="live">
+          {MONTH && MONTH.recent && <button className="livecard" onClick={() => go("daily")}>
+            <div><b>Day by day</b><span>{(() => { const f = MONTH.recent.filter((r) => !r.partial); const y = f[f.length - 1]; const a = f.slice(-7).reduce((s, r) => s + r.signups, 0), b = f.slice(-14, -7).reduce((s, r) => s + r.signups, 0); return `${y.day}: ${y.signups} signups, ${y.onboardings} onboardings, ${y.activations} activations, ${y.coins} coins. Last seven days ${a} signups against ${b} the week before.`; })()}</span></div>
+            <span className="pill">daily</span>
+          </button>}
           {MONTH && <button className="livecard" onClick={() => go("month")}>
             <div><b>{MONTH.monthName} projection</b><span>Day {MONTH.fullDays + 1} of {MONTH.daysInMonth}. Signups projecting about {fmt(MONTH.proj.signups.projected)}, onboardings {fmt(MONTH.proj.onboardings.projected)}, gold coins {fmt(MONTH.proj.coins.projected)}.</span></div>
             <span className="pill">projection</span>
@@ -646,12 +652,14 @@ function Overview({ T, go }) {
               <YAxis {...axis(T)} tickFormatter={fmtc} />
               <Tooltip content={<Tip />} cursor={{ stroke: T.axis }} />
               <Legend iconType="plainline" iconSize={14} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+              {EVENTS.map((e, i) => { const t = TRENDS.find((x) => x.ym === e.ym); return t ? <ReferenceLine key={e.date} x={t.month} stroke={T.muted} strokeDasharray="3 3" label={{ value: String(i + 1), position: "top", fontSize: 10, fill: T.muted }} /> : null; })}
               <Line isAnimationActive={false} dataKey="signups" name="Signups" stroke={T.s1} strokeWidth={2} dot={{ r: 3.5, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} activeDot={{ r: 5 }} />
               <Line isAnimationActive={false} dataKey="refOnboardings" name="Onboardings" stroke={T.s3} strokeWidth={2} dot={{ r: 3.5, fill: T.s3, stroke: T.surface, strokeWidth: 2 }} activeDot={{ r: 5 }} />
               <Line isAnimationActive={false} dataKey="refActivations" name="Activations" stroke={T.s2} strokeWidth={2} dot={{ r: 3.5, fill: T.s2, stroke: T.surface, strokeWidth: 2 }} activeDot={{ r: 5 }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
+        {EVENTS.length > 0 && <div className="evkey">{EVENTS.map((e, i) => <span key={e.date}><b>{i + 1}</b> {e.label}: {e.title}</span>)}</div>}
         <div className="grid2" style={{ marginTop: 22 }}>
           <div>
             <h3>Share rate: transactors who referred that month</h3>
@@ -1338,10 +1346,493 @@ function MonthProjection({ T }) {
 }
 
 // ============================================================================
+// DAY BY DAY (the live campaign)
+// ============================================================================
+
+const GRID = D.GRID || null;
+const EVENTS = D.EVENTS || [];
+
+function Daily({ T }) {
+  if (!MONTH || !MONTH.recent) return <section className="first"><p className="note">Daily data appears after the next refresh.</p></section>;
+  const M = MONTH;
+  const wd = M.widgetDaily || {};
+  const hasWidget = Object.keys(wd).length > 0;
+  const rec = M.recent.map((r) => ({ ...r, widget: wd[r.date] ?? null, label: r.day + (r.partial ? "*" : "") }));
+  const full = rec.filter((r) => !r.partial);
+  const y = full[full.length - 1], lastWeekSame = full[full.length - 8];
+  const keys = [["signups", "Signups"], ["referrers", "Referrers"], ["firstTimers", "First-time referrers"], ["onboardings", "Onboardings"], ["activations", "Activations"], ["coins", "Gold coins"]];
+  const sum = (rows, k) => rows.reduce((a, r) => a + (r[k] || 0), 0);
+  const last7 = full.slice(-7), prev7 = full.slice(-14, -7);
+  const avg7 = (k) => sum(last7, k) / Math.max(1, last7.length);
+  const chg = (a, b) => (b ? (100 * (a - b)) / b : null);
+  const withAvg = rec.slice(-28).map((r, i, arr) => { const w = full.filter((f) => f.date <= r.date).slice(-7); return { ...r, avg7: w.length ? +(sum(w, "signups") / w.length).toFixed(1) : null }; });
+  const weeks = [];
+  for (let i = full.length - 28; i < full.length - 6; i += 7) { if (i < 0) continue; const rows = full.slice(i, i + 7); weeks.push({ weekOf: rows[0].day, to: rows[rows.length - 1].day, ...Object.fromEntries(keys.map(([k]) => [k, sum(rows, k)])), goldSignups: sum(rows, "goldSignups"), widget: hasWidget ? sum(rows, "widget") : null }); }
+  const readLine = (k, label) => {
+    const a = sum(last7, k), b = sum(prev7, k), c = chg(a, b);
+    const word = c === null ? "no earlier week to compare" : c > 15 ? "up" : c < -15 ? "down" : "about level";
+    return { k, label, a, b, c, word };
+  };
+  const reads = [readLine("signups", "Signups"), readLine("referrers", "Referrers"), readLine("firstTimers", "First-time referrers"), readLine("onboardings", "Onboardings"), readLine("coins", "Gold coins")];
+  const pill = (c) => (c === null ? "gray" : c > 15 ? "live" : c < -15 ? "warn" : "gray");
+  return (
+    <>
+      <div className="pagehead">
+        <div>
+          <h2 style={{ fontSize: 18 }}>The live campaign, day by day</h2>
+          <p className="sub">Gold coin for everyone since {M.openToAllLabel || "1 Nov"}. Yesterday against the seven days before it, then the last seven days against the seven before that. Signups are referee signups from every referrer; gold coin signups are the ones tagged to the coin. Activations and coins can come from referrals made weeks earlier.</p>
+        </div>
+        <div className="count"><b>{y ? y.day : ""}</b><span className="sub">{y ? `${y.dow}, last full day` : ""}</span></div>
+      </div>
+
+      <section className="first">
+        <div className="stats">
+          {keys.map(([k, label]) => {
+            const v = y ? y[k] : 0, a = avg7(k), d = chg(v, a);
+            return <Stat key={k} T={T} label={`${label} yesterday`} value={fmt(v)} hero={k === "signups"} delta={d} deltaGood sub={`7-day average ${a.toFixed(1)}${lastWeekSame ? `, same weekday last week ${fmt(lastWeekSame[k])}` : ""}${k === "signups" && y ? `. ${y.goldSignups} tagged to the coin` : ""}`} />;
+          })}
+          <Stat T={T} label="Saw the coin widget yesterday" value={hasWidget && y && y.widget != null ? fmtc(y.widget) : "n/a"} sub={hasWidget ? `unique exporters; 7-day average ${fmtc(Math.round(avg7("widget")))}` : "Mixpanel unavailable on this run"} />
+        </div>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Last seven days against the seven before</h2><span className="note">{last7.length ? `${last7[0].day} to ${last7[last7.length - 1].day}` : ""} against {prev7.length ? `${prev7[0].day} to ${prev7[prev7.length - 1].day}` : ""}. Up or down means more than 15% either way.</span></div>
+        <div className="live">
+          {reads.map((r) => (
+            <div className="livecard" key={r.k} style={{ cursor: "default" }}>
+              <div><b>{r.label}: {fmt(r.a)} vs {fmt(r.b)}</b><span>{r.c === null ? r.word : `${r.word}, ${r.c > 0 ? "+" : ""}${r.c.toFixed(0)}%`}{r.k === "signups" ? `. Of the ${fmt(r.a)}, ${fmt(sum(last7, "goldSignups"))} were tagged to the coin against ${fmt(sum(prev7, "goldSignups"))} before` : ""}</span></div>
+              <span className={`pill ${pill(r.c)}`}>{r.c === null ? "n/a" : r.c > 15 ? "up" : r.c < -15 ? "down" : "level"}</span>
+            </div>
+          ))}
+        </div>
+        <Notes items={N.dailyRead} title="What yesterday says" />
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>Signups, last four weeks</h2><span className="note">Bars: all referee signups, the coin-tagged part in gold. Line: seven-day average. * today so far.</span></div>
+            <div className="chart" style={{ height: 240 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={withAvg} margin={{ top: 10, right: 8, left: -18, bottom: 0 }} barGap={-18}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval="preserveStartEnd" minTickGap={18} />
+                  <YAxis {...axis(T)} allowDecimals={false} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  {M.openToAllLabel && <ReferenceLine x={M.openToAllLabel} stroke={T.muted} strokeDasharray="3 3" label={{ value: "everyone", position: "insideTopLeft", fontSize: 11, fill: T.muted }} />}
+                  <Bar isAnimationActive={false} dataKey="signups" name="All signups" fill={T.dim} radius={[3, 3, 0, 0]} maxBarSize={18}>{withAvg.map((x) => <Cell key={x.date} fill={T.dim} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                  <Bar isAnimationActive={false} dataKey="goldSignups" name="Tagged to the coin" fill={T.s4} radius={[3, 3, 0, 0]} maxBarSize={18}>{withAvg.map((x) => <Cell key={x.date} fill={T.s4} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                  <Line isAnimationActive={false} dataKey="avg7" name="7-day average" stroke={T.ink} strokeWidth={2} dot={false} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div>
+            <div className="sechead"><h2>Outcomes, last four weeks</h2><span className="note">Onboardings, activations and coins by the day they happened.</span></div>
+            <div className="chart" style={{ height: 240 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={withAvg} margin={{ top: 10, right: 8, left: -18, bottom: 0 }} barGap={1}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval="preserveStartEnd" minTickGap={18} />
+                  <YAxis {...axis(T)} allowDecimals={false} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar isAnimationActive={false} dataKey="onboardings" name="Onboardings" fill={T.s3} radius={[3, 3, 0, 0]} maxBarSize={12} />
+                  <Bar isAnimationActive={false} dataKey="activations" name="Activations" fill={T.s2} radius={[3, 3, 0, 0]} maxBarSize={12} />
+                  <Bar isAnimationActive={false} dataKey="coins" name="Gold coins" fill={T.s4} radius={[3, 3, 0, 0]} maxBarSize={12} />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>The last fourteen days</h2><span className="note">* today so far.</span></div>
+            <div className="tablewrap short"><table className="projtable" style={{ minWidth: 640 }}>
+              <thead><tr><th>Day</th><th className="num">Signups</th><th className="num">Coin-tagged</th><th className="num">Referrers</th><th className="num">First-timers</th>{hasWidget && <th className="num">Saw widget</th>}<th className="num">Onboarded</th><th className="num">Activated</th><th className="num">Coins</th></tr></thead>
+              <tbody>{rec.slice(-14).reverse().map((r) => <tr key={r.date} className={r.partial ? "hl" : ""}><td>{r.label} <span style={{ color: "var(--muted)" }}>{r.dow}</span></td><td className="num">{fmt(r.signups)}</td><td className="num">{fmt(r.goldSignups)}</td><td className="num">{fmt(r.referrers)}</td><td className="num">{fmt(r.firstTimers)}</td>{hasWidget && <td className="num">{r.widget == null ? "n/a" : fmt(r.widget)}</td>}<td className="num">{fmt(r.onboardings)}</td><td className="num">{fmt(r.activations)}</td><td className="num">{fmt(r.coins)}</td></tr>)}</tbody>
+            </table></div>
+          </div>
+          <div>
+            <div className="sechead"><h2>Week by week</h2><span className="note">Seven-day blocks ending yesterday, newest first.</span></div>
+            <div className="tablewrap short"><table className="projtable" style={{ minWidth: 560 }}>
+              <thead><tr><th>Week</th><th className="num">Signups</th><th className="num">Coin-tagged</th><th className="num">Referrers</th><th className="num">First-timers</th>{hasWidget && <th className="num">Saw widget</th>}<th className="num">Onboarded</th><th className="num">Activated</th><th className="num">Coins</th></tr></thead>
+              <tbody>{weeks.slice().reverse().map((w, i) => <tr key={w.weekOf} className={i === 0 ? "hl" : ""}><td>{w.weekOf} to {w.to}</td><td className="num">{fmt(w.signups)}</td><td className="num">{fmt(w.goldSignups)}</td><td className="num">{fmt(w.referrers)}</td><td className="num">{fmt(w.firstTimers)}</td>{hasWidget && <td className="num">{fmt(w.widget)}</td>}<td className="num">{fmt(w.onboardings)}</td><td className="num">{fmt(w.activations)}</td><td className="num">{fmt(w.coins)}</td></tr>)}</tbody>
+            </table></div>
+            <p className="note" style={{ marginTop: 8 }}>The ladder ended on 31 Oct and the coin opened to everyone on 1 Nov, so the week of 23 Oct still carries ladder signups. Widget views count unique exporters who loaded the gold coin widget that day.</p>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ============================================================================
+// COHORTS (the grid from the Oct 2026 cohort analysis, kept live)
+// ============================================================================
+
+const GCOLS = { 1: "Active", 2: "New activations", 3: "Dormant", 4: "Churned", 5: "Not activated, old onboarder", 6: "Not activated, new onboarder" };
+const GROWS = { A: "Never referred", B: "Repeat referrers", Ba: "Referral achievers", Bb: "Referral intent" };
+const GORDER = ["A", "B", "Ba", "Bb"].flatMap((r) => [1, 2, 3, 4, 5, 6].map((c) => c + r));
+const gLabel = (ym) => { const [y, m] = ym.split("-"); return `${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1]} ${y.slice(2)}`; };
+const gName = (ym) => ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][+ym.split("-")[1] - 1];
+
+function Cohorts({ T }) {
+  if (!GRID) return <section className="first"><p className="note">Cohort data appears after the next refresh.</p></section>;
+  const G = GRID, cells = G.cells, months = G.months, cur = G.current, lf = G.latestFull, cmp = G.compare;
+  const get = (c, m, k = 0) => (cells[c] && cells[c][m] ? cells[c][m][k] : 0);
+  const share = (c, m) => (get(c, m, 0) ? +((100 * get(c, m, 1)) / get(c, m, 0)).toFixed(2) : null);
+  const shareN = (c, m) => (get(c, m, 0) ? +((100 * get(c, m, 2)) / get(c, m, 0)).toFixed(2) : null);
+  const avg = (a) => { const v = a.filter((x) => x != null); return v.length ? v.reduce((s, x) => s + x, 0) / v.length : null; };
+  const leaf = (c) => ["A", "Ba", "Bb"].includes(c.slice(1));
+  const totRef = (m) => GORDER.filter(leaf).reduce((s, c) => s + get(c, m, 1), 0);
+  const cmpl = cmp.length ? `${gLabel(cmp[0]).slice(0, 3)} to ${gLabel(cmp[cmp.length - 1]).slice(0, 3)} avg` : "prior months";
+  const fullMonths = months.filter((m) => m !== cur);
+  const rows = (ms) => ms.map((m) => ({ ym: m, label: gLabel(m) + (m === cur ? "*" : ""), partial: m === cur,
+    r1A: share("1A", m), r2A: share("2A", m), r1B: share("1B", m), r6A: share("6A", m), r1Ba: share("1Ba", m), r1Bb: share("1Bb", m),
+    c1: [1].reduce((s, c) => s + ["A", "Ba", "Bb"].reduce((t, r) => t + get(c + r, m, 1), 0), 0),
+    c2: ["A", "Ba", "Bb"].reduce((t, r) => t + get("2" + r, m, 1), 0), c34: [3, 4].reduce((s, c) => s + ["A", "Ba", "Bb"].reduce((t, r) => t + get(c + r, m, 1), 0), 0),
+    c56: [5, 6].reduce((s, c) => s + ["A", "Ba", "Bb"].reduce((t, r) => t + get(c + r, m, 1), 0), 0),
+    A: [1, 2, 3, 4, 5, 6].reduce((s, c) => s + get(c + "A", m, 1), 0), Ba: [1, 2, 3, 4, 5, 6].reduce((s, c) => s + get(c + "Ba", m, 1), 0), Bb: [1, 2, 3, 4, 5, 6].reduce((s, c) => s + get(c + "Bb", m, 1), 0),
+    base1A: get("1A", m, 0), base1Ba: get("1Ba", m, 0), base1Bb: get("1Bb", m, 0),
+    tNew: share("1A:new", m), tMid: share("1A:mid", m), tOld: share("1A:old", m), bNew: get("1A:new", m, 0), bMid: get("1A:mid", m, 0), bOld: get("1A:old", m, 0) }));
+  const series = rows(months.filter((m) => m !== cur));
+  const [pick, setPick] = useState("1A");
+  const [metric, setMetric] = useState("share");
+  const rateCard = (c, label) => { const curv = share(c, lf), b = avg(cmp.map((m) => share(c, m))); const d = curv != null && b != null ? +(curv - b).toFixed(1) : null;
+    return <Stat T={T} label={label} value={curv == null ? "n/a" : `${curv.toFixed(1)}%`} delta={d} deltaSuffix=" pts" sub={`${fmt(get(c, lf, 1))} of ${fmt(get(c, lf, 0))} in ${gName(lf)}; ${cmpl} ${b == null ? "n/a" : b.toFixed(1) + "%"}`} />; };
+  const n = G.fullDays;
+  const likeCards = [["1A:new", "Active never-referrers, first paid under 6 months ago"], ["1A:old", "Active never-referrers, first paid 12+ months ago"], ["1B", "Active repeat referrers"], ["2A", "New activations this month"]].map(([c, label]) => {
+    const now = shareN(c, cur), prevs = fullMonths.slice(-3).map((m) => shareN(c, m)), b = avg(prevs), refs = get(c, cur, 2);
+    const rel = now != null && b ? (now - b) / b : null;
+    const verdict = refs < 10 && (b == null || b * get(c, cur, 0) / 100 < 10) ? ["gray", "Too few referrers to tell"] : rel == null ? ["gray", "No comparison"] : rel > 0.15 ? ["live", "Ahead of the last three months"] : rel < -0.15 ? ["warn", "Behind the last three months"] : ["gray", "About level"];
+    return { c, label, now, b, refs, base: get(c, cur, 0), prevs, verdict };
+  });
+  const pickRows = rows(months).map((r) => ({ label: r.label, referrers: get(pick, r.ym, 1), rate: r.partial ? null : share(pick, r.ym), base: get(pick, r.ym, 0) }));
+  const gridRows = GORDER.map((c) => ({ code: c, parent: c.slice(1) === "B", vals: months.map((m) => metric === "base" ? get(c, m, 0) : metric === "ref" ? get(c, m, 1) : share(c, m)),
+    cmpTxt: (() => { if (!lf || !cmp.length) return ""; if (metric === "share") { const a = share(c, lf), b = avg(cmp.map((m) => share(c, m))); return a == null || b == null ? "" : `${a - b >= 0 ? "+" : ""}${(a - b).toFixed(1)} pts`; } const k = metric === "base" ? 0 : 1; const a = get(c, lf, k), b = avg(cmp.map((m) => get(c, m, k))); return b ? `${a - b >= 0 ? "+" : ""}${Math.round((100 * (a - b)) / b)}%` : ""; })(), small: get(c, lf, 0) < 100 }));
+  const oldPct = (m) => (get("1A", m, 0) ? (100 * get("1A:old", m, 0)) / get("1A", m, 0) : null);
+  const ev = EVENTS.map((e, i) => ({ ...e, n: i + 1, label: gLabel(e.ym) + (e.ym === cur ? "*" : "") })).filter((e) => months.includes(e.ym));
+  const markers = (key) => ev.map((e) => <ReferenceLine key={e.date + key} x={e.label} stroke={T.muted} strokeDasharray="3 3" label={{ value: String(e.n), position: "top", fontSize: 10, fill: T.muted }} />);
+  return (
+    <>
+      <div className="pagehead">
+        <div>
+          <h2 style={{ fontSize: 18 }}>Who refers, month by month</h2>
+          <p className="sub">Every onboarded exporter sits in one cell each month: columns 1 to 6 by where they are in the product, rows A, Ba and Bb by whether they have referred before. Share rate is referrers divided by cohort size. Headline comparisons are {gName(lf)} against the average of {cmpl.replace(" avg", "")}. {gName(cur)} is {n} full day{n === 1 ? "" : "s"} in: it is read like for like below and marked * in the grid, and left off the monthly charts. The numbered dashed lines are the campaign changes listed on the Overview.</p>
+        </div>
+      </div>
+
+      <section className="first">
+        <div className="stats">
+          <Stat T={T} label={`Referrers in ${gName(lf)}`} value={fmt(totRef(lf))} hero delta={avg(cmp.map(totRef)) ? (100 * (totRef(lf) - avg(cmp.map(totRef)))) / avg(cmp.map(totRef)) : null} sub={`${cmpl} ${avg(cmp.map(totRef)) == null ? "n/a" : Math.round(avg(cmp.map(totRef))).toLocaleString("en-IN")}; ${fmt(totRef(cur))} so far in ${gName(cur)}`} />
+          {rateCard("1A", "Share rate, active never referred (1A)")}
+          {rateCard("2A", "Share rate, new activations (2A)")}
+          {rateCard("1B", "Share rate, active repeat referrers (1B)")}
+        </div>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>{gName(cur)} so far, like for like</h2><span className="note">Referrers in the first {n} day{n === 1 ? "" : "s"} of {gName(cur)} against the first {n} day{n === 1 ? "" : "s"} of each of the last three months, as a share of the cohort. Is the live offer moving the people it is meant for?</span></div>
+        <div className="live">
+          {likeCards.map((k) => (
+            <div className="livecard" key={k.c} style={{ cursor: "default" }}>
+              <div><b>{k.label}</b><span>{k.now == null ? "n/a" : `${k.now.toFixed(2)}%`} now ({fmt(k.refs)} of {fmt(k.base)}) against {k.b == null ? "n/a" : `${k.b.toFixed(2)}%`} over the same days of {fullMonths.slice(-3).map(gLabel).join(", ")} ({k.prevs.map((p) => (p == null ? "n/a" : p.toFixed(2) + "%")).join(", ")}).</span></div>
+              <span className={`pill ${k.verdict[0]}`}>{k.verdict[1]}</span>
+            </div>
+          ))}
+        </div>
+        <p className="note" style={{ marginTop: 8 }}>Cohorts 2 and 6 keep filling up through the month, so their like-for-like read is rough. Ahead or behind means more than 15% either way; under 10 referrers is too thin to call.</p>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Share rate by cohort</h2><span className="note">The cohorts that produce almost all referrers. Repeat referrers and new activations refer at two to three times the rate of the never-referred base, the largest pool and the one the campaigns target.</span></div>
+        <div className="chart" style={{ height: 280 }}>
+          <ResponsiveContainer>
+            <LineChart data={series} margin={{ top: 16, right: 16, left: -14, bottom: 0 }}>
+              <CartesianGrid vertical={false} stroke={T.grid} />
+              <XAxis dataKey="label" {...axis(T)} interval={1} />
+              <YAxis {...axis(T)} tickFormatter={(v) => `${v}%`} />
+              <Tooltip content={<Tip fmtv={(v) => (v == null ? "n/a" : `${v}%`)} />} cursor={{ stroke: T.axis }} />
+              <Legend iconType="plainline" iconSize={14} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+              {markers("s")}
+              <Line isAnimationActive={false} dataKey="r1A" name="1A Active, never referred" stroke={T.s1} strokeWidth={2.2} dot={{ r: 3, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+              <Line isAnimationActive={false} dataKey="r2A" name="2A New activations" stroke={T.s4} strokeWidth={2.2} dot={{ r: 3, fill: T.s4, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+              <Line isAnimationActive={false} dataKey="r1B" name="1B Active, repeat referrers" stroke={T.ink} strokeWidth={2.2} dot={{ r: 3, fill: T.ink, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+              <Line isAnimationActive={false} dataKey="r6A" name="6A Not activated, new onboarder" stroke={T.muted} strokeWidth={1.8} dot={{ r: 2.5, fill: T.muted, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+            </LineChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>Where referrers come from</h2><span className="note">Monthly referrers by product stage.</span></div>
+            <div className="chart" style={{ height: 230 }}>
+              <ResponsiveContainer>
+                <BarChart data={series} margin={{ top: 10, right: 8, left: -18, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis {...axis(T)} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar isAnimationActive={false} dataKey="c1" name="Active (1)" stackId="a" fill={T.s1} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="c2" name="New activations (2)" stackId="a" fill={T.s4} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="c34" name="Dormant + churned (3, 4)" stackId="a" fill={T.s2} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="c56" name="Not activated (5, 6)" stackId="a" fill={T.dim} maxBarSize={22} radius={[3, 3, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div>
+            <div className="sechead"><h2>First-time against repeat</h2><span className="note">Referrers who had never referred before the month (A) against those who had (Ba achievers, Bb intent only).</span></div>
+            <div className="chart" style={{ height: 230 }}>
+              <ResponsiveContainer>
+                <BarChart data={series} margin={{ top: 10, right: 8, left: -18, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis {...axis(T)} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar isAnimationActive={false} dataKey="A" name="First-time (A)" stackId="a" fill={T.s1} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="Ba" name="Repeat, achievers (Ba)" stackId="a" fill={T.s4} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="Bb" name="Repeat, intent only (Bb)" stackId="a" fill={T.dim} maxBarSize={22} radius={[3, 3, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>The never-referred pool</h2><span className="note">Active customers who have never referred (1A): size and share rate.</span></div>
+            <div className="chart" style={{ height: 230 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={series} margin={{ top: 10, right: 0, left: -10, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis yAxisId="l" {...axis(T)} tickFormatter={fmtc} />
+                  <YAxis yAxisId="r" orientation="right" {...axis(T)} tickFormatter={(v) => `${v}%`} />
+                  <Tooltip content={<Tip fmtv={(v, k) => (k === "r1A" ? `${v}%` : fmt(v))} />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar yAxisId="l" isAnimationActive={false} dataKey="base1A" name="1A size" fill={T.wash} stroke={T.s1} maxBarSize={22} radius={[3, 3, 0, 0]} />
+                  <Line yAxisId="r" isAnimationActive={false} dataKey="r1A" name="Share rate" stroke={T.s1} strokeWidth={2.2} dot={{ r: 3, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div>
+            <div className="sechead"><h2>The repeat referrer pool</h2><span className="note">Active customers with past referral activity (1B): achievers (Ba) and intent only (Bb).</span></div>
+            <div className="chart" style={{ height: 230 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={series} margin={{ top: 10, right: 0, left: -10, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis yAxisId="l" {...axis(T)} tickFormatter={fmtc} />
+                  <YAxis yAxisId="r" orientation="right" {...axis(T)} tickFormatter={(v) => `${v}%`} />
+                  <Tooltip content={<Tip fmtv={(v, k) => (k.startsWith("r") ? `${v}%` : fmt(v))} />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar yAxisId="l" isAnimationActive={false} dataKey="base1Ba" name="Achievers (1Ba) size" stackId="b" fill={T.s4} opacity={0.35} maxBarSize={22} />
+                  <Bar yAxisId="l" isAnimationActive={false} dataKey="base1Bb" name="Intent only (1Bb) size" stackId="b" fill={T.dim} maxBarSize={22} radius={[3, 3, 0, 0]} />
+                  <Line yAxisId="r" isAnimationActive={false} dataKey="r1Ba" name="1Ba share rate" stroke={T.s4} strokeWidth={2.2} dot={{ r: 3, fill: T.s4, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                  <Line yAxisId="r" isAnimationActive={false} dataKey="r1Bb" name="1Bb share rate" stroke={T.muted} strokeWidth={2.2} dot={{ r: 3, fill: T.muted, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Never-referrers by tenure</h2><span className="note">1A split by how long ago the customer made their first payment, measured at the start of each month. Newer customers refer at about twice the rate of customers who have been here a year or more.</span></div>
+        <div className="stats">
+          {[["1A:new", "Share rate, activated under 6 months ago"], ["1A:mid", "Share rate, 6 to 12 months"], ["1A:old", "Share rate, 12+ months"]].map(([c, l]) => <span key={c}>{rateCard(c, l)}</span>)}
+          <Stat T={T} label="Share of 1A that is 12+ months old" value={oldPct(lf) == null ? "n/a" : `${oldPct(lf).toFixed(1)}%`} delta={oldPct(lf) != null && avg(cmp.map(oldPct)) != null ? oldPct(lf) - avg(cmp.map(oldPct)) : null} deltaSuffix=" pts" deltaGood={false} sub={`${cmpl} ${avg(cmp.map(oldPct)) == null ? "n/a" : avg(cmp.map(oldPct)).toFixed(1) + "%"}; ${months[0] ? oldPct(months[0]).toFixed(1) + "% in " + gLabel(months[0]) : ""}`} />
+        </div>
+        <div className="grid2" style={{ marginTop: 18 }}>
+          <div>
+            <h3>Share rate by tenure</h3>
+            <div className="chart" style={{ height: 220 }}>
+              <ResponsiveContainer>
+                <LineChart data={series} margin={{ top: 10, right: 8, left: -14, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis {...axis(T)} tickFormatter={(v) => `${v}%`} />
+                  <Tooltip content={<Tip fmtv={(v) => (v == null ? "n/a" : `${v}%`)} />} cursor={{ stroke: T.axis }} />
+                  <Legend iconType="plainline" iconSize={14} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Line isAnimationActive={false} dataKey="tNew" name="Under 6 months" stroke={T.s1} strokeWidth={2.2} dot={{ r: 2.5, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                  <Line isAnimationActive={false} dataKey="tMid" name="6 to 12 months" stroke={T.s4} strokeWidth={2.2} dot={{ r: 2.5, fill: T.s4, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                  <Line isAnimationActive={false} dataKey="tOld" name="12+ months" stroke={T.s2} strokeWidth={2.2} dot={{ r: 2.5, fill: T.s2, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+                  <Line isAnimationActive={false} dataKey="r1A" name="1A overall" stroke={T.ink} strokeWidth={1.4} strokeDasharray="5 4" dot={false} connectNulls />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div>
+            <h3>The pool is getting older</h3>
+            <div className="chart" style={{ height: 220 }}>
+              <ResponsiveContainer>
+                <BarChart data={series} margin={{ top: 10, right: 8, left: -14, bottom: 0 }}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval={2} />
+                  <YAxis {...axis(T)} tickFormatter={fmtc} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar isAnimationActive={false} dataKey="bNew" name="Under 6 months" stackId="t" fill={T.s1} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="bMid" name="6 to 12 months" stackId="t" fill={T.s4} maxBarSize={22} />
+                  <Bar isAnimationActive={false} dataKey="bOld" name="12+ months" stackId="t" fill={T.s2} maxBarSize={22} radius={[3, 3, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Any cohort, month on month</h2><span className="note">Bars are referrers, the line is share rate.</span></div>
+        <div style={{ marginBottom: 8 }}>
+          <label className="note">Cohort <select value={pick} onChange={(e) => setPick(e.target.value)} style={{ font: "inherit", fontSize: 13, padding: "4px 8px", borderRadius: 8, border: "1px solid var(--border)", background: "var(--surface)", color: "var(--ink)" }}>
+            {GORDER.map((c) => <option key={c} value={c}>{c}  {GCOLS[c[0]]}, {GROWS[c.slice(1)].toLowerCase()}</option>)}
+          </select></label>
+        </div>
+        <div className="chart" style={{ height: 240 }}>
+          <ResponsiveContainer>
+            <ComposedChart data={pickRows} margin={{ top: 10, right: 0, left: -10, bottom: 0 }}>
+              <CartesianGrid vertical={false} stroke={T.grid} />
+              <XAxis dataKey="label" {...axis(T)} interval={1} />
+              <YAxis yAxisId="l" {...axis(T)} allowDecimals={false} />
+              <YAxis yAxisId="r" orientation="right" {...axis(T)} tickFormatter={(v) => `${v}%`} />
+              <Tooltip content={<Tip fmtv={(v, k) => (k === "rate" ? (v == null ? "n/a" : `${v}%`) : fmt(v))} />} cursor={{ fill: T.wash }} />
+              <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+              <Bar yAxisId="l" isAnimationActive={false} dataKey="referrers" name="Referrers" fill={T.wash} stroke={T.s1} maxBarSize={22} radius={[3, 3, 0, 0]} />
+              <Line yAxisId="r" isAnimationActive={false} dataKey="rate" name="Share rate" stroke={T.s1} strokeWidth={2.2} dot={{ r: 3, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} connectNulls />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+        <p className="note">{get(pick, lf, 0) ? `${gName(lf)}: ${fmt(get(pick, lf, 1))} referrers from ${fmt(get(pick, lf, 0))} users, share rate ${share(pick, lf) == null ? "n/a" : share(pick, lf).toFixed(2) + "%"}. ${cmpl}: ${avg(cmp.map((m) => get(pick, m, 1))) == null ? "n/a" : avg(cmp.map((m) => get(pick, m, 1))).toFixed(1)} referrers from ${avg(cmp.map((m) => get(pick, m, 0))) == null ? "n/a" : Math.round(avg(cmp.map((m) => get(pick, m, 0)))).toLocaleString("en-IN")} users, share rate ${avg(cmp.map((m) => share(pick, m))) == null ? "n/a" : avg(cmp.map((m) => share(pick, m))).toFixed(2) + "%"}.${get(pick, lf, 0) < 100 ? " Small cohort, read the share rate with care." : ""}` : `No users in this cohort in ${gName(lf)}.`}</p>
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Full cohort grid</h2><span className="note">All 24 cohorts. Row B is the sum of Ba and Bb. Shaded cells are share rates of 4% or more. The last column compares {gName(lf)} with the {cmpl}: percentage change for counts, points for share rates, greyed for cohorts under 100 users.</span></div>
+        <div className="tabs" role="tablist" style={{ marginTop: 4 }}>
+          {[["share", "Share rate %"], ["ref", "Referrers"], ["base", "Cohort size"]].map(([k, l]) => <button key={k} role="tab" aria-selected={metric === k} className={metric === k ? "on" : ""} onClick={() => setMetric(k)}>{l}</button>)}
+        </div>
+        <div className="tablewrap"><table className="sortable projtable" style={{ minWidth: 60 * months.length + 320 }}>
+          <thead><tr><th>Cohort</th><th>Who</th>{months.map((m) => <th key={m} className="num">{gLabel(m)}{m === cur ? "*" : ""}</th>)}<th className="num">vs {cmpl}</th></tr></thead>
+          <tbody>
+            {gridRows.map((r) => <tr key={r.code} className={r.parent ? "hl" : ""}><td><b>{r.code}</b></td><td style={{ whiteSpace: "normal", color: "var(--muted)", minWidth: 200 }}>{GCOLS[r.code[0]]}, {GROWS[r.code.slice(1)].toLowerCase()}</td>
+              {r.vals.map((v, i) => <td key={months[i]} className="num" style={metric === "share" && v != null && v >= 4 ? { background: "var(--accent-soft)" } : undefined}>{v == null ? "n/a" : metric === "share" ? v.toFixed(2) : fmt(v)}</td>)}
+              <td className="num" style={{ color: r.small ? "var(--muted)" : undefined }}>{r.cmpTxt}</td></tr>)}
+          </tbody>
+        </table></div>
+        <Notes items={N.cohortGrid} title="Reading the cohorts" />
+      </section>
+
+      <section>
+        <div className="sechead"><h2>Definitions</h2><span className="note">Everything is in IST. Activation means the first successful settlement. Referral activity means a referral in signup complete, onboarding complete or achieved state.</span></div>
+        <div className="grid2">
+          <div className="defs">
+            {[["1. Active", "Activated before month start, at least one transaction in this month or last month."], ["2. New activations", "First successful settlement falls in this month."], ["3. Dormant", "Activated before month start, no transaction in this month or last, at least one two or three months ago."], ["4. Churned", "Activated before month start, no transaction in the last four months including this one."], ["5. Not activated, old onboarder", "No successful settlement yet, onboarded before last month."], ["6. Not activated, new onboarder", "No successful settlement yet, onboarded this month or last."]].map(([k, v]) => <div key={k}><b>{k}</b><span>{v}</span></div>)}
+          </div>
+          <div className="defs">
+            {[["A. Never referred", "No referral signups before month start. A first referral this month counts as a conversion here."], ["B. Repeat referrers", "Any referral activity before month start. Equals Ba plus Bb."], ["Ba. Referral achievers", "At least one referral reached achieved before month start."], ["Bb. Referral intent", "Referral signups or onboardings before month start, but no achieved referral yet."], ["Referrer", "An exporter with at least one referral dated in the month."], ["Exclusions", "Internal ids, the affiliate referrer and flagged bulk referrers are excluded as referrers. Payees are not excluded."]].map(([k, v]) => <div key={k}><b>{k}</b><span>{v}</span></div>)}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ============================================================================
+// READS: dated analyses carried over from the Oct 2026 cohort report. Point-in-time text, not refreshed.
+// ============================================================================
+
+const READS = [
+  { id: "oct-check", date: "7 October 2026", title: "October check: where the milestone campaign stopped working",
+    lede: "Every month compared on its first 12 full days, so October is like for like with earlier months. July and August are before the campaign (monthly gifts). September and October are both milestone months. Share rate is referrers in those 12 days divided by cohort size. Exporter 85276 is excluded as a referrer.",
+    cards: [
+      { tone: "warn", t: "Not working, two months in a row", h: "Active never-referrers, first paid 6+ months ago", n: "About 4,700 people in October", r: "0.54% before the campaign, 0.54% in September, 0.53% in October. No movement at all." },
+      { tone: "warn", t: "Worked in September, gone in October", h: "Active never-referrers, first paid under 6 months ago", n: "About 5,300 people in October", r: "0.98% before, 1.19% in September, 0.70% in October, the lowest of the four months." },
+      { tone: "live", t: "Still working", h: "Active repeat referrers", n: "About 2,700 people in October", r: "2.19% before, 3.04% in September, 2.67% in October. Down from September but still well above before." },
+    ],
+    points: [
+      ["For never-referrers, the campaign was not working in October", "Active customers who first paid 6+ months ago shared at the same rate in every month: about 0.54% in the first 12 days before the campaign, 0.54% in September and 0.53% in October. Two full campaign months with no movement is as clear as this data gets. September and October together gave 50 referrers from 9,363, the same rate as before. Newer never-referrers (first paid under 6 months ago) did respond in September, 1.19% against 0.98% before, but October fell to 0.70%, below both September and the pre-campaign months. All active never-referrers together were sharing at 0.62% in October against 0.76% before the campaign."],
+      ["Repeat referrers were still responding", "Active repeat referrers were at 2.67% in October against 2.19% before. Down from September's 3.04%, but September and October together were clearly above the pre-campaign months, mostly driven by achievers (2.80% against 2.06%). The ladder did its job for this group."],
+      ["Everyone else is too small to judge", "Dormant, churned and old non-activated users refer at well under 0.3% in any month, and the small groups of past referrers among them have fewer than 15 referrers a month. None of them justified a campaign change on this data."],
+      ["Caveats", "Twelve days is a short window, and the start of the festive season may have weighed on early October. Repeat referrers held up over the same days, though, so the season alone does not explain the drop among never-referrers. This view counts referrers, not onboardings."],
+      ["Recommendation, and what happened", "Move all active never-referrers (about 10,000) to a different campaign from mid-October: a single-referral offer with one clear reward and a short deadline, rather than a ladder. Keep the milestone ladder for repeat referrers. This became the gold coin pilot on 16 Oct (10,062 never-referrers pinned) and, from 1 Nov, the gold coin for everyone. The Cohorts tab tracks the like-for-like read live."],
+    ] },
+  { id: "ms-impact", date: "8 October 2026", title: "Milestone campaign: impact in September 2026",
+    lede: "The milestone campaign went live on 1 Sep (Polaroid at 1 achieved referral, AirPods at 3, Ray-Ban Meta at 5, iPhone 17 at 8) and replaced Alexa and the monthly gift. Everything here compares September with the June to August average. Exporter 85276 (1,592 signups between 23 and 30 Sep, 22 onboarded, none activated) is excluded from signup and referrer numbers; left in, September signups would read 2,542.",
+    table: [["Referral signups", "950", "582 avg", "+63%"], ["Referral onboardings", "607", "430 avg", "+41%, 110% of the 552 target"], ["Referral activations", "355", "303 avg", "+17%, still catching up"], ["Referrers", "595", "501 avg", "+19%"], ["Signups per referrer", "1.60", "1.16 avg", "+37%"], ["Referrers with 2+ signups", "18.5%", "11.7% avg", "the ladder rewarded depth"], ["Repeat referrers", "222", "146 avg", "+52%, signups 381 vs 181"], ["First-time referrers", "373", "355 avg", "+5%, 1.53 signups each vs 1.13"], ["Onboarded within 7 days", "54%", "64% avg", "quality slipped from wide sharing"], ["Activated within 7 days", "6.9%", "9.2% avg", "66 referees vs 53 in absolute terms"]],
+    points: [
+      ["Signups up 63%, onboardings up 41% and ahead of target", "September brought 950 referral signups against a June to August average of 582, and 607 referral onboardings against 430, which is 110% of the 552 target. Activations were 355 against 303, up 17%, with most September referees activating in October (the median is 17 to 19 days from onboarding to first payment)."],
+      ["The lift came from depth more than reach", "Referrers grew 19% (595 against 501), while signups per referrer grew 37% (1.60 against 1.16). 18.5% of referrers sent 2 or more signups, against 11.7% before. The ladder rewards multiple referrals, and people responded by sending more, not by more people starting to refer."],
+      ["Repeat referrers came back; first-timers barely grew in number", "Repeat referrers were 222 against an average of 146, up 52%, and their signups more than doubled (381 against 181). First-time referrers were 373 against 355, up only 5%, though each sent more (1.53 against 1.13). Of the 368 extra signups, about 200 came from repeat referrers and 168 from first-timers sending more. This matches the share-rate view: 1B up 1.3 pts, 1A flat."],
+      ["Referee quality slipped, mostly from people sharing widely", "54% of September referees onboarded within 7 days, against 64% before, and 6.9% activated within 7 days, against 9.2%. The drop was sharpest among past power referrers (3+ achieved): 39% onboarded within 7 days against 69%. Because volume rose so much, there were still more good outcomes in absolute terms: 517 referees onboarded within a week against 372 (up 39%), and 66 activated within a week against 53. Onboarded referees also skewed more to freelancers, 60% against 48%."],
+      ["The pipeline was full, but most of it had not activated yet", "As of 8 Oct, 535 of the 711 campaign referrers had no achieved referral yet, and 362 onboarded referees sat under them waiting for a first payment. 176 had unlocked the Polaroid and 58 had claimed it. Only 7 had reached the AirPods rung or higher. The reward popup: 20,341 saw the widget, 711 referred (3.5%), 66 opened the claim popup, 58 claimed (57 Polaroid, 1 AirPods), 1 pressed keep referring."],
+      ["What to do next (as written then)", "Push activation for the 362 onboarded referees waiting on a first payment, and chase the referrers whose signups have not onboarded. Watch quality from multi-signup referrers, and get Ops to review exporter 85276 before any of those referees activate. On new referrers, the campaign has not moved the never-referred share rate, so the next idea for that group needs to be different, not bigger."],
+    ] },
+  { id: "insights", date: "7 October 2026", title: "Insights: September 2026 against the June to August average",
+    lede: "What September said about the referral program, with campaign changes as context. Share rate changes are in percentage points.",
+    points: [
+      ["September had 591 referrers, 18% above the June to August average of 499", "September was the first month of the milestone campaign. Of the extra 92 referrers, 76 came from people who had referred before: achievers (Ba) were 131 against an average of 91, and intent-only referrers (Bb) were 91 against 55. First-time referrers (A) were 369 against 353, up only 16 even though the never-referred pool is bigger. September's growth was a repeat-referrer story, not a new-referrer story."],
+      ["The core share rate is slightly below average, and gifts lift it only while they are new", "Active customers who have never referred (1A) shared at 1.9%, against a June to August average of 2.0%. The pool grew 14% (9,724 against 8,550), so first-time referrer numbers went up while the rate dipped. In June and July 2025, on the standard $30 program with no campaign, 1A was already at 2.3 to 2.4%. It then slid to 1.4 to 1.5% by November to January, with a one-month bump to 2.5% during the Diwali gold coin in October. The monthly gifts brought it back to 2.3 to 2.4% in May and June 2026, and it faded since. Gift launches have mostly recovered lost ground rather than lifted the rate above where it was a year ago. The milestone campaign did not move 1A, still well short of the 3% target."],
+      ["New activations are steady, but September was the first month without Alexa", "Users who made their first payment in September (2A) shared at 4.1%, against a June to August average of 4.3%. They still refer at about twice the rate of 1A, and the cohort was 1,586 users against an average of 1,432. From 9 Feb to 31 Aug this group had the Alexa window, and 2A peaked at 7.3% in May when Alexa overlapped with the first monthly gift. Alexa was switched off when the milestone campaign launched, so September was the first reading without a dedicated activation-window reward."],
+      ["Repeat referrers jumped with the milestone campaign", "Active repeat referrers (1B) shared at 6.5%, against a June to August average of 5.2%, up 1.3 pts. Both sub-groups moved: achievers (1Ba) 6.6% against 5.3%, and intent-only (1Bb) 6.4% against 4.9%. Even dormant past referrers (3B) went to 4.8% against 2.7%, though that cohort is only 420 users. When repeat referrers became eligible for the monthly gift on 10 Jun, 1B went from 4.9% in May to 6.0% in June, then faded to 4.2% by August. 1B ran at 6.2 to 7.0% in June to August 2025, so September brought it back to last year's level rather than to a new high."],
+      ["The rise in old non-activated onboarders followed the 15 Jul eligibility change", "Users who onboarded more than two months ago and never transacted (5A) produced 39 referrers, against a June to August average of 31. Before July this cohort ran at 5 to 19 a month. It went to 28 in July, 52 in August and 39 in September, right after onboarded-but-not-activated users became eligible for the gift on 15 Jul, followed by the Tommy Hilfiger trolley on 24 Jul. Still worth checking self-referrals here (6 to 9% of referrals come from users with 2 or more PANs), since this cohort has never transacted. New onboarders (6A) went the other way: 50 referrers against an average of 59, share rate 0.85% against 1.08%."],
+      ["Dormant and churned users stay marginal", "Columns 3 and 4 produced 59 referrers, against a June to August average of 49. All of the increase came from past referrers (3B and 4B), which fits the milestone campaign pulling repeat referrers back. Never-referred dormant users (3A) shared at 0.58% against 0.74%, and churned (4A) at 0.25% against 0.35%, both below average. These groups should be judged on reactivation, not referrals."],
+      ["What to do with this", "Keep 1A share rate as the headline: 1.9% in September against a 2.0% three-month average and a 3% target. It is below the 2.3 to 2.4% it ran at in mid-2025 with no campaign. Gift launches have pulled it back up for a month or two each time without moving the baseline, and the milestone campaign did not move it at all. The clear win was repeat referrers, up 1.3 pts, which the ladder drove. Two things to watch: whether 2A holds now that Alexa is off, and how much of the 5A rise is self-referrals."],
+    ] },
+  { id: "tenure", date: "7 October 2026", title: "Never-referrers by tenure: what the split showed",
+    lede: "1A split by how long ago the customer made their first payment. The live version of this cut is on the Cohorts tab.",
+    points: [
+      ["Newer customers were converting as well as they did a year ago", "Customers who activated in the last 6 months shared at 2.4% in September 2026, the same range as June and July 2025 (2.4 to 2.8%). In May 2026, during the Mokobara launch, they reached 3.1%, above the 3% target."],
+      ["The headline was being pulled down by an aging pool, not by worse conversion", "Customers active for 12+ months who have never referred share at about 1.2%, and they were 27% of 1A, up from 12% in mid-2025. With June 2025's tenure mix, September's 1A would be 2.1% instead of 1.9%, and May 2026 would have been 2.6%, above anything in mid-2025."],
+      ["The late-2025 dip hit every tenure band", "In November to January all three bands fell to between 0.8% and 1.9%. That part is not about mix, and is worth explaining separately."],
+      ["Long-time never-referrers need their own approach", "They have seen the $30 offer and every gift without referring. Campaign results are easier to read if 1A is tracked by tenure, with the 3% target applied to newer customers and a separate goal for the 12+ month group."],
+    ] },
+];
+
+function Reads() {
+  return (
+    <>
+      <div className="pagehead">
+        <div><h2 style={{ fontSize: 18 }}>Reads</h2><p className="sub">Dated analyses, kept as written so the reasoning behind the campaign changes stays on the record. The numbers in them are as of their date; the live tabs carry the current ones.</p></div>
+      </div>
+      <section className="first">
+        <div className="sechead"><h2>Campaign changes</h2><span className="note">The numbered lines on the Overview and Cohorts charts.</span></div>
+        <div className="tablewrap short"><table>
+          <thead><tr><th></th><th>Date</th><th>Change</th><th>Applied to</th></tr></thead>
+          <tbody>{EVENTS.map((e, i) => <tr key={e.date}><td>{i + 1}</td><td style={{ whiteSpace: "nowrap" }}>{e.label}</td><td style={{ whiteSpace: "normal" }}><b>{e.title}</b><small style={{ display: "block", color: "var(--muted)", fontSize: 11.5 }}>{e.note}</small></td><td style={{ whiteSpace: "normal" }}>{e.who}</td></tr>)}</tbody>
+        </table></div>
+        <p className="note" style={{ marginTop: 8 }}>Between campaigns and for anyone not eligible, the standard program is $30 for the referrer and $30 for the referee. Gift campaigns change the referrer reward only; the referee always gets $30.</p>
+      </section>
+      {READS.map((r) => (
+        <section key={r.id} id={r.id}>
+          <div className="sechead"><h2>{r.title}</h2><span className="note">{r.date}</span></div>
+          <p className="sub" style={{ maxWidth: "86ch" }}>{r.lede}</p>
+          {r.cards && <div className="live" style={{ marginTop: 12 }}>{r.cards.map((c) => <div className="livecard" key={c.h} style={{ cursor: "default" }}><div><b>{c.h}</b><span>{c.n}. {c.r}</span></div><span className={`pill ${c.tone}`}>{c.t}</span></div>)}</div>}
+          {r.table && <div className="tablewrap short" style={{ marginTop: 12 }}><table><thead><tr><th>Metric</th><th className="num">September</th><th className="num">Jun to Aug</th><th>Read</th></tr></thead><tbody>{r.table.map((row) => <tr key={row[0]}><td>{row[0]}</td><td className="num">{row[1]}</td><td className="num">{row[2]}</td><td style={{ whiteSpace: "normal", color: "var(--muted)" }}>{row[3]}</td></tr>)}</tbody></table></div>}
+          <div className="insights">{r.points.map(([h, p]) => <div key={h}><h3 style={{ marginTop: 14 }}>{h}</h3><p>{p}</p></div>)}</div>
+        </section>
+      ))}
+    </>
+  );
+}
+
+// ============================================================================
 // APP
 // ============================================================================
 
-const TABS = [["overview", "Overview"], ["month", `${(D.MONTH || PACE).monthShort} projection`], ["gold", "Gold coin"], ["milestone", "Milestone campaign"], ["referrers", "Referrers"], ["quality", "Referee quality"], ["campaigns", "Campaigns"]];
+const TABS = [["overview", "Overview"], ["daily", "Day by day"], ["month", `${(D.MONTH || PACE).monthShort} projection`], ["gold", "Gold coin"], ["cohorts", "Cohorts"], ["milestone", "Milestone campaign"], ["referrers", "Referrers"], ["quality", "Referee quality"], ["campaigns", "Campaigns"], ["reads", "Reads"]];
 const readHash = () => { const h = (window.location.hash || "").replace("#", ""); return TABS.some((t) => t[0] === h) ? h : "overview"; };
 
 function Freshness() {
@@ -1361,7 +1852,7 @@ export default function MilestoneDashboard() {
   useEffect(() => { const fn = () => setView(readHash()); window.addEventListener("hashchange", fn); return () => window.removeEventListener("hashchange", fn); }, []);
   const go = (v) => { setView(v); try { history.replaceState(null, "", "#" + v); } catch (e) { window.location.hash = v; } window.scrollTo({ top: 0, behavior: "smooth" }); };
   const cycle = () => { const next = pref === "auto" ? "dark" : pref === "dark" ? "light" : "auto"; setPref(next); setPrefState(next); };
-  const counts = { month: MONTH ? `day ${MONTH.fullDays + 1}` : "", milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? `day ${GOLD.dayN}` : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.length) };
+  const counts = { daily: MONTH && MONTH.recent ? MONTH.recent[MONTH.recent.length - 2].day : "", cohorts: GRID ? fmt(GRID.months.length) + " mo" : "", reads: fmt(READS.length), month: MONTH ? `day ${MONTH.fullDays + 1}` : "", milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? `day ${GOLD.dayN}` : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.length) };
 
   return (
     <div className="app">
@@ -1384,6 +1875,9 @@ export default function MilestoneDashboard() {
       <div className="wrap">
         {view === "overview" && <Overview T={T} go={go} />}
         {view === "month" && <MonthProjection T={T} />}
+        {view === "daily" && <Daily T={T} />}
+        {view === "cohorts" && <Cohorts T={T} />}
+        {view === "reads" && <Reads />}
         {view === "milestone" && <Milestone T={T} />}
         {view === "gold" && <Gold T={T} />}
         {view === "referrers" && <Referrers />}

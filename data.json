@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "6 Nov 2026, 12:39 IST",
-  "asOfIso": "2026-11-06T12:39+05:30",
+  "asOf": "6 Nov 2026, 12:49 IST",
+  "asOfIso": "2026-11-06T12:49+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -681,9 +681,9 @@
    "reward": "iPhone 17",
    "threshold": 8,
    "status": "Claimed",
-   "count": 5,
+   "count": 6,
    "first": "8 Oct",
-   "last": "3 Nov",
+   "last": "6 Nov",
    "avgAchieved": 8.0
   }
  ],
@@ -893,29 +893,29 @@
    "id": "2",
    "label": "New activations this month (M0)",
    "indent": 0,
-   "base": 371,
+   "base": 388,
    "refNow": 4,
-   "rateNow": 1.08,
+   "rateNow": 1.03,
    "refPrev": 9,
    "ratePrev": 0.77,
-   "delta": 40.3
+   "delta": 33.8
   },
   {
    "id": "3",
    "label": "Not activated, onboarded this month",
    "indent": 0,
-   "base": 490,
+   "base": 487,
    "refNow": 4,
    "rateNow": 0.82,
    "refPrev": 3,
-   "ratePrev": 0.93,
-   "delta": -11.8
+   "ratePrev": 0.94,
+   "delta": -12.8
   },
   {
    "id": "4",
    "label": "Not activated, old onboarder",
    "indent": 0,
-   "base": 37355,
+   "base": 37341,
    "refNow": 16,
    "rateNow": 0.04,
    "refPrev": 10,
@@ -961,7 +961,7 @@
    "ob1d": 39.9,
    "ob7d": 50.2,
    "obSoFar": 52.6,
-   "actOfOb": 54.1,
+   "actOfOb": 54.9,
    "medianDays": 11.9
   },
   {
@@ -997,8 +997,8 @@
    "ob1d": 43.9,
    "ob7d": 54.4,
    "obSoFar": 56.1,
-   "actOfOb": 40.6,
-   "medianDays": 9.2
+   "actOfOb": 43.6,
+   "medianDays": 9.7
   },
   {
    "week": "26 Oct",
@@ -1006,8 +1006,8 @@
    "ob1d": 47.4,
    "ob7d": 55.6,
    "obSoFar": 56.5,
-   "actOfOb": 18.3,
-   "medianDays": 5.6
+   "actOfOb": 20.6,
+   "medianDays": 6.1
   },
   {
    "week": "2 Nov",
@@ -1221,8 +1221,8 @@
    "2026-10-19",
    10,
    8,
-   7,
-   "",
+   8,
+   "iPhone 17",
    "FT"
   ],
   [
@@ -1298,6 +1298,18 @@
    "FT"
   ],
   [
+   202727,
+   "Rahul Vats",
+   "SP",
+   "2026-05-09",
+   "2026-06-15",
+   13,
+   11,
+   4,
+   "",
+   "RN"
+  ],
+  [
    209316,
    "Arvind Sharma",
    "SP",
@@ -1351,6 +1363,18 @@
    "F",
    "2026-08-25",
    "2026-09-17",
+   4,
+   4,
+   4,
+   "AirPods 4",
+   "FT"
+  ],
+  [
+   238933,
+   "Sudeshna Bhattacharya",
+   "SP",
+   "2026-09-21",
+   "2026-11-05",
    4,
    4,
    4,
@@ -1476,18 +1500,6 @@
    3,
    "AirPods 4",
    "R3"
-  ],
-  [
-   238933,
-   "Sudeshna Bhattacharya",
-   "SP",
-   "2026-09-21",
-   "2026-11-05",
-   4,
-   4,
-   3,
-   "AirPods 4",
-   "FT"
   ],
   [
    252071,
@@ -1634,18 +1646,6 @@
    "FT"
   ],
   [
-   202727,
-   "Rahul Vats",
-   "SP",
-   "2026-05-09",
-   "2026-06-15",
-   13,
-   11,
-   2,
-   "",
-   "RN"
-  ],
-  [
    120406,
    "Utkarsh Arjun Asthana",
    "F",
@@ -1668,6 +1668,18 @@
    2,
    "",
    "R3"
+  ],
+  [
+   168733,
+   "Atishay Jain",
+   "LLP",
+   "2026-02-02",
+   "2026-02-04",
+   15,
+   6,
+   2,
+   "",
+   "R1"
   ],
   [
    93348,
@@ -1872,18 +1884,6 @@
    1,
    "",
    "RN"
-  ],
-  [
-   168733,
-   "Atishay Jain",
-   "LLP",
-   "2026-02-02",
-   "2026-02-04",
-   15,
-   6,
-   1,
-   "",
-   "R1"
   ],
   [
    208483,
@@ -3350,6 +3350,18 @@
    "RN"
   ],
   [
+   119592,
+   "Chirasha Wadhwa",
+   "F",
+   "2025-09-04",
+   "2025-09-17",
+   1,
+   1,
+   1,
+   "",
+   "R1"
+  ],
+  [
    119917,
    "Dimple Goyal",
    "SP",
@@ -4488,6 +4500,18 @@
    1,
    "",
    "R3"
+  ],
+  [
+   199815,
+   "Gaurav Sharma",
+   "F",
+   "2026-05-06",
+   "2026-05-11",
+   1,
+   1,
+   1,
+   "",
+   "R1"
   ],
   [
    200842,
@@ -7790,18 +7814,6 @@
    "RN"
   ],
   [
-   119592,
-   "Chirasha Wadhwa",
-   "F",
-   "2025-09-04",
-   "2025-09-17",
-   1,
-   1,
-   0,
-   "",
-   "R1"
-  ],
-  [
    119643,
    "Sachin Kumar Kishanlal Joshi",
    "F",
@@ -8604,18 +8616,6 @@
    0,
    "",
    "FT"
-  ],
-  [
-   199815,
-   "Gaurav Sharma",
-   "F",
-   "2026-05-06",
-   "2026-05-11",
-   1,
-   1,
-   0,
-   "",
-   "R1"
   ],
   [
    199851,
@@ -13156,6 +13156,15 @@
    "Five full days in, so every projection here rests on a small base. Referral signups stand at 115 against 126 by the same day in October and 183 in September; scaled by how front-loaded the last three months were, November projects to about 731, in a range of roughly 600 to 900. Onboardings are at 81, projecting about 491 against 670 in October, with no target set. Activations are unusually high at 150 for five days because referees from the September and October ladder are paying now, so the 835 projection overstates where the month will land once that backlog clears.",
    "The gold coin became the offer for everyone on 1 November and 114 of the 119 signups so far are tagged to it. Of 103 referrers this month, 77 were never part of the pinned pilot: 31 of them referred for the first time ever and 46 are repeat referrers, so the open offer is reaching people the pilot never touched. The remaining 4 signups went to the $30 default because those referrers still had an Alexa window open this month.",
    "Coins: 21 claimed so far in November and 32 since the campaign began; the last seven days ran about 4 a day, which points to around 125 by month end. Behind that, 82 referrers have an onboarded referee waiting to pay and 68 more have signups still finishing onboarding. If 52 percent of those referees go on to pay, as past cohorts have, the referrers so far would eventually earn about 116 coins in total."
+  ],
+  "dailyRead": [
+   "Thursday 5 November brought 23 referee signups, 22 of them tagged to the gold coin, from 22 referrers of whom 12 had never referred before; 3,290 exporters saw the coin widget. That is a little under the seven-day average of 27 signups and well below the 62 on the same Thursday a week earlier, when the ladder was still live.",
+   "The last seven days ran 191 signups against 290 the week before, down a third, with referrers down from 231 to 161. The coin side moved the other way: coin-tagged signups rose from 49 to 119, activations from 87 to 184 as the ladder backlog paid, and coins claimed from 5 to 23. The number to watch is daily signups holding above 20 without the ladder."
+  ],
+  "cohortGrid": [
+   "October, the latest full month, had 569 referrers against a July to September average of 532. Active never-referrers (1A) shared at 1.67%, 0.23 points under the 1.90% average of the three months before; the cards above read new activations (2A) and active repeat referrers (1B) against the same base.",
+   "Five days into November, like for like against the first five days of August to October: never-referrers who first paid under 6 months ago are at 0.40% (22 of 5,476) against 0.43% before, level; those 12+ months in are at 0.07% (2 of 2,745) against 0.26%, behind but on only two referrers; active repeat referrers are at 1.11% (30 of 2,691) against 1.31%, a little behind now that the ladder has ended. Too early to say the open gold coin has moved never-referrers.",
+   "The pool keeps aging: 12+ month never-referrers are now over a quarter of 1A, and they refer at about half the rate of newer customers, which drags the headline 1A rate down even when newer customers hold steady."
   ]
  },
  "TRENDS": [
@@ -13346,11 +13355,11 @@
    "referrers": 103,
    "firstTimers": 54,
    "refOnboardings": 82,
-   "refActivations": 152,
+   "refActivations": 159,
    "allOnboardings": 567,
-   "transactors": 5302,
-   "sharers": 40,
-   "shareRate": 0.75,
+   "transactors": 5451,
+   "sharers": 43,
+   "shareRate": 0.79,
    "refShare": 14.5,
    "partial": true
   }
@@ -13363,6 +13372,8 @@
   "startLabel": "16 Oct",
   "dayN": 22,
   "window": "16 Oct to 5 Nov",
+  "openToAll": "2026-11-01",
+  "openToAllLabel": "1 Nov",
   "pinned": {
    "n": 10062,
    "date": "16 Oct",
@@ -13731,7 +13742,7 @@
     "signups": 0,
     "onboarded": 0,
     "achieved": 0,
-    "transactors": 68,
+    "transactors": 186,
     "shareRate": 0.0
    }
   ],
@@ -14013,9 +14024,7 @@
   ],
   "widgetUsers": 10538,
   "claimCta": 0,
-  "claimConfirm": 0,
-  "openToAll": "2026-11-01",
-  "openToAllLabel": "1 Nov"
+  "claimConfirm": 0
  },
  "CAMPAIGNS": [
   {
@@ -14179,12 +14188,12 @@
    "signups": 1831,
    "referrers": 996,
    "onboarded": 1122,
-   "achieved": 545,
-   "claimed": 233,
+   "achieved": 552,
+   "claimed": 234,
    "perDay": 28.61,
    "obRate": 61.3,
-   "actRate": 48.6,
-   "claimRate": 42.8
+   "actRate": 49.2,
+   "claimRate": 42.4
   },
   {
    "id": 29,
@@ -15749,11 +15758,11 @@
      "SP",
      "2026-09-25",
      "2026-09-30",
-     null,
+     "2026-11-06",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     222112,
+     "ACHIEVED"
     ],
     [
      267327,
@@ -16574,10 +16583,10 @@
    "2025-03-14",
    "2025-04-08",
    "0_10K_USD",
-   30,
-   3576206,
+   31,
+   3952657,
    "2025-04-08",
-   "2026-10-06",
+   "2026-11-06",
    [
     [
      267858,
@@ -17366,10 +17375,10 @@
    "2026-09-30",
    "2026-10-08",
    "",
-   1,
-   389426,
+   2,
+   740159,
    "2026-10-08",
-   "2026-10-08",
+   "2026-11-06",
    [
     [
      268055,
@@ -18200,10 +18209,10 @@
    "2022-11-02",
    "2022-11-10",
    "",
-   374,
-   120274117,
+   375,
+   120387026,
    "2022-11-10",
-   "2026-11-04",
+   "2026-11-06",
    [
     [
      279618,
@@ -20591,8 +20600,8 @@
      "2026-09-17",
      "2026-11-02",
      "",
-     1,
-     216169,
+     2,
+     780109,
      "ACHIEVED"
     ]
    ]
@@ -22043,8 +22052,8 @@
      "2026-09-03",
      "2026-09-10",
      "",
-     10,
-     2201359,
+     11,
+     2306380,
      "ACHIEVED"
     ]
    ]
@@ -22612,8 +22621,8 @@
      "2026-10-12",
      "2026-10-22",
      "UNDER_10L_INR",
-     1,
-     102780,
+     2,
+     214439,
      "ACHIEVED"
     ]
    ]
@@ -23620,11 +23629,11 @@
      "F",
      "2026-10-27",
      "2026-10-28",
-     null,
+     "2026-11-06",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     7143,
+     "ACHIEVED"
     ],
     [
      280678,
@@ -24025,11 +24034,11 @@
      "SP",
      "2026-10-21",
      "2026-10-21",
-     null,
+     "2026-11-06",
      "",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     312987,
+     "ACHIEVED"
     ],
     [
      278489,
@@ -24410,10 +24419,10 @@
    "2024-05-02",
    "2024-05-22",
    "0_10K_USD",
-   151,
-   47803409,
+   152,
+   48515223,
    "2024-05-22",
-   "2026-10-27",
+   "2026-11-06",
    [
     [
      237383,
@@ -24942,10 +24951,10 @@
    "2025-11-14",
    "2025-11-20",
    "0_10K_USD",
-   26,
-   2996304,
+   27,
+   3080670,
    "2025-11-20",
-   "2026-10-23",
+   "2026-11-06",
    [
     [
      271667,
@@ -26896,10 +26905,10 @@
    "2024-08-13",
    "2025-06-04",
    "",
-   30,
-   2588245,
+   31,
+   2626687,
    "2025-06-04",
-   "2026-10-12",
+   "2026-11-06",
    [
     [
      259527,
@@ -32878,11 +32887,11 @@
      "F",
      "2026-10-22",
      "2026-10-22",
-     null,
+     "2026-11-06",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     21806,
+     "ACHIEVED"
     ],
     [
      278081,
@@ -32962,11 +32971,11 @@
      "F",
      "2026-10-22",
      "2026-10-23",
-     null,
+     "2026-11-06",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     77072,
+     "ACHIEVED"
     ],
     [
      278255,
@@ -34271,11 +34280,11 @@
      "SP",
      "2026-10-28",
      "2026-10-28",
-     null,
+     "2026-11-06",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     109429,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -35857,10 +35866,10 @@
    "2025-09-04",
    "2025-09-17",
    "0_10K_USD",
-   20,
-   1232924,
+   21,
+   1366380,
    "2025-09-17",
-   "2026-10-05",
+   "2026-11-06",
    [
     [
      280172,
@@ -35868,11 +35877,11 @@
      "F",
      "2026-10-27",
      "2026-11-02",
-     null,
+     "2026-11-06",
      "UNDER_10L_INR",
-     0,
-     0,
-     "ONBOARDING_COMPLETE"
+     1,
+     79892,
+     "ACHIEVED"
     ]
    ]
   ],
@@ -49214,7 +49223,499 @@
     "signups": 4,
     "referrers": 4,
     "onboardings": 1,
-    "activations": 2,
+    "activations": 9,
+    "coins": 1,
+    "goldSignups": 4,
+    "firstTimers": 0,
+    "partial": true
+   }
+  ],
+  "recent": [
+   {
+    "dom": 3,
+    "day": "3 Oct",
+    "date": "2026-10-03",
+    "dow": "Sat",
+    "signups": 21,
+    "referrers": 19,
+    "onboardings": 14,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 8,
+    "partial": false
+   },
+   {
+    "dom": 4,
+    "day": "4 Oct",
+    "date": "2026-10-04",
+    "dow": "Sun",
+    "signups": 18,
+    "referrers": 17,
+    "onboardings": 10,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 5,
+    "partial": false
+   },
+   {
+    "dom": 5,
+    "day": "5 Oct",
+    "date": "2026-10-05",
+    "dow": "Mon",
+    "signups": 29,
+    "referrers": 28,
+    "onboardings": 23,
+    "activations": 34,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 14,
+    "partial": false
+   },
+   {
+    "dom": 6,
+    "day": "6 Oct",
+    "date": "2026-10-06",
+    "dow": "Tue",
+    "signups": 38,
+    "referrers": 32,
+    "onboardings": 30,
+    "activations": 25,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 15,
+    "partial": false
+   },
+   {
+    "dom": 7,
+    "day": "7 Oct",
+    "date": "2026-10-07",
+    "dow": "Wed",
+    "signups": 38,
+    "referrers": 32,
+    "onboardings": 21,
+    "activations": 26,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 15,
+    "partial": false
+   },
+   {
+    "dom": 8,
+    "day": "8 Oct",
+    "date": "2026-10-08",
+    "dow": "Thu",
+    "signups": 39,
+    "referrers": 33,
+    "onboardings": 33,
+    "activations": 25,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 17,
+    "partial": false
+   },
+   {
+    "dom": 9,
+    "day": "9 Oct",
+    "date": "2026-10-09",
+    "dow": "Fri",
+    "signups": 38,
+    "referrers": 31,
+    "onboardings": 27,
+    "activations": 23,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 14,
+    "partial": false
+   },
+   {
+    "dom": 10,
+    "day": "10 Oct",
+    "date": "2026-10-10",
+    "dow": "Sat",
+    "signups": 18,
+    "referrers": 17,
+    "onboardings": 9,
+    "activations": 1,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 4,
+    "partial": false
+   },
+   {
+    "dom": 11,
+    "day": "11 Oct",
+    "date": "2026-10-11",
+    "dow": "Sun",
+    "signups": 8,
+    "referrers": 8,
+    "onboardings": 5,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 4,
+    "partial": false
+   },
+   {
+    "dom": 12,
+    "day": "12 Oct",
+    "date": "2026-10-12",
+    "dow": "Mon",
+    "signups": 16,
+    "referrers": 16,
+    "onboardings": 15,
+    "activations": 8,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 7,
+    "partial": false
+   },
+   {
+    "dom": 13,
+    "day": "13 Oct",
+    "date": "2026-10-13",
+    "dow": "Tue",
+    "signups": 28,
+    "referrers": 27,
+    "onboardings": 20,
+    "activations": 17,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 10,
+    "partial": false
+   },
+   {
+    "dom": 14,
+    "day": "14 Oct",
+    "date": "2026-10-14",
+    "dow": "Wed",
+    "signups": 29,
+    "referrers": 27,
+    "onboardings": 21,
+    "activations": 17,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 10,
+    "partial": false
+   },
+   {
+    "dom": 15,
+    "day": "15 Oct",
+    "date": "2026-10-15",
+    "dow": "Thu",
+    "signups": 34,
+    "referrers": 30,
+    "onboardings": 20,
+    "activations": 14,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 15,
+    "partial": false
+   },
+   {
+    "dom": 16,
+    "day": "16 Oct",
+    "date": "2026-10-16",
+    "dow": "Fri",
+    "signups": 37,
+    "referrers": 25,
+    "onboardings": 23,
+    "activations": 15,
+    "coins": 0,
+    "goldSignups": 0,
+    "firstTimers": 7,
+    "partial": false
+   },
+   {
+    "dom": 17,
+    "day": "17 Oct",
+    "date": "2026-10-17",
+    "dow": "Sat",
+    "signups": 22,
+    "referrers": 18,
+    "onboardings": 9,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 1,
+    "firstTimers": 6,
+    "partial": false
+   },
+   {
+    "dom": 18,
+    "day": "18 Oct",
+    "date": "2026-10-18",
+    "dow": "Sun",
+    "signups": 9,
+    "referrers": 8,
+    "onboardings": 5,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 4,
+    "firstTimers": 6,
+    "partial": false
+   },
+   {
+    "dom": 19,
+    "day": "19 Oct",
+    "date": "2026-10-19",
+    "dow": "Mon",
+    "signups": 34,
+    "referrers": 26,
+    "onboardings": 33,
+    "activations": 22,
+    "coins": 1,
+    "goldSignups": 5,
+    "firstTimers": 12,
+    "partial": false
+   },
+   {
+    "dom": 20,
+    "day": "20 Oct",
+    "date": "2026-10-20",
+    "dow": "Tue",
+    "signups": 15,
+    "referrers": 14,
+    "onboardings": 10,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 1,
+    "firstTimers": 7,
+    "partial": false
+   },
+   {
+    "dom": 21,
+    "day": "21 Oct",
+    "date": "2026-10-21",
+    "dow": "Wed",
+    "signups": 43,
+    "referrers": 28,
+    "onboardings": 33,
+    "activations": 20,
+    "coins": 0,
+    "goldSignups": 13,
+    "firstTimers": 15,
+    "partial": false
+   },
+   {
+    "dom": 22,
+    "day": "22 Oct",
+    "date": "2026-10-22",
+    "dow": "Thu",
+    "signups": 46,
+    "referrers": 31,
+    "onboardings": 33,
+    "activations": 21,
+    "coins": 2,
+    "goldSignups": 12,
+    "firstTimers": 17,
+    "partial": false
+   },
+   {
+    "dom": 23,
+    "day": "23 Oct",
+    "date": "2026-10-23",
+    "dow": "Fri",
+    "signups": 41,
+    "referrers": 32,
+    "onboardings": 28,
+    "activations": 13,
+    "coins": 0,
+    "goldSignups": 7,
+    "firstTimers": 18,
+    "partial": false
+   },
+   {
+    "dom": 24,
+    "day": "24 Oct",
+    "date": "2026-10-24",
+    "dow": "Sat",
+    "signups": 27,
+    "referrers": 23,
+    "onboardings": 12,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 3,
+    "firstTimers": 10,
+    "partial": false
+   },
+   {
+    "dom": 25,
+    "day": "25 Oct",
+    "date": "2026-10-25",
+    "dow": "Sun",
+    "signups": 22,
+    "referrers": 22,
+    "onboardings": 16,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 5,
+    "firstTimers": 9,
+    "partial": false
+   },
+   {
+    "dom": 26,
+    "day": "26 Oct",
+    "date": "2026-10-26",
+    "dow": "Mon",
+    "signups": 53,
+    "referrers": 45,
+    "onboardings": 36,
+    "activations": 19,
+    "coins": 1,
+    "goldSignups": 12,
+    "firstTimers": 22,
+    "partial": false
+   },
+   {
+    "dom": 27,
+    "day": "27 Oct",
+    "date": "2026-10-27",
+    "dow": "Tue",
+    "signups": 43,
+    "referrers": 36,
+    "onboardings": 27,
+    "activations": 16,
+    "coins": 1,
+    "goldSignups": 10,
+    "firstTimers": 17,
+    "partial": false
+   },
+   {
+    "dom": 28,
+    "day": "28 Oct",
+    "date": "2026-10-28",
+    "dow": "Wed",
+    "signups": 42,
+    "referrers": 34,
+    "onboardings": 28,
+    "activations": 22,
+    "coins": 1,
+    "goldSignups": 6,
+    "firstTimers": 14,
+    "partial": false
+   },
+   {
+    "dom": 29,
+    "day": "29 Oct",
+    "date": "2026-10-29",
+    "dow": "Thu",
+    "signups": 62,
+    "referrers": 39,
+    "onboardings": 33,
+    "activations": 17,
+    "coins": 2,
+    "goldSignups": 6,
+    "firstTimers": 16,
+    "partial": false
+   },
+   {
+    "dom": 30,
+    "day": "30 Oct",
+    "date": "2026-10-30",
+    "dow": "Fri",
+    "signups": 48,
+    "referrers": 36,
+    "onboardings": 35,
+    "activations": 34,
+    "coins": 2,
+    "goldSignups": 7,
+    "firstTimers": 14,
+    "partial": false
+   },
+   {
+    "dom": 31,
+    "day": "31 Oct",
+    "date": "2026-10-31",
+    "dow": "Sat",
+    "signups": 28,
+    "referrers": 20,
+    "onboardings": 19,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 2,
+    "firstTimers": 7,
+    "partial": false
+   },
+   {
+    "dom": 1,
+    "day": "1 Nov",
+    "date": "2026-11-01",
+    "dow": "Sun",
+    "signups": 15,
+    "referrers": 14,
+    "onboardings": 10,
+    "activations": 1,
+    "coins": 0,
+    "goldSignups": 14,
+    "firstTimers": 8,
+    "partial": false
+   },
+   {
+    "dom": 2,
+    "day": "2 Nov",
+    "date": "2026-11-02",
+    "dow": "Mon",
+    "signups": 26,
+    "referrers": 22,
+    "onboardings": 23,
+    "activations": 47,
+    "coins": 3,
+    "goldSignups": 25,
+    "firstTimers": 9,
+    "partial": false
+   },
+   {
+    "dom": 3,
+    "day": "3 Nov",
+    "date": "2026-11-03",
+    "dow": "Tue",
+    "signups": 24,
+    "referrers": 23,
+    "onboardings": 18,
+    "activations": 27,
+    "coins": 6,
+    "goldSignups": 23,
+    "firstTimers": 12,
+    "partial": false
+   },
+   {
+    "dom": 4,
+    "day": "4 Nov",
+    "date": "2026-11-04",
+    "dow": "Wed",
+    "signups": 27,
+    "referrers": 24,
+    "onboardings": 17,
+    "activations": 28,
+    "coins": 6,
+    "goldSignups": 26,
+    "firstTimers": 13,
+    "partial": false
+   },
+   {
+    "dom": 5,
+    "day": "5 Nov",
+    "date": "2026-11-05",
+    "dow": "Thu",
+    "signups": 23,
+    "referrers": 22,
+    "onboardings": 13,
+    "activations": 47,
+    "coins": 6,
+    "goldSignups": 22,
+    "firstTimers": 12,
+    "partial": false
+   },
+   {
+    "dom": 6,
+    "day": "6 Nov",
+    "date": "2026-11-06",
+    "dow": "Fri",
+    "signups": 4,
+    "referrers": 4,
+    "onboardings": 1,
+    "activations": 9,
     "coins": 1,
     "goldSignups": 4,
     "firstTimers": 0,
@@ -49879,7 +50380,7 @@
    "activations": {
     "label": "Referral activations",
     "toDate": 150,
-    "todaySoFar": 2,
+    "todaySoFar": 9,
     "avg7": 30.0,
     "cum": [
      1,
@@ -49887,7 +50388,7 @@
      75,
      103,
      150,
-     152
+     159
     ],
     "straight": 900,
     "run7": 900,
@@ -50010,6 +50511,2657 @@
    "signupsNoCoin": 167,
    "eventualCoins": 116,
    "baseline": 0.52
+  },
+  "widgetDaily": {
+   "2026-10-03": 0,
+   "2026-10-04": 0,
+   "2026-10-23": 889,
+   "2026-10-24": 447,
+   "2026-10-25": 284,
+   "2026-10-26": 1009,
+   "2026-10-27": 1156,
+   "2026-10-28": 1232,
+   "2026-10-29": 1326,
+   "2026-10-30": 1480,
+   "2026-10-31": 1018,
+   "2026-10-05": 0,
+   "2026-10-06": 0,
+   "2026-10-07": 0,
+   "2026-10-08": 0,
+   "2026-10-09": 0,
+   "2026-10-10": 0,
+   "2026-10-11": 0,
+   "2026-10-12": 0,
+   "2026-10-13": 0,
+   "2026-11-06": 1816,
+   "2026-10-14": 0,
+   "2026-10-15": 0,
+   "2026-10-16": 253,
+   "2026-10-17": 515,
+   "2026-10-18": 297,
+   "2026-10-19": 920,
+   "2026-10-20": 819,
+   "2026-10-21": 1080,
+   "2026-10-22": 976,
+   "2026-11-01": 1533,
+   "2026-11-02": 3892,
+   "2026-11-03": 3828,
+   "2026-11-04": 3370,
+   "2026-11-05": 3290
   }
- }
+ },
+ "GRID": {
+  "months": [
+   "2025-06",
+   "2025-07",
+   "2025-08",
+   "2025-09",
+   "2025-10",
+   "2025-11",
+   "2025-12",
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09",
+   "2026-10",
+   "2026-11"
+  ],
+  "current": "2026-11",
+  "latestFull": "2026-10",
+  "compare": [
+   "2026-07",
+   "2026-08",
+   "2026-09"
+  ],
+  "fullDays": 5,
+  "cells": {
+   "1A": {
+    "2025-06": [
+     3507,
+     81,
+     14
+    ],
+    "2025-07": [
+     3870,
+     94,
+     21
+    ],
+    "2025-08": [
+     4228,
+     75,
+     12
+    ],
+    "2025-09": [
+     4657,
+     95,
+     24
+    ],
+    "2025-10": [
+     5062,
+     128,
+     15
+    ],
+    "2025-11": [
+     5283,
+     78,
+     14
+    ],
+    "2025-12": [
+     5483,
+     84,
+     23
+    ],
+    "2026-01": [
+     5815,
+     82,
+     15
+    ],
+    "2026-02": [
+     5925,
+     99,
+     26
+    ],
+    "2026-03": [
+     6169,
+     126,
+     31
+    ],
+    "2026-04": [
+     6881,
+     115,
+     19
+    ],
+    "2026-05": [
+     7471,
+     176,
+     23
+    ],
+    "2026-06": [
+     7809,
+     182,
+     43
+    ],
+    "2026-07": [
+     8595,
+     153,
+     25
+    ],
+    "2026-08": [
+     9249,
+     184,
+     32
+    ],
+    "2026-09": [
+     9725,
+     189,
+     43
+    ],
+    "2026-10": [
+     10518,
+     176,
+     26
+    ],
+    "2026-11": [
+     10328,
+     29,
+     29
+    ]
+   },
+   "1A:mid": {
+    "2025-06": [
+     777,
+     20,
+     1
+    ],
+    "2025-07": [
+     911,
+     14,
+     3
+    ],
+    "2025-08": [
+     914,
+     12,
+     1
+    ],
+    "2025-09": [
+     985,
+     14,
+     6
+    ],
+    "2025-10": [
+     1068,
+     21,
+     1
+    ],
+    "2025-11": [
+     1208,
+     16,
+     2
+    ],
+    "2025-12": [
+     1521,
+     11,
+     5
+    ],
+    "2026-01": [
+     1668,
+     19,
+     3
+    ],
+    "2026-02": [
+     1831,
+     24,
+     6
+    ],
+    "2026-03": [
+     1920,
+     26,
+     3
+    ],
+    "2026-04": [
+     2107,
+     27,
+     7
+    ],
+    "2026-05": [
+     2124,
+     38,
+     1
+    ],
+    "2026-06": [
+     1945,
+     47,
+     12
+    ],
+    "2026-07": [
+     2023,
+     34,
+     5
+    ],
+    "2026-08": [
+     1987,
+     38,
+     4
+    ],
+    "2026-09": [
+     1963,
+     32,
+     4
+    ],
+    "2026-10": [
+     2080,
+     29,
+     6
+    ],
+    "2026-11": [
+     2107,
+     5,
+     5
+    ]
+   },
+   "1A:new": {
+    "2025-06": [
+     2303,
+     55,
+     12
+    ],
+    "2025-07": [
+     2482,
+     69,
+     17
+    ],
+    "2025-08": [
+     2754,
+     53,
+     8
+    ],
+    "2025-09": [
+     2998,
+     67,
+     13
+    ],
+    "2025-10": [
+     3207,
+     93,
+     11
+    ],
+    "2025-11": [
+     3172,
+     55,
+     12
+    ],
+    "2025-12": [
+     2975,
+     57,
+     14
+    ],
+    "2026-01": [
+     3017,
+     51,
+     7
+    ],
+    "2026-02": [
+     2914,
+     63,
+     16
+    ],
+    "2026-03": [
+     2956,
+     78,
+     22
+    ],
+    "2026-04": [
+     3267,
+     71,
+     10
+    ],
+    "2026-05": [
+     3601,
+     112,
+     18
+    ],
+    "2026-06": [
+     3846,
+     99,
+     23
+    ],
+    "2026-07": [
+     4336,
+     89,
+     13
+    ],
+    "2026-08": [
+     4821,
+     116,
+     20
+    ],
+    "2026-09": [
+     5156,
+     126,
+     31
+    ],
+    "2026-10": [
+     5631,
+     118,
+     16
+    ],
+    "2026-11": [
+     5476,
+     22,
+     22
+    ]
+   },
+   "1A:old": {
+    "2025-06": [
+     427,
+     6,
+     1
+    ],
+    "2025-07": [
+     477,
+     11,
+     1
+    ],
+    "2025-08": [
+     560,
+     10,
+     3
+    ],
+    "2025-09": [
+     674,
+     14,
+     5
+    ],
+    "2025-10": [
+     787,
+     14,
+     3
+    ],
+    "2025-11": [
+     903,
+     7,
+     0
+    ],
+    "2025-12": [
+     987,
+     16,
+     4
+    ],
+    "2026-01": [
+     1130,
+     12,
+     5
+    ],
+    "2026-02": [
+     1180,
+     12,
+     4
+    ],
+    "2026-03": [
+     1293,
+     22,
+     6
+    ],
+    "2026-04": [
+     1507,
+     17,
+     2
+    ],
+    "2026-05": [
+     1746,
+     26,
+     4
+    ],
+    "2026-06": [
+     2018,
+     36,
+     8
+    ],
+    "2026-07": [
+     2236,
+     30,
+     7
+    ],
+    "2026-08": [
+     2441,
+     30,
+     8
+    ],
+    "2026-09": [
+     2606,
+     31,
+     8
+    ],
+    "2026-10": [
+     2807,
+     29,
+     4
+    ],
+    "2026-11": [
+     2745,
+     2,
+     2
+    ]
+   },
+   "1Ba": {
+    "2025-06": [
+     520,
+     36,
+     12
+    ],
+    "2025-07": [
+     584,
+     48,
+     13
+    ],
+    "2025-08": [
+     670,
+     46,
+     8
+    ],
+    "2025-09": [
+     707,
+     40,
+     12
+    ],
+    "2025-10": [
+     775,
+     53,
+     10
+    ],
+    "2025-11": [
+     792,
+     38,
+     6
+    ],
+    "2025-12": [
+     846,
+     40,
+     15
+    ],
+    "2026-01": [
+     929,
+     45,
+     5
+    ],
+    "2026-02": [
+     961,
+     49,
+     17
+    ],
+    "2026-03": [
+     1001,
+     46,
+     9
+    ],
+    "2026-04": [
+     1132,
+     59,
+     11
+    ],
+    "2026-05": [
+     1231,
+     58,
+     10
+    ],
+    "2026-06": [
+     1271,
+     81,
+     16
+    ],
+    "2026-07": [
+     1412,
+     73,
+     11
+    ],
+    "2026-08": [
+     1543,
+     67,
+     12
+    ],
+    "2026-09": [
+     1630,
+     107,
+     30
+    ],
+    "2026-10": [
+     1739,
+     106,
+     17
+    ],
+    "2026-11": [
+     1702,
+     24,
+     23
+    ]
+   },
+   "1Bb": {
+    "2025-06": [
+     312,
+     16,
+     5
+    ],
+    "2025-07": [
+     356,
+     18,
+     8
+    ],
+    "2025-08": [
+     375,
+     19,
+     5
+    ],
+    "2025-09": [
+     398,
+     18,
+     7
+    ],
+    "2025-10": [
+     448,
+     30,
+     2
+    ],
+    "2025-11": [
+     527,
+     25,
+     9
+    ],
+    "2025-12": [
+     529,
+     19,
+     4
+    ],
+    "2026-01": [
+     518,
+     19,
+     5
+    ],
+    "2026-02": [
+     521,
+     19,
+     5
+    ],
+    "2026-03": [
+     565,
+     24,
+     3
+    ],
+    "2026-04": [
+     636,
+     19,
+     7
+    ],
+    "2026-05": [
+     667,
+     35,
+     2
+    ],
+    "2026-06": [
+     779,
+     41,
+     10
+    ],
+    "2026-07": [
+     868,
+     48,
+     11
+    ],
+    "2026-08": [
+     888,
+     35,
+     14
+    ],
+    "2026-09": [
+     939,
+     60,
+     13
+    ],
+    "2026-10": [
+     1033,
+     56,
+     16
+    ],
+    "2026-11": [
+     989,
+     7,
+     7
+    ]
+   },
+   "2A": {
+    "2025-06": [
+     738,
+     35,
+     4
+    ],
+    "2025-07": [
+     745,
+     33,
+     13
+    ],
+    "2025-08": [
+     790,
+     27,
+     3
+    ],
+    "2025-09": [
+     868,
+     41,
+     5
+    ],
+    "2025-10": [
+     820,
+     42,
+     3
+    ],
+    "2025-11": [
+     737,
+     35,
+     6
+    ],
+    "2025-12": [
+     832,
+     30,
+     6
+    ],
+    "2026-01": [
+     743,
+     26,
+     0
+    ],
+    "2026-02": [
+     784,
+     47,
+     7
+    ],
+    "2026-03": [
+     1026,
+     57,
+     8
+    ],
+    "2026-04": [
+     1244,
+     60,
+     6
+    ],
+    "2026-05": [
+     1201,
+     87,
+     14
+    ],
+    "2026-06": [
+     1376,
+     58,
+     6
+    ],
+    "2026-07": [
+     1509,
+     62,
+     7
+    ],
+    "2026-08": [
+     1410,
+     65,
+     9
+    ],
+    "2026-09": [
+     1586,
+     65,
+     11
+    ],
+    "2026-10": [
+     1541,
+     69,
+     7
+    ],
+    "2026-11": [
+     405,
+     4,
+     4
+    ]
+   },
+   "2Ba": {
+    "2025-06": [
+     4,
+     0,
+     0
+    ],
+    "2025-07": [
+     3,
+     1,
+     1
+    ],
+    "2025-08": [
+     2,
+     0,
+     0
+    ],
+    "2025-09": [
+     5,
+     0,
+     0
+    ],
+    "2025-10": [
+     2,
+     0,
+     0
+    ],
+    "2025-11": [
+     3,
+     0,
+     0
+    ],
+    "2025-12": [
+     5,
+     0,
+     0
+    ],
+    "2026-01": [
+     5,
+     0,
+     0
+    ],
+    "2026-03": [
+     4,
+     0,
+     0
+    ],
+    "2026-04": [
+     3,
+     0,
+     0
+    ],
+    "2026-05": [
+     4,
+     0,
+     0
+    ],
+    "2026-06": [
+     5,
+     0,
+     0
+    ],
+    "2026-07": [
+     6,
+     1,
+     0
+    ],
+    "2026-08": [
+     9,
+     2,
+     0
+    ],
+    "2026-09": [
+     7,
+     1,
+     1
+    ],
+    "2026-10": [
+     9,
+     1,
+     0
+    ],
+    "2026-11": [
+     3,
+     0,
+     0
+    ],
+    "2026-02": [
+     0,
+     0,
+     0
+    ]
+   },
+   "2Bb": {
+    "2025-06": [
+     10,
+     0,
+     0
+    ],
+    "2025-07": [
+     13,
+     2,
+     0
+    ],
+    "2025-08": [
+     17,
+     2,
+     0
+    ],
+    "2025-09": [
+     14,
+     2,
+     1
+    ],
+    "2025-10": [
+     15,
+     1,
+     0
+    ],
+    "2025-11": [
+     13,
+     1,
+     1
+    ],
+    "2025-12": [
+     15,
+     1,
+     1
+    ],
+    "2026-01": [
+     22,
+     4,
+     1
+    ],
+    "2026-02": [
+     9,
+     1,
+     1
+    ],
+    "2026-03": [
+     14,
+     2,
+     1
+    ],
+    "2026-04": [
+     19,
+     3,
+     2
+    ],
+    "2026-05": [
+     15,
+     1,
+     0
+    ],
+    "2026-06": [
+     36,
+     5,
+     1
+    ],
+    "2026-07": [
+     28,
+     4,
+     2
+    ],
+    "2026-08": [
+     19,
+     2,
+     0
+    ],
+    "2026-09": [
+     42,
+     9,
+     2
+    ],
+    "2026-10": [
+     23,
+     2,
+     2
+    ],
+    "2026-11": [
+     22,
+     0,
+     0
+    ]
+   },
+   "3A": {
+    "2025-06": [
+     647,
+     2,
+     1
+    ],
+    "2025-07": [
+     741,
+     5,
+     0
+    ],
+    "2025-08": [
+     800,
+     2,
+     1
+    ],
+    "2025-09": [
+     830,
+     5,
+     1
+    ],
+    "2025-10": [
+     935,
+     8,
+     0
+    ],
+    "2025-11": [
+     1104,
+     3,
+     0
+    ],
+    "2025-12": [
+     1209,
+     8,
+     3
+    ],
+    "2026-01": [
+     1230,
+     3,
+     1
+    ],
+    "2026-02": [
+     1343,
+     9,
+     2
+    ],
+    "2026-03": [
+     1339,
+     11,
+     1
+    ],
+    "2026-04": [
+     1078,
+     10,
+     3
+    ],
+    "2026-05": [
+     1245,
+     11,
+     1
+    ],
+    "2026-06": [
+     1568,
+     12,
+     3
+    ],
+    "2026-07": [
+     1520,
+     10,
+     2
+    ],
+    "2026-08": [
+     1655,
+     13,
+     0
+    ],
+    "2026-09": [
+     1902,
+     11,
+     2
+    ],
+    "2026-10": [
+     1916,
+     12,
+     2
+    ],
+    "2026-11": [
+     2661,
+     2,
+     2
+    ]
+   },
+   "3Ba": {
+    "2025-06": [
+     78,
+     2,
+     1
+    ],
+    "2025-07": [
+     76,
+     3,
+     1
+    ],
+    "2025-08": [
+     73,
+     2,
+     0
+    ],
+    "2025-09": [
+     86,
+     6,
+     1
+    ],
+    "2025-10": [
+     89,
+     6,
+     1
+    ],
+    "2025-11": [
+     133,
+     1,
+     0
+    ],
+    "2025-12": [
+     147,
+     3,
+     0
+    ],
+    "2026-01": [
+     126,
+     4,
+     0
+    ],
+    "2026-02": [
+     147,
+     9,
+     0
+    ],
+    "2026-03": [
+     167,
+     1,
+     0
+    ],
+    "2026-04": [
+     123,
+     4,
+     0
+    ],
+    "2026-05": [
+     139,
+     0,
+     0
+    ],
+    "2026-06": [
+     205,
+     8,
+     3
+    ],
+    "2026-07": [
+     209,
+     7,
+     1
+    ],
+    "2026-08": [
+     205,
+     6,
+     3
+    ],
+    "2026-09": [
+     257,
+     14,
+     5
+    ],
+    "2026-10": [
+     267,
+     8,
+     3
+    ],
+    "2026-11": [
+     403,
+     3,
+     3
+    ]
+   },
+   "3Bb": {
+    "2025-06": [
+     62,
+     1,
+     0
+    ],
+    "2025-07": [
+     53,
+     1,
+     0
+    ],
+    "2025-08": [
+     62,
+     0,
+     0
+    ],
+    "2025-09": [
+     78,
+     0,
+     0
+    ],
+    "2025-10": [
+     75,
+     0,
+     0
+    ],
+    "2025-11": [
+     85,
+     1,
+     0
+    ],
+    "2025-12": [
+     99,
+     4,
+     0
+    ],
+    "2026-01": [
+     96,
+     0,
+     0
+    ],
+    "2026-02": [
+     111,
+     2,
+     0
+    ],
+    "2026-03": [
+     123,
+     1,
+     1
+    ],
+    "2026-04": [
+     103,
+     1,
+     0
+    ],
+    "2026-05": [
+     106,
+     1,
+     0
+    ],
+    "2026-06": [
+     120,
+     2,
+     0
+    ],
+    "2026-07": [
+     122,
+     3,
+     0
+    ],
+    "2026-08": [
+     127,
+     1,
+     0
+    ],
+    "2026-09": [
+     163,
+     6,
+     4
+    ],
+    "2026-10": [
+     168,
+     9,
+     2
+    ],
+    "2026-11": [
+     225,
+     1,
+     0
+    ]
+   },
+   "4A": {
+    "2025-06": [
+     1228,
+     5,
+     1
+    ],
+    "2025-07": [
+     1386,
+     2,
+     1
+    ],
+    "2025-08": [
+     1580,
+     7,
+     1
+    ],
+    "2025-09": [
+     1800,
+     1,
+     1
+    ],
+    "2025-10": [
+     2016,
+     12,
+     4
+    ],
+    "2025-11": [
+     2256,
+     4,
+     1
+    ],
+    "2025-12": [
+     2568,
+     5,
+     2
+    ],
+    "2026-01": [
+     2920,
+     4,
+     2
+    ],
+    "2026-02": [
+     3325,
+     6,
+     2
+    ],
+    "2026-03": [
+     3708,
+     9,
+     0
+    ],
+    "2026-04": [
+     4080,
+     6,
+     1
+    ],
+    "2026-05": [
+     4376,
+     12,
+     0
+    ],
+    "2026-06": [
+     4630,
+     20,
+     3
+    ],
+    "2026-07": [
+     4996,
+     16,
+     1
+    ],
+    "2026-08": [
+     5475,
+     16,
+     2
+    ],
+    "2026-09": [
+     5884,
+     15,
+     5
+    ],
+    "2026-10": [
+     6383,
+     15,
+     3
+    ],
+    "2026-11": [
+     7097,
+     3,
+     3
+    ]
+   },
+   "4Ba": {
+    "2025-06": [
+     114,
+     2,
+     0
+    ],
+    "2025-07": [
+     136,
+     1,
+     0
+    ],
+    "2025-08": [
+     158,
+     2,
+     0
+    ],
+    "2025-09": [
+     186,
+     2,
+     2
+    ],
+    "2025-10": [
+     209,
+     3,
+     0
+    ],
+    "2025-11": [
+     240,
+     5,
+     0
+    ],
+    "2025-12": [
+     269,
+     3,
+     0
+    ],
+    "2026-01": [
+     340,
+     2,
+     0
+    ],
+    "2026-02": [
+     382,
+     4,
+     3
+    ],
+    "2026-03": [
+     411,
+     4,
+     0
+    ],
+    "2026-04": [
+     458,
+     6,
+     0
+    ],
+    "2026-05": [
+     495,
+     5,
+     0
+    ],
+    "2026-06": [
+     538,
+     7,
+     2
+    ],
+    "2026-07": [
+     578,
+     4,
+     2
+    ],
+    "2026-08": [
+     662,
+     11,
+     3
+    ],
+    "2026-09": [
+     708,
+     8,
+     4
+    ],
+    "2026-10": [
+     789,
+     14,
+     4
+    ],
+    "2026-11": [
+     907,
+     5,
+     4
+    ]
+   },
+   "4Bb": {
+    "2025-06": [
+     95,
+     2,
+     0
+    ],
+    "2025-07": [
+     113,
+     2,
+     0
+    ],
+    "2025-08": [
+     130,
+     1,
+     0
+    ],
+    "2025-09": [
+     143,
+     1,
+     0
+    ],
+    "2025-10": [
+     163,
+     3,
+     0
+    ],
+    "2025-11": [
+     189,
+     0,
+     0
+    ],
+    "2025-12": [
+     212,
+     0,
+     0
+    ],
+    "2026-01": [
+     240,
+     1,
+     0
+    ],
+    "2026-02": [
+     269,
+     2,
+     0
+    ],
+    "2026-03": [
+     294,
+     4,
+     0
+    ],
+    "2026-04": [
+     330,
+     2,
+     0
+    ],
+    "2026-05": [
+     357,
+     7,
+     0
+    ],
+    "2026-06": [
+     387,
+     5,
+     1
+    ],
+    "2026-07": [
+     424,
+     2,
+     0
+    ],
+    "2026-08": [
+     463,
+     3,
+     1
+    ],
+    "2026-09": [
+     497,
+     5,
+     1
+    ],
+    "2026-10": [
+     527,
+     7,
+     3
+    ],
+    "2026-11": [
+     601,
+     3,
+     3
+    ]
+   },
+   "5A": {
+    "2025-06": [
+     11022,
+     8,
+     1
+    ],
+    "2025-07": [
+     12308,
+     7,
+     1
+    ],
+    "2025-08": [
+     13149,
+     6,
+     1
+    ],
+    "2025-09": [
+     14233,
+     15,
+     2
+    ],
+    "2025-10": [
+     15189,
+     15,
+     1
+    ],
+    "2025-11": [
+     16124,
+     15,
+     1
+    ],
+    "2025-12": [
+     17077,
+     12,
+     2
+    ],
+    "2026-01": [
+     18165,
+     9,
+     0
+    ],
+    "2026-02": [
+     19274,
+     5,
+     0
+    ],
+    "2026-03": [
+     20660,
+     19,
+     2
+    ],
+    "2026-04": [
+     21902,
+     8,
+     1
+    ],
+    "2026-05": [
+     23486,
+     19,
+     2
+    ],
+    "2026-06": [
+     25168,
+     13,
+     3
+    ],
+    "2026-07": [
+     27049,
+     28,
+     3
+    ],
+    "2026-08": [
+     28918,
+     52,
+     10
+    ],
+    "2026-09": [
+     30862,
+     38,
+     4
+    ],
+    "2026-10": [
+     32861,
+     29,
+     3
+    ],
+    "2026-11": [
+     35413,
+     9,
+     9
+    ]
+   },
+   "5Ba": {
+    "2025-06": [
+     42,
+     0,
+     0
+    ],
+    "2025-07": [
+     47,
+     1,
+     0
+    ],
+    "2025-08": [
+     51,
+     0,
+     0
+    ],
+    "2025-09": [
+     55,
+     1,
+     0
+    ],
+    "2025-10": [
+     62,
+     0,
+     0
+    ],
+    "2025-11": [
+     65,
+     1,
+     0
+    ],
+    "2025-12": [
+     71,
+     0,
+     0
+    ],
+    "2026-01": [
+     74,
+     0,
+     0
+    ],
+    "2026-02": [
+     78,
+     1,
+     0
+    ],
+    "2026-03": [
+     82,
+     0,
+     0
+    ],
+    "2026-04": [
+     89,
+     1,
+     1
+    ],
+    "2026-05": [
+     98,
+     1,
+     0
+    ],
+    "2026-06": [
+     113,
+     0,
+     0
+    ],
+    "2026-07": [
+     129,
+     2,
+     0
+    ],
+    "2026-08": [
+     140,
+     2,
+     0
+    ],
+    "2026-09": [
+     151,
+     1,
+     0
+    ],
+    "2026-10": [
+     166,
+     3,
+     2
+    ],
+    "2026-11": [
+     186,
+     3,
+     3
+    ]
+   },
+   "5Bb": {
+    "2025-06": [
+     130,
+     0,
+     0
+    ],
+    "2025-07": [
+     136,
+     1,
+     0
+    ],
+    "2025-08": [
+     148,
+     0,
+     0
+    ],
+    "2025-09": [
+     159,
+     1,
+     0
+    ],
+    "2025-10": [
+     173,
+     1,
+     1
+    ],
+    "2025-11": [
+     193,
+     1,
+     0
+    ],
+    "2025-12": [
+     210,
+     3,
+     1
+    ],
+    "2026-01": [
+     224,
+     1,
+     0
+    ],
+    "2026-02": [
+     241,
+     3,
+     1
+    ],
+    "2026-03": [
+     253,
+     1,
+     0
+    ],
+    "2026-04": [
+     283,
+     3,
+     0
+    ],
+    "2026-05": [
+     305,
+     2,
+     0
+    ],
+    "2026-06": [
+     328,
+     2,
+     1
+    ],
+    "2026-07": [
+     347,
+     3,
+     1
+    ],
+    "2026-08": [
+     386,
+     2,
+     0
+    ],
+    "2026-09": [
+     448,
+     8,
+     4
+    ],
+    "2026-10": [
+     491,
+     6,
+     2
+    ],
+    "2026-11": [
+     527,
+     1,
+     1
+    ]
+   },
+   "6A": {
+    "2025-06": [
+     2879,
+     19,
+     4
+    ],
+    "2025-07": [
+     2752,
+     31,
+     2
+    ],
+    "2025-08": [
+     2893,
+     28,
+     3
+    ],
+    "2025-09": [
+     2696,
+     22,
+     7
+    ],
+    "2025-10": [
+     2665,
+     28,
+     4
+    ],
+    "2025-11": [
+     2843,
+     25,
+     3
+    ],
+    "2025-12": [
+     2910,
+     33,
+     4
+    ],
+    "2026-01": [
+     3286,
+     28,
+     4
+    ],
+    "2026-02": [
+     3654,
+     27,
+     1
+    ],
+    "2026-03": [
+     4039,
+     45,
+     2
+    ],
+    "2026-04": [
+     4464,
+     43,
+     3
+    ],
+    "2026-05": [
+     4999,
+     67,
+     2
+    ],
+    "2026-06": [
+     5192,
+     49,
+     0
+    ],
+    "2026-07": [
+     5365,
+     50,
+     3
+    ],
+    "2026-08": [
+     5693,
+     77,
+     6
+    ],
+    "2026-09": [
+     5894,
+     50,
+     5
+    ],
+    "2026-10": [
+     5700,
+     50,
+     7
+    ],
+    "2026-11": [
+     3231,
+     6,
+     6
+    ]
+   },
+   "6Bb": {
+    "2025-06": [
+     8,
+     0,
+     0
+    ],
+    "2025-07": [
+     8,
+     0,
+     0
+    ],
+    "2025-08": [
+     9,
+     0,
+     0
+    ],
+    "2025-09": [
+     10,
+     0,
+     0
+    ],
+    "2025-10": [
+     10,
+     0,
+     0
+    ],
+    "2025-11": [
+     14,
+     1,
+     0
+    ],
+    "2025-12": [
+     11,
+     0,
+     0
+    ],
+    "2026-01": [
+     12,
+     1,
+     0
+    ],
+    "2026-02": [
+     18,
+     0,
+     0
+    ],
+    "2026-03": [
+     15,
+     2,
+     1
+    ],
+    "2026-04": [
+     18,
+     1,
+     1
+    ],
+    "2026-05": [
+     20,
+     1,
+     0
+    ],
+    "2026-06": [
+     27,
+     4,
+     1
+    ],
+    "2026-07": [
+     20,
+     2,
+     0
+    ],
+    "2026-08": [
+     19,
+     0,
+     0
+    ],
+    "2026-09": [
+     29,
+     3,
+     0
+    ],
+    "2026-10": [
+     28,
+     5,
+     2
+    ],
+    "2026-11": [
+     24,
+     2,
+     2
+    ]
+   },
+   "6Ba": {
+    "2025-08": [
+     2,
+     0,
+     0
+    ],
+    "2025-09": [
+     1,
+     0,
+     0
+    ],
+    "2026-02": [
+     1,
+     0,
+     0
+    ],
+    "2026-03": [
+     2,
+     0,
+     0
+    ],
+    "2026-04": [
+     4,
+     0,
+     0
+    ],
+    "2026-05": [
+     3,
+     0,
+     0
+    ],
+    "2026-06": [
+     4,
+     1,
+     0
+    ],
+    "2026-07": [
+     4,
+     1,
+     0
+    ],
+    "2026-08": [
+     5,
+     0,
+     0
+    ],
+    "2026-09": [
+     2,
+     0,
+     0
+    ],
+    "2026-10": [
+     2,
+     1,
+     0
+    ],
+    "2026-11": [
+     4,
+     0,
+     0
+    ],
+    "2025-06": [
+     0,
+     0,
+     0
+    ],
+    "2025-07": [
+     0,
+     0,
+     0
+    ],
+    "2025-10": [
+     0,
+     0,
+     0
+    ],
+    "2025-11": [
+     0,
+     0,
+     0
+    ],
+    "2025-12": [
+     0,
+     0,
+     0
+    ],
+    "2026-01": [
+     0,
+     0,
+     0
+    ]
+   },
+   "1B": {
+    "2025-06": [
+     832,
+     52,
+     17
+    ],
+    "2025-07": [
+     940,
+     66,
+     21
+    ],
+    "2025-08": [
+     1045,
+     65,
+     13
+    ],
+    "2025-09": [
+     1105,
+     58,
+     19
+    ],
+    "2025-10": [
+     1223,
+     83,
+     12
+    ],
+    "2025-11": [
+     1319,
+     63,
+     15
+    ],
+    "2025-12": [
+     1375,
+     59,
+     19
+    ],
+    "2026-01": [
+     1447,
+     64,
+     10
+    ],
+    "2026-02": [
+     1482,
+     68,
+     22
+    ],
+    "2026-03": [
+     1566,
+     70,
+     12
+    ],
+    "2026-04": [
+     1768,
+     78,
+     18
+    ],
+    "2026-05": [
+     1898,
+     93,
+     12
+    ],
+    "2026-06": [
+     2050,
+     122,
+     26
+    ],
+    "2026-07": [
+     2280,
+     121,
+     22
+    ],
+    "2026-08": [
+     2431,
+     102,
+     26
+    ],
+    "2026-09": [
+     2569,
+     167,
+     43
+    ],
+    "2026-10": [
+     2772,
+     162,
+     33
+    ],
+    "2026-11": [
+     2691,
+     31,
+     30
+    ]
+   },
+   "2B": {
+    "2025-06": [
+     14,
+     0,
+     0
+    ],
+    "2025-07": [
+     16,
+     3,
+     1
+    ],
+    "2025-08": [
+     19,
+     2,
+     0
+    ],
+    "2025-09": [
+     19,
+     2,
+     1
+    ],
+    "2025-10": [
+     17,
+     1,
+     0
+    ],
+    "2025-11": [
+     16,
+     1,
+     1
+    ],
+    "2025-12": [
+     20,
+     1,
+     1
+    ],
+    "2026-01": [
+     27,
+     4,
+     1
+    ],
+    "2026-02": [
+     9,
+     1,
+     1
+    ],
+    "2026-03": [
+     18,
+     2,
+     1
+    ],
+    "2026-04": [
+     22,
+     3,
+     2
+    ],
+    "2026-05": [
+     19,
+     1,
+     0
+    ],
+    "2026-06": [
+     41,
+     5,
+     1
+    ],
+    "2026-07": [
+     34,
+     5,
+     2
+    ],
+    "2026-08": [
+     28,
+     4,
+     0
+    ],
+    "2026-09": [
+     49,
+     10,
+     3
+    ],
+    "2026-10": [
+     32,
+     3,
+     2
+    ],
+    "2026-11": [
+     25,
+     0,
+     0
+    ]
+   },
+   "3B": {
+    "2025-06": [
+     140,
+     3,
+     1
+    ],
+    "2025-07": [
+     129,
+     4,
+     1
+    ],
+    "2025-08": [
+     135,
+     2,
+     0
+    ],
+    "2025-09": [
+     164,
+     6,
+     1
+    ],
+    "2025-10": [
+     164,
+     6,
+     1
+    ],
+    "2025-11": [
+     218,
+     2,
+     0
+    ],
+    "2025-12": [
+     246,
+     7,
+     0
+    ],
+    "2026-01": [
+     222,
+     4,
+     0
+    ],
+    "2026-02": [
+     258,
+     11,
+     0
+    ],
+    "2026-03": [
+     290,
+     2,
+     1
+    ],
+    "2026-04": [
+     226,
+     5,
+     0
+    ],
+    "2026-05": [
+     245,
+     1,
+     0
+    ],
+    "2026-06": [
+     325,
+     10,
+     3
+    ],
+    "2026-07": [
+     331,
+     10,
+     1
+    ],
+    "2026-08": [
+     332,
+     7,
+     3
+    ],
+    "2026-09": [
+     420,
+     20,
+     9
+    ],
+    "2026-10": [
+     435,
+     17,
+     5
+    ],
+    "2026-11": [
+     628,
+     4,
+     3
+    ]
+   },
+   "4B": {
+    "2025-06": [
+     209,
+     4,
+     0
+    ],
+    "2025-07": [
+     249,
+     3,
+     0
+    ],
+    "2025-08": [
+     288,
+     3,
+     0
+    ],
+    "2025-09": [
+     329,
+     3,
+     2
+    ],
+    "2025-10": [
+     372,
+     6,
+     0
+    ],
+    "2025-11": [
+     429,
+     5,
+     0
+    ],
+    "2025-12": [
+     481,
+     3,
+     0
+    ],
+    "2026-01": [
+     580,
+     3,
+     0
+    ],
+    "2026-02": [
+     651,
+     6,
+     3
+    ],
+    "2026-03": [
+     705,
+     8,
+     0
+    ],
+    "2026-04": [
+     788,
+     8,
+     0
+    ],
+    "2026-05": [
+     852,
+     12,
+     0
+    ],
+    "2026-06": [
+     925,
+     12,
+     3
+    ],
+    "2026-07": [
+     1002,
+     6,
+     2
+    ],
+    "2026-08": [
+     1125,
+     14,
+     4
+    ],
+    "2026-09": [
+     1205,
+     13,
+     5
+    ],
+    "2026-10": [
+     1316,
+     21,
+     7
+    ],
+    "2026-11": [
+     1508,
+     8,
+     7
+    ]
+   },
+   "5B": {
+    "2025-06": [
+     172,
+     0,
+     0
+    ],
+    "2025-07": [
+     183,
+     2,
+     0
+    ],
+    "2025-08": [
+     199,
+     0,
+     0
+    ],
+    "2025-09": [
+     214,
+     2,
+     0
+    ],
+    "2025-10": [
+     235,
+     1,
+     1
+    ],
+    "2025-11": [
+     258,
+     2,
+     0
+    ],
+    "2025-12": [
+     281,
+     3,
+     1
+    ],
+    "2026-01": [
+     298,
+     1,
+     0
+    ],
+    "2026-02": [
+     319,
+     4,
+     1
+    ],
+    "2026-03": [
+     335,
+     1,
+     0
+    ],
+    "2026-04": [
+     372,
+     4,
+     1
+    ],
+    "2026-05": [
+     403,
+     3,
+     0
+    ],
+    "2026-06": [
+     441,
+     2,
+     1
+    ],
+    "2026-07": [
+     476,
+     5,
+     1
+    ],
+    "2026-08": [
+     526,
+     4,
+     0
+    ],
+    "2026-09": [
+     599,
+     9,
+     4
+    ],
+    "2026-10": [
+     657,
+     9,
+     4
+    ],
+    "2026-11": [
+     713,
+     4,
+     4
+    ]
+   },
+   "6B": {
+    "2025-06": [
+     8,
+     0,
+     0
+    ],
+    "2025-07": [
+     8,
+     0,
+     0
+    ],
+    "2025-08": [
+     11,
+     0,
+     0
+    ],
+    "2025-09": [
+     11,
+     0,
+     0
+    ],
+    "2025-10": [
+     10,
+     0,
+     0
+    ],
+    "2025-11": [
+     14,
+     1,
+     0
+    ],
+    "2025-12": [
+     11,
+     0,
+     0
+    ],
+    "2026-01": [
+     12,
+     1,
+     0
+    ],
+    "2026-02": [
+     19,
+     0,
+     0
+    ],
+    "2026-03": [
+     17,
+     2,
+     1
+    ],
+    "2026-04": [
+     22,
+     1,
+     1
+    ],
+    "2026-05": [
+     23,
+     1,
+     0
+    ],
+    "2026-06": [
+     31,
+     5,
+     1
+    ],
+    "2026-07": [
+     24,
+     3,
+     0
+    ],
+    "2026-08": [
+     24,
+     0,
+     0
+    ],
+    "2026-09": [
+     31,
+     3,
+     0
+    ],
+    "2026-10": [
+     30,
+     6,
+     2
+    ],
+    "2026-11": [
+     28,
+     2,
+     2
+    ]
+   }
+  }
+ },
+ "EVENTS": [
+  {
+   "date": "2025-10-05",
+   "title": "Diwali gold coin",
+   "note": "Gift instead of $30 on the first achieved referral",
+   "who": "All referrers",
+   "label": "5 Oct 25",
+   "ym": "2025-10"
+  },
+  {
+   "date": "2025-11-01",
+   "title": "Diwali ends",
+   "note": "Back to the standard $30 + $30",
+   "who": "All referrers",
+   "label": "1 Nov 25",
+   "ym": "2025-11"
+  },
+  {
+   "date": "2026-02-09",
+   "title": "Alexa Echo Dot",
+   "note": "15-day window after activation; Echo Dot if a signup from that window activates",
+   "who": "New activations",
+   "label": "9 Feb 26",
+   "ym": "2026-02"
+  },
+  {
+   "date": "2026-05-08",
+   "title": "Mokobara",
+   "note": "First monthly gift, instead of $30 on the first achieved referral",
+   "who": "Activated never-achievers",
+   "label": "8 May 26",
+   "ym": "2026-05"
+  },
+  {
+   "date": "2026-06-01",
+   "title": "Coffee machine",
+   "note": "Monthly gift",
+   "who": "Activated never-referrers",
+   "label": "1 Jun 26",
+   "ym": "2026-06"
+  },
+  {
+   "date": "2026-06-10",
+   "title": "Repeat referrers eligible",
+   "note": "Repeat referrers can win the monthly gift every month",
+   "who": "Repeat referrers",
+   "label": "10 Jun 26",
+   "ym": "2026-06"
+  },
+  {
+   "date": "2026-07-01",
+   "title": "Power bank",
+   "note": "Monthly gift, ran till 23 Jul",
+   "who": "Monthly gift audience",
+   "label": "1 Jul 26",
+   "ym": "2026-07"
+  },
+  {
+   "date": "2026-07-15",
+   "title": "Non-activated eligible",
+   "note": "Onboarded but not activated users can win the gift too",
+   "who": "Columns 5 and 6",
+   "label": "15 Jul 26",
+   "ym": "2026-07"
+  },
+  {
+   "date": "2026-07-24",
+   "title": "Tommy Hilfiger trolley",
+   "note": "Monthly gift, ran till 31 Aug",
+   "who": "Monthly gift audience",
+   "label": "24 Jul 26",
+   "ym": "2026-07"
+  },
+  {
+   "date": "2026-09-01",
+   "title": "Milestone ladder",
+   "note": "Rewards at 1, 3, 5 and 8 achieved referrals; replaced Alexa and the monthly gift; ran till 31 Oct",
+   "who": "All referrers",
+   "label": "1 Sep 26",
+   "ym": "2026-09"
+  },
+  {
+   "date": "2026-10-16",
+   "title": "Gold coin pilot",
+   "note": "10,062 active never-referrers pinned to a 24K gold coin for their first activated referral",
+   "who": "Pinned never-referrers",
+   "label": "16 Oct 26",
+   "ym": "2026-10"
+  },
+  {
+   "date": "2026-11-01",
+   "title": "Gold coin for everyone",
+   "note": "The coin becomes the offer for every referrer; the ladder ends. Referrers still inside an Alexa window that month see the $30 default",
+   "who": "All referrers",
+   "label": "1 Nov 26",
+   "ym": "2026-11"
+  }
+ ]
 }
