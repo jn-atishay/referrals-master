@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "6 Nov 2026, 10:00 IST",
-  "asOfIso": "2026-11-06T10:00+05:30",
+  "asOf": "6 Nov 2026, 11:00 IST",
+  "asOfIso": "2026-11-06T11:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -13140,7 +13140,7 @@
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
    "November is only five days in, so the month totals are partial: 117 signups and 81 referral onboardings so far against 984 signups and 670 referral onboardings in a full October.",
-   "The three full months show the program growing, with signups climbing from 628 in August to 950 in September and 984 in October, and the referral share of all onboardings rising from 12.6 to 15.8 to 19.5 percent before a partial 14.7 so far in November.",
+   "The three full months show the program growing, with signups climbing from 628 in August to 950 in September and 984 in October, and the referral share of all onboardings rising from 12.6 to 15.8 to 19.5 percent before a partial 14.5 so far in November.",
    "Share rate among transactors eased from 3.21 percent in September to 2.78 in October and reads a partial 0.71 in November; worth watching is November's early referral activation count of 150, already strong this early as the ladder backlog converts, even as fresh campaign signups fall off."
   ],
   "gold": [
@@ -13342,11 +13342,11 @@
    "firstTimers": 54,
    "refOnboardings": 81,
    "refActivations": 150,
-   "allOnboardings": 551,
+   "allOnboardings": 558,
    "transactors": 5215,
    "sharers": 37,
    "shareRate": 0.71,
-   "refShare": 14.7,
+   "refShare": 14.5,
    "partial": true
   }
  ],
