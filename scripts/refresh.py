@@ -257,6 +257,7 @@ def build_gold(rows, cfg, today, src):
     return {
         "campaignId": gc["campaign_id"], "label": gc["label"], "reward": gc["reward"], "start": gc["start"], "startLabel": lbl(gc["start"]),
         "dayN": (today - start).days + 1, "window": f"{lbl(gc['start'])} to {lbl(yesterday.isoformat())}",
+        "openToAll": gc.get("open_to_all"), "openToAllLabel": lbl(gc["open_to_all"]) if gc.get("open_to_all") else None,
         "pinned": {"n": num(p[2]), "date": lbl(p[3]) if p[3] else None, "active90d": num(p[4]), "referredBefore": num(p[5])},
         "funnel": {"signups": num(f[2]), "referrers": num(f[3]), "onboarded": num(f[4]), "achieved": num(f[5]), "claimed": num(f[6]), "firstEverReferrers": num(f[7])},
         "daily": daily, "weekly": weekly,
@@ -282,6 +283,83 @@ def build_campaigns(rows, cfg, today):
                     "signups": signups, "referrers": referrers, "onboarded": onboarded, "achieved": achieved, "claimed": claimed,
                     "perDay": round(signups / days, 2), "obRate": pct(onboarded, signups), "actRate": pct(achieved, onboarded), "claimRate": pct(claimed, achieved)})
     return out
+
+
+MONTH_METRICS = [("signups", "Referral signups"), ("firstTimers", "First-time referrers"), ("onboardings", "Referral onboardings"),
+                 ("activations", "Referral activations"), ("coins", "Gold coins claimed")]
+
+
+def build_month(rows, cfg, today):
+    """The current month day by day against the previous three, with month-end projections per metric.
+
+    Projection methods: 'straight' (to-date average per full day times days in the month), 'dayShare' (to-date divided by the share of
+    each previous month that had landed by the same day; mid = mean, low/high = extremes), 'run7' (to-date plus the last seven full
+    days' average for the days left). The page shows dayShare when the previous months have data for the metric, else run7."""
+    day_rows = {r[1]: r for r in rows if r[0] == "day"}
+    keys = ["signups", "referrers", "onboardings", "activations", "coins", "goldSignups", "firstTimers"]
+    def vals(iso):
+        r = day_rows.get(iso)
+        return {k: int(r[i + 2] or 0) for i, k in enumerate(keys)} if r else {k: 0 for k in keys}
+    m0 = today.replace(day=1)
+    nxt = (today.replace(day=28) + dt.timedelta(days=4)).replace(day=1)
+    dim = (nxt - dt.timedelta(days=1)).day
+    full = today.day - 1
+    left = dim - full
+    daily = []
+    for i in range(1, today.day + 1):
+        iso = m0.replace(day=i).isoformat()
+        daily.append({"dom": i, "day": lbl(iso), "date": iso, **vals(iso), "partial": i == today.day})
+    prev = []
+    pm_end = m0 - dt.timedelta(days=1)
+    for _ in range(3):
+        pm0 = pm_end.replace(day=1)
+        ndays = pm_end.day
+        series = [vals(pm0.replace(day=i).isoformat()) for i in range(1, ndays + 1)]
+        cum = {}
+        for k, _l in MONTH_METRICS:
+            run, out = 0, []
+            for v in series:
+                run += v[k]; out.append(run)
+            cum[k] = out
+        prev.append({"ym": pm0.strftime("%Y-%m"), "month": MONTHS[pm0.month - 1], "days": ndays,
+                     "full": {k: sum(v[k] for v in series) for k, _l in MONTH_METRICS},
+                     "firstN": {k: sum(v[k] for v in series[:full]) for k, _l in MONTH_METRICS}, "cum": cum})
+        pm_end = pm0 - dt.timedelta(days=1)
+    prev.reverse()
+    proj = {}
+    fulls = daily[:full]
+    for k, label in MONTH_METRICS:
+        to_date = sum(x[k] for x in fulls)
+        today_so_far = daily[-1][k] if daily else 0
+        last7 = [x[k] for x in fulls[-7:]]
+        avg7 = round(sum(last7) / len(last7), 2) if last7 else None
+        shares = [m["firstN"][k] / m["full"][k] for m in prev if m["full"][k] and m["firstN"][k]]
+        ds = {"mid": round(to_date / (sum(shares) / len(shares))), "low": round(to_date / max(shares)), "high": round(to_date / min(shares))} if shares and full else None
+        proj[k] = {"label": label, "toDate": to_date, "todaySoFar": today_so_far, "avg7": avg7, "cum": [sum(x[k] for x in daily[:i + 1]) for i in range(len(daily))],
+                   "straight": round(to_date / full * dim) if full else None, "run7": round(to_date + avg7 * left) if avg7 is not None else None,
+                   "dayShare": ds, "projected": (ds["mid"] if ds else (round(to_date + avg7 * left) if avg7 is not None else None)),
+                   "method": "dayShare" if ds else "run7", "prev": {m["month"]: m["full"][k] for m in prev}, "prevFirstN": {m["month"]: m["firstN"][k] for m in prev}}
+    g = {r[1]: r for r in rows if r[0] == "group"}
+    group_labels = [("pinned_first", "Pinned never-referrers, first referral ever"), ("pinned_repeat", "Pinned never-referrers, repeat"),
+                    ("open_first", "Everyone else, first referral ever"), ("open_repeat", "Everyone else, repeat referrers")]
+    groups = [{"key": k, "label": l, "referrers": num(g[k][2]) if k in g else 0, "signups": num(g[k][3]) if k in g else 0, "onboarded": num(g[k][4]) if k in g else 0,
+               "achieved": num(g[k][5]) if k in g else 0, "coins": num(g[k][6]) if k in g else 0} for k, l in group_labels]
+    meta = {c["id"]: c for c in cfg["campaign_history"]}
+    tags = sorted([{"id": int(r[1]), "signups": num(r[2]), "referrers": num(r[3]), "name": r[4], "label": meta.get(int(r[1]), {}).get("label", r[4])}
+                   for r in rows if r[0] == "tag"], key=lambda x: -x["signups"])
+    pl = next((r for r in rows if r[0] == "pipeline"), None)
+    base = float(cfg.get("referee_activation_baseline") or 0.52)
+    pipeline = {"referrersWaiting": num(pl[2]), "refereesWaiting": num(pl[3]), "referrersNoOnboard": num(pl[4]), "signupsNoOnboard": num(pl[5]),
+                "coinsTotal": num(pl[6]), "referrersNoCoin": num(pl[7]), "signupsNoCoin": num(pl[8])} if pl else {}
+    if pipeline and pipeline["referrersNoCoin"]:
+        per = pipeline["signupsNoCoin"] / pipeline["referrersNoCoin"]
+        pipeline["eventualCoins"] = round(pipeline["coinsTotal"] + pipeline["referrersNoCoin"] * (1 - (1 - base) ** per))
+        pipeline["baseline"] = base
+    gc = cfg["gold_coin"]
+    return {"ym": today.strftime("%Y-%m"), "monthName": MONTH_NAMES[today.month - 1], "monthShort": MONTHS[today.month - 1], "daysInMonth": dim, "fullDays": full, "daysLeft": left,
+            "openToAll": gc.get("open_to_all"), "openToAllLabel": lbl(gc["open_to_all"]) if gc.get("open_to_all") else None, "unitCostInr": gc.get("unit_cost_inr"),
+            "target": (cfg["targets"].get(today.strftime("%Y-%m")) or {}).get("target"),
+            "daily": daily, "prev": prev, "proj": proj, "groups": groups, "tags": tags, "pipeline": pipeline}
 
 
 # ----------------------------------------------------------------------------------------------------------------
@@ -340,6 +418,9 @@ def summarise(data, top24h, cfg, today):
                  "preWeeks": {"n": len(pre), "avgReferrers": round(sum(w["referrers"] for w in pre) / len(pre), 1) if pre else None, "avgShareRate": round(sum((w["shareRate"] or 0) for w in pre) / len(pre), 2) if pre else None},
                  "postWeeks": post},
         "campaigns": data["CAMPAIGNS"],
+        "month": {k: v for k, v in data["MONTH"].items() if k not in ("daily", "prev")} | {
+            "lastDays": [{k2: v2 for k2, v2 in x.items() if k2 != "date"} for x in data["MONTH"]["daily"][-8:]],
+            "prevMonths": [{"month": m["month"], "full": m["full"], "firstN": m["firstN"]} for m in data["MONTH"]["prev"]]},
     }
 
 
@@ -376,6 +457,7 @@ def main():
     gold_rows = query(src, cfg, "07_goldcoin.sql")
     hist_rows = query(src, cfg, "08_campaigns.sql")
     detail_rows = query(src, cfg, "09_referrer_detail.sql")
+    month_rows = query(src, cfg, "10_month.sql")
 
     data = {k: v for k, v in old.items()}  # keep every key the current file has
     data["SNAPSHOT"] = {"asOf": f"{today.day} {MONTHS[today.month - 1]} {today.year}, {now:%H:%M} IST", "asOfIso": now.isoformat(timespec="minutes"),
@@ -392,6 +474,7 @@ def main():
     data["TRENDS"] = build_trends(trend_rows, today)
     data["GOLD"] = build_gold(gold_rows, cfg, today, src)
     data["CAMPAIGNS"] = build_campaigns(hist_rows, cfg, today)
+    data["MONTH"] = build_month(month_rows, cfg, today)
 
     if "--force-quality" in args or old.get("qualityRefreshedOn") != today.isoformat() or not all(k in old for k in ("Q_FUNNEL", "Q_BT", "Q_VOL", "FX")):
         data["Q_FUNNEL"], data["Q_BT"], data["Q_VOL"], data["FX"] = build_quality(query(src, cfg, "05_referee_quality.sql"), today)
@@ -415,7 +498,8 @@ def main():
     g = data["GOLD"]["funnel"]
     print(f"OK {data['SNAPSHOT']['asOf']}: {data['PACE']['monthName']} onboardings {data['PACE']['sepToDate']} + {data['PACE']['todaySoFar']} today; "
           f"{len(data['REFERRERS_RAW'])} campaign referrers; gold coin {g['signups']} signups / {g['achieved']} activated / {g['claimed']} claimed; "
-          f"popup {'stale' if data['POPUP'].get('stale') else 'fresh'}; quality refreshed {data.get('qualityRefreshedOn')}")
+          f"popup {'stale' if data['POPUP'].get('stale') else 'fresh'}; quality refreshed {data.get('qualityRefreshedOn')}; "
+          f"{data['MONTH']['monthShort']} projection signups {data['MONTH']['proj']['signups']['projected']} / onboardings {data['MONTH']['proj']['onboardings']['projected']} / coins {data['MONTH']['proj']['coins']['projected']}")
     if top24h and top24h[0]["signups"] > 25:
         print(f"CHECK: referrer {top24h[0]['id']} has {top24h[0]['signups']} signups in the last 24 hours")
 

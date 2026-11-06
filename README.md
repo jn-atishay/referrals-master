@@ -2,13 +2,14 @@
 
 A static page (`index.html`) that renders everything from `data.json`. An hourly job on a Mac rebuilds `data.json` from Metabase and Mixpanel and pushes it; GitHub Pages serves the latest commit.
 
-Tabs: Overview (program-wide trends), Milestone campaign (the Sep to Oct 2026 ladder), Gold coin (the never-referrer campaign pinned on 16 Oct 2026), Referrers (every milestone referrer), Referee quality, Campaigns (every gift campaign since 2025 side by side).
+Tabs: Overview (program-wide trends), Month projection (the current month day by day against the last three, with month-end projections for signups, onboardings, activations and gold coins, who is referring and the coin pipeline), Gold coin (pinned pilot from 16 Oct 2026, open to everyone from 1 Nov 2026), Milestone campaign (the Sep to Oct 2026 ladder), Referrers (every milestone referrer), Referee quality, Campaigns (every gift campaign since 2025 side by side).
 
 ## Files
 - `index.html` built page. Rebuild after editing `src/dashboard.jsx` with `python3 scripts/build_html.py`.
 - `data.json` the only file the refresh job changes.
-- `config.json` campaign ids and dates, monthly targets, excluded and flagged referrers, the gold coin campaign, the campaign history list, whether customer names are shown.
+- `config.json` campaign ids and dates, monthly targets, excluded and flagged referrers, the gold coin campaign (`open_to_all` = the day it became the offer for everyone; `unit_cost_inr`, when set, adds a rupee cost next to coin counts), `referee_activation_baseline` (the share of referee signups assumed to pay eventually, used for the eventual-coins estimate), the campaign history list, whether customer names are shown.
 - `queries/` the SQL the refresh runs. Placeholders (`{{EXCLUDED}}`, `{{ALWAYS_EXCLUDED}}`, `{{CAMPAIGN_ID}}`, `{{GOLD_CAMPAIGN_ID}}`, ...) are filled from `config.json`.
+- `queries/10_month.sql` feeds the Month projection tab (daily series for the current and previous three months, referrer groups, campaign tags, coin pipeline). Projections are computed in `scripts/refresh.py` (`build_month`): day-share against the previous three months where they have the metric, else the last seven days run forward.
 - `queries/09_referrer_detail.sql` feeds the popup on the Referrers tab (referrer profile plus every referee: business type, dates, stated band, transaction count, settled volume).
 - `scripts/refresh.py` runs every query plus the Mixpanel counts and rebuilds `data.json` (about 20 seconds). `--notes-only` merges `raw/notes.json` into `data.json` without querying.
 - `scripts/validate.py` blocks a commit if data is malformed or contains customer emails, phone numbers or unwanted names.

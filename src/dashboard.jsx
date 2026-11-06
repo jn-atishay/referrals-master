@@ -26,6 +26,7 @@ const Q_BT = D.Q_BT;
 const Q_VOL = D.Q_VOL;
 const TRENDS = D.TRENDS || [];
 const GOLD = D.GOLD || null;
+const MONTH = D.MONTH || null;
 const CAMPAIGNS = D.CAMPAIGNS || [];
 const N = D.notes || {};
 const LBL = D.COHORT_LABELS || { now: PACE.monthShort, prev: "" };
@@ -259,6 +260,7 @@ html, body { background: var(--page); margin: 0; }
 .app .tablewrap.short thead th { background: var(--page); }
 .app .tablewrap.short thead th:first-child, .app .tablewrap.short td:first-child { padding-left: 0; }
 .app .tablewrap.short thead th.num, .app .tablewrap.short td.num { padding-right: 0; }
+.app .projtable th, .app .projtable td { white-space: nowrap; padding-left: 14px; } .app .projtable th:first-child, .app .projtable td:first-child { padding-left: 0; }
 .app .sortable th { cursor: pointer; user-select: none; }
 .app .sortable th:hover { color: var(--ink); }
 .app tr.clickable { cursor: pointer; }
@@ -616,12 +618,16 @@ function Overview({ T, go }) {
       <section>
         <div className="sechead"><h2>What is running</h2></div>
         <div className="live">
+          {MONTH && <button className="livecard" onClick={() => go("month")}>
+            <div><b>{MONTH.monthName} projection</b><span>Day {MONTH.fullDays + 1} of {MONTH.daysInMonth}. Signups projecting about {fmt(MONTH.proj.signups.projected)}, onboardings {fmt(MONTH.proj.onboardings.projected)}, gold coins {fmt(MONTH.proj.coins.projected)}.</span></div>
+            <span className="pill">projection</span>
+          </button>}
           <button className="livecard" onClick={() => go("milestone")}>
             <div><b>Milestone ladder campaign</b><span>{SNAPSHOT.campaignEnded ? `Ended ${SNAPSHOT.campaignEnd}` : `Day ${SNAPSHOT.campaignDay} of ${SNAPSHOT.campaignDays || 61}, ${SNAPSHOT.daysLeft} days left`}. {fmt(HEADLINE.signups)} signups, {fmt(HEADLINE.activations)} activations, {rewards} rewards claimed.</span></div>
             <span className={`pill ${SNAPSHOT.campaignEnded ? "ended" : "live"}`}>{SNAPSHOT.campaignEnded ? "ended" : "live"}</span>
           </button>
           {GOLD && <button className="livecard" onClick={() => go("gold")}>
-            <div><b>{GOLD.label}</b><span>Day {GOLD.dayN}, since {GOLD.startLabel}. {fmt(GOLD.pinned.n)} never-referrers offered a {GOLD.reward}: {GOLD.funnel.referrers} have referred, {GOLD.funnel.achieved} activated, {GOLD.funnel.claimed} coins claimed.</span></div>
+            <div><b>{GOLD.label}</b><span>Day {GOLD.dayN}, since {GOLD.startLabel}{GOLD.openToAllLabel ? `, open to everyone since ${GOLD.openToAllLabel}` : ""}. {GOLD.funnel.referrers} referrers, {fmt(GOLD.funnel.signups)} signups, {GOLD.funnel.achieved} activated, {GOLD.funnel.claimed} coins claimed.</span></div>
             <span className="pill live">live</span>
           </button>}
         </div>
@@ -916,7 +922,6 @@ function Gold({ T }) {
   if (!GOLD) return <section className="first"><p className="note">Gold coin data has not been collected yet. It appears after the next refresh.</p></section>;
   const f = GOLD.funnel, p = GOLD.pinned;
   const steps = [
-    { lab: "Offered the gold coin", sub: `pinned on ${p.date}`, v: p.n },
     { lab: "Saw the campaign widget", sub: `unique users, ${GOLD.window}`, v: GOLD.widgetUsers },
     { lab: "Referred someone", sub: `${f.firstEverReferrers} for the first time ever`, v: f.referrers },
     { lab: "Referee signups", sub: `${(f.signups / Math.max(1, f.referrers)).toFixed(2)} per referrer`, v: f.signups, noShare: true },
@@ -938,16 +943,16 @@ function Gold({ T }) {
       <div className="pagehead">
         <div>
           <h2 style={{ fontSize: 18 }}>{GOLD.label}</h2>
-          <p className="sub">{fmt(p.n)} activated users who had never referred were pinned to campaign {GOLD.campaignId} on {p.date}. The first referee who completes a payment earns the referrer a {GOLD.reward}. One coin per referrer.</p>
+          <p className="sub">{fmt(p.n)} activated users who had never referred were pinned to campaign {GOLD.campaignId} on {p.date} as a pilot.{GOLD.openToAllLabel ? ` Since ${GOLD.openToAllLabel} the coin is the offer for everyone (referrers still inside an Alexa window that month see the $30 default instead).` : ""} The first referee who completes a payment earns the referrer a {GOLD.reward}. One coin per referrer.</p>
         </div>
         <div className="count"><b>Day {GOLD.dayN}</b><span className="sub">since {GOLD.startLabel}</span></div>
       </div>
 
       <section className="first">
         <div className="stats">
-          <Stat T={T} label="Never-referrers offered the coin" value={fmtc(p.n)} sub={`${fmtc(p.active90d)} transacted in the last 90 days`} />
-          <Stat T={T} label="Saw the gold coin widget" value={fmtc(GOLD.widgetUsers)} sub={GOLD.widgetUsers != null ? `${pct(GOLD.widgetUsers, p.n)} of the group, ${GOLD.window}` : "Mixpanel unavailable"} />
-          <Stat T={T} label="Referred for the first time" value={fmt(f.referrers)} hero sub={`${f.firstEverReferrers} had never referred before, ${f.signups} signups between them`} />
+          <Stat T={T} label="Pinned in the pilot" value={fmtc(p.n)} sub={`never-referrers, pinned ${p.date}${GOLD.openToAllLabel ? `; everyone since ${GOLD.openToAllLabel}` : ""}`} />
+          <Stat T={T} label="Saw the gold coin widget" value={fmtc(GOLD.widgetUsers)} sub={GOLD.widgetUsers != null ? `unique users, ${GOLD.window}` : "Mixpanel unavailable"} />
+          <Stat T={T} label="Referred under the coin" value={fmt(f.referrers)} hero sub={`${f.firstEverReferrers} had never referred before, ${f.signups} signups between them`} />
           <Stat T={T} label="Referees onboarded" value={fmt(f.onboarded)} sub={`${pct(f.onboarded, f.signups, 0)} of signups`} />
           <Stat T={T} label="Referees activated" value={fmt(f.achieved)} sub={`${pct(f.achieved, f.onboarded, 0)} of onboarded`} />
           <Stat T={T} label="Gold coins claimed" value={fmt(f.claimed)} sub="auto-claimed, no popup" />
@@ -973,7 +978,7 @@ function Gold({ T }) {
             </div>
           </div>
           <div>
-            <div className="sechead"><h2>Did the offer move never-referrers?</h2><span className="note">Weekly referrers from the pinned group, as a share of those who transacted that week. The line marks the pin.</span></div>
+            <div className="sechead"><h2>Did the offer move the pinned never-referrers?</h2><span className="note">Weekly referrers from the pinned pilot group only, as a share of those who transacted that week. The line marks the pin.</span></div>
             <div className="chart" style={{ height: 190 }}>
               <ResponsiveContainer>
                 <ComposedChart data={weeks} margin={{ top: 10, right: 12, left: -18, bottom: 0 }}>
@@ -997,7 +1002,7 @@ function Gold({ T }) {
       <section>
         <div className="grid2">
           <div>
-            <div className="sechead"><h2>Daily referee signups and onboardings</h2><span className="note">* today so far.</span></div>
+            <div className="sechead"><h2>Daily referee signups and onboardings</h2><span className="note">Every referral tagged to the coin. * today so far.</span></div>
             <div className="chart" style={{ height: 220 }}>
               <ResponsiveContainer>
                 <ComposedChart data={daily} margin={{ top: 10, right: 8, left: -18, bottom: 0 }} barGap={2}>
@@ -1006,6 +1011,7 @@ function Gold({ T }) {
                   <YAxis {...axis(T)} allowDecimals={false} />
                   <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
                   <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  {GOLD.openToAllLabel && <ReferenceLine x={GOLD.openToAllLabel} stroke={T.muted} strokeDasharray="3 3" label={{ value: "everyone", position: "insideTopLeft", fontSize: 11, fill: T.muted }} />}
                   <Bar isAnimationActive={false} dataKey="signups" name="Signups" fill={T.s1} radius={[4, 4, 0, 0]} maxBarSize={22}>
                     {daily.map((x) => <Cell key={x.date} fill={T.s1} opacity={x.partial ? 0.45 : 1} />)}
                   </Bar>
@@ -1017,7 +1023,7 @@ function Gold({ T }) {
             </div>
           </div>
           <div>
-            <div className="sechead"><h2>Days from the pin to the first referral</h2><span className="note">How quickly the offer turned into action.</span></div>
+            <div className="sechead"><h2>Days from the pin to the first referral</h2><span className="note">Pinned pilot group: how quickly the offer turned into action.</span></div>
             <div className="chart" style={{ height: 220 }}>
               <ResponsiveContainer>
                 <BarChart data={d2f} margin={{ top: 10, right: 8, left: -18, bottom: 0 }}>
@@ -1174,10 +1180,168 @@ function Campaigns({ T }) {
 }
 
 // ============================================================================
+// MONTH PROJECTION
+// ============================================================================
+
+
+function MonthProjection({ T }) {
+  if (!MONTH) return <section className="first"><p className="note">Month projection data has not been collected yet. It appears after the next refresh.</p></section>;
+  const M = MONTH, P = M.proj, pipe = M.pipeline || {};
+  const metrics = [["signups", "Signups"], ["onboardings", "Onboardings"], ["activations", "Activations"], ["coins", "Gold coins"], ["firstTimers", "First-timers"]];
+  const [metric, setMetric] = useState("signups");
+  const pm = P[metric];
+  const prevNames = M.prev.map((m) => m.month);
+  const dimColors = [T.dim, T.axis, T.muted];
+  const chartRows = useMemo(() => {
+    const rows = [];
+    const lastFull = M.fullDays;
+    const curCum = pm.cum;
+    for (let dom = 1; dom <= M.daysInMonth; dom++) {
+      const r = { dom };
+      if (dom <= lastFull) r.cur = curCum[dom - 1];
+      if (dom === M.daysInMonth && pm.projected != null && lastFull > 0) r.proj = pm.projected;
+      if (dom === lastFull && lastFull > 0) r.proj = curCum[dom - 1];
+      if (dom === lastFull + 1 && dom <= M.daysInMonth && M.daily[dom - 1]) r.today = (curCum[lastFull - 1] || 0) + M.daily[dom - 1][metric];
+      M.prev.forEach((m) => { if (dom <= m.days) r[m.month] = m.cum[metric][dom - 1]; });
+      rows.push(r);
+    }
+    return rows;
+  }, [metric]);
+  const rangeTxt = (p) => (p.dayShare ? `range ${fmt(p.dayShare.low)} to ${fmt(p.dayShare.high)}` : p.avg7 != null ? `last seven days at ${p.avg7} a day` : "no projection yet");
+  const projTxt = (p) => (p.projected == null ? "no projection yet" : `projecting about ${fmt(p.projected)}, ${rangeTxt(p)}`);
+  const prevTxt = (k) => M.prev.map((m) => `${m.month} ${fmt(m.full[k])}`).join(", ");
+  const sameDays = (k) => M.prev[M.prev.length - 1] ? `${fmt(M.prev[M.prev.length - 1].firstN[k])} by the same day in ${M.prev[M.prev.length - 1].month}` : "";
+  const delta = (k) => { const last = M.prev[M.prev.length - 1]; return last && last.firstN[k] ? (100 * (P[k].toDate - last.firstN[k])) / last.firstN[k] : null; };
+  const daily = M.daily.map((x) => ({ ...x, label: x.day + (x.partial ? "*" : "") }));
+  const cost = (n) => (M.unitCostInr && n != null ? ` (about ${fmtc(Math.round((n * M.unitCostInr) / 1000))}K rupees at ${fmt(M.unitCostInr)} a coin)` : "");
+  const groups = M.groups || [], gTot = { referrers: sumBy(groups, "referrers"), signups: sumBy(groups, "signups"), onboarded: sumBy(groups, "onboarded"), achieved: sumBy(groups, "achieved"), coins: sumBy(groups, "coins") };
+  const tags = M.tags || [], tTot = sumBy(tags, "signups");
+  const tagNote = (t) => (t.id === 29 ? "The live offer" : t.id === 16 ? "Referrers still inside an Alexa window this month see the $30 default instead" : t.id === 26 ? "Leftover tags from the ladder" : "");
+  return (
+    <>
+      <div className="pagehead">
+        <div>
+          <h2 style={{ fontSize: 18 }}>{M.monthName}: where the month lands</h2>
+          <p className="sub">{M.openToAllLabel ? `The gold coin has been the offer for everyone since ${M.openToAllLabel}. ` : ""}{M.fullDays} full day{M.fullDays === 1 ? "" : "s"} in, {M.daysLeft} to go including today. Projections scale the days so far by how much of each of the last three months had landed by the same day; where those months have nothing to compare with, the last seven days are run forward instead. Early in the month every number here is a guess.</p>
+        </div>
+        <div className="count"><b>Day {M.fullDays + 1}</b><span className="sub">of {M.daysInMonth}</span></div>
+      </div>
+
+      <section className="first">
+        <div className="stats">
+          <Stat T={T} label={`${M.monthShort} referral signups so far`} value={fmt(P.signups.toDate + P.signups.todaySoFar)} hero sub={`${projTxt(P.signups)}. ${sameDays("signups")}`} delta={delta("signups")} />
+          <Stat T={T} label="Referral onboardings" value={fmt(P.onboardings.toDate + P.onboardings.todaySoFar)} sub={`${projTxt(P.onboardings)}${M.target ? `, target ${fmt(M.target)}` : ""}. ${sameDays("onboardings")}`} delta={delta("onboardings")} />
+          <Stat T={T} label="Referral activations" value={fmt(P.activations.toDate + P.activations.todaySoFar)} sub={`${projTxt(P.activations)}. ${sameDays("activations")}`} delta={delta("activations")} />
+          <Stat T={T} label={`Gold coins claimed in ${M.monthShort}`} value={fmt(P.coins.toDate + P.coins.todaySoFar)} sub={`${projTxt(P.coins)}${cost(P.coins.projected)}. ${fmt(pipe.coinsTotal)} since the campaign began`} />
+          <Stat T={T} label="First-time referrers" value={fmt(P.firstTimers.toDate + P.firstTimers.todaySoFar)} sub={`${projTxt(P.firstTimers)}. ${sameDays("firstTimers")}`} delta={delta("firstTimers")} />
+          <Stat T={T} label="Coins the pipeline could still pay" value={fmt(pipe.eventualCoins)} sub={pipe.eventualCoins != null ? `eventual total if ${Math.round(100 * pipe.baseline)}% of referees go on to pay, as past cohorts did${cost(pipe.eventualCoins)}` : "n/a"} />
+        </div>
+      </section>
+
+      <section>
+        <div className="sechead">
+          <h2>Running total against the last three months</h2>
+          <span className="note">Solid line: this month. Dashed: the straight path to the projection. Grey: {prevNames.join(", ")} on the same day of their month.</span>
+        </div>
+        <div className="tabs" role="tablist" style={{ marginTop: 4 }}>
+          {metrics.map(([k, l]) => <button key={k} role="tab" aria-selected={metric === k} className={metric === k ? "on" : ""} onClick={() => setMetric(k)}>{l}</button>)}
+        </div>
+        <div className="chart" style={{ height: 280 }}>
+          <ResponsiveContainer>
+            <ComposedChart data={chartRows} margin={{ top: 12, right: 16, left: -14, bottom: 0 }}>
+              <CartesianGrid vertical={false} stroke={T.grid} />
+              <XAxis dataKey="dom" {...axis(T)} interval={1} tickFormatter={(v) => (v % 5 === 0 || v === 1 ? `${v} ${M.monthShort}` : "")} />
+              <YAxis {...axis(T)} tickFormatter={fmtc} allowDecimals={false} />
+              <Tooltip content={<Tip />} cursor={{ stroke: T.axis }} labelFormatter={(v) => `Day ${v}`} />
+              <Legend iconType="plainline" iconSize={14} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+              {M.prev.map((m, i) => <Line key={m.month} isAnimationActive={false} dataKey={m.month} name={m.month} stroke={dimColors[i]} strokeWidth={1.5} dot={false} connectNulls />)}
+              <Line isAnimationActive={false} dataKey="proj" name={`Projected ${M.monthShort}`} stroke={T.s1} strokeWidth={2} strokeDasharray="5 4" dot={{ r: 3.5, fill: T.surface, stroke: T.s1, strokeWidth: 2 }} connectNulls />
+              <Line isAnimationActive={false} dataKey="cur" name={`${M.monthShort} so far`} stroke={T.s1} strokeWidth={2.5} dot={{ r: 3, fill: T.s1, stroke: T.surface, strokeWidth: 2 }} activeDot={{ r: 5 }} />
+              <Line isAnimationActive={false} dataKey="today" name="Today so far" stroke={T.s1} strokeWidth={0} dot={{ r: 3.5, fill: T.surface, stroke: T.s1, strokeWidth: 1.5 }} />
+            </ComposedChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="tablewrap short" style={{ marginTop: 14 }}>
+          <table style={{ minWidth: 980 }} className="projtable">
+            <thead><tr><th>Metric</th><th className="num">To date</th><th className="num">Today</th><th className="num">Per day, last 7</th><th className="num">Straight line</th><th className="num">By day-share (range)</th><th className="num">Projected</th>{M.prev.map((m) => <th key={m.month} className="num">{m.month} by day {M.fullDays}</th>)}{M.prev.map((m) => <th key={m.month + "f"} className="num">{m.month} full</th>)}</tr></thead>
+            <tbody>
+              {metrics.map(([k]) => { const p = P[k]; return (
+                <tr key={k} className={k === metric ? "hl" : ""}>
+                  <td>{p.label}</td><td className="num">{fmt(p.toDate)}</td><td className="num">{fmt(p.todaySoFar)}</td><td className="num">{p.avg7 == null ? "n/a" : p.avg7.toFixed(1)}</td>
+                  <td className="num">{fmt(p.straight)}</td><td className="num">{p.dayShare ? `${fmt(p.dayShare.mid)} (${fmt(p.dayShare.low)} to ${fmt(p.dayShare.high)})` : "n/a"}</td>
+                  <td className="num"><b>{fmt(p.projected)}</b></td>
+                  {M.prev.map((m) => <td key={m.month} className="num">{fmt(m.firstN[k])}</td>)}
+                  {M.prev.map((m) => <td key={m.month + "f"} className="num">{fmt(m.full[k])}</td>)}
+                </tr>); })}
+            </tbody>
+          </table>
+        </div>
+        <p className="note" style={{ marginTop: 8 }}>Straight line: the average full day so far, times {M.daysInMonth} days. By day-share: {M.monthShort} to date divided by the share of each previous month that had landed by day {M.fullDays}; the range is the most and least front-loaded of those months. Projected uses day-share when the previous months have the metric, else the last seven days run forward. Onboardings and activations count each referee once, on their first referrer; gold coins are claims, one per referrer.</p>
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>Who is referring this month</h2><span className="note">Pinned: the never-referrers offered the coin in the October pilot. Everyone else sees the coin since {M.openToAllLabel || "the campaign opened"}.</span></div>
+            <div className="tablewrap short"><table>
+              <thead><tr><th>Group</th><th className="num">Referrers</th><th className="num">Signups</th><th className="num">Onboarded</th><th className="num">Activated</th><th className="num">Coins</th></tr></thead>
+              <tbody>
+                {groups.map((g) => <tr key={g.key}><td>{g.label}</td><td className="num">{fmt(g.referrers)}</td><td className="num">{fmt(g.signups)}</td><td className="num">{fmt(g.onboarded)}</td><td className="num">{fmt(g.achieved)}</td><td className="num">{fmt(g.coins)}</td></tr>)}
+                <tr className="hl"><td><b>All referrers this month</b></td><td className="num"><b>{fmt(gTot.referrers)}</b></td><td className="num"><b>{fmt(gTot.signups)}</b></td><td className="num"><b>{fmt(gTot.onboarded)}</b></td><td className="num"><b>{fmt(gTot.achieved)}</b></td><td className="num"><b>{fmt(gTot.coins)}</b></td></tr>
+              </tbody>
+            </table></div>
+          </div>
+          <div>
+            <div className="sechead"><h2>Which offer tagged the signups</h2><span className="note">The campaign stamped on each referral at signup decides the referrer's reward.</span></div>
+            <div className="tablewrap short"><table>
+              <thead><tr><th>Campaign</th><th className="num">Signups</th><th className="num">Share</th><th className="num">Referrers</th></tr></thead>
+              <tbody>{tags.map((t) => <tr key={t.id}><td>{t.label}<small style={{ display: "block", color: "var(--muted)", fontSize: 11.5 }}>{tagNote(t)}</small></td><td className="num">{fmt(t.signups)}</td><td className="num">{pct(t.signups, tTot, 0)}</td><td className="num">{fmt(t.referrers)}</td></tr>)}</tbody>
+            </table></div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="grid2">
+          <div>
+            <div className="sechead"><h2>Day by day this month</h2><span className="note">* today so far. Activations and coins can come from referrals made in earlier months.</span></div>
+            <div className="chart" style={{ height: 230 }}>
+              <ResponsiveContainer>
+                <ComposedChart data={daily} margin={{ top: 10, right: 8, left: -18, bottom: 0 }} barGap={1}>
+                  <CartesianGrid vertical={false} stroke={T.grid} />
+                  <XAxis dataKey="label" {...axis(T)} interval="preserveStartEnd" minTickGap={14} />
+                  <YAxis {...axis(T)} allowDecimals={false} />
+                  <Tooltip content={<Tip />} cursor={{ fill: T.wash }} />
+                  <Legend iconSize={10} wrapperStyle={{ fontSize: 12, color: T.ink2 }} />
+                  <Bar isAnimationActive={false} dataKey="signups" name="Signups" fill={T.s1} radius={[3, 3, 0, 0]} maxBarSize={16}>{daily.map((x) => <Cell key={x.date} fill={T.s1} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                  <Bar isAnimationActive={false} dataKey="onboardings" name="Onboardings" fill={T.s3} radius={[3, 3, 0, 0]} maxBarSize={16}>{daily.map((x) => <Cell key={x.date} fill={T.s3} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                  <Bar isAnimationActive={false} dataKey="activations" name="Activations" fill={T.s2} radius={[3, 3, 0, 0]} maxBarSize={16}>{daily.map((x) => <Cell key={x.date} fill={T.s2} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                  <Bar isAnimationActive={false} dataKey="coins" name="Gold coins" fill={T.s4} radius={[3, 3, 0, 0]} maxBarSize={16}>{daily.map((x) => <Cell key={x.date} fill={T.s4} opacity={x.partial ? 0.45 : 1} />)}</Bar>
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          <div>
+            <div className="sechead"><h2>The coin pipeline</h2><span className="note">Every gold coin referrer so far, whichever month they referred in.</span></div>
+            <div className="stats" style={{ gridTemplateColumns: "1fr 1fr" }}>
+              <Stat T={T} label="Coins claimed so far" value={fmt(pipe.coinsTotal)} sub={`${fmt(P.coins.toDate + P.coins.todaySoFar)} of them in ${M.monthShort}${cost(pipe.coinsTotal)}`} />
+              <Stat T={T} label="Referrers with a referee waiting to pay" value={fmt(pipe.referrersWaiting)} sub={`${fmt(pipe.refereesWaiting)} onboarded referees not yet paid; each referrer here is one payment from a coin`} />
+              <Stat T={T} label="Referrers with nobody onboarded yet" value={fmt(pipe.referrersNoOnboard)} sub={`${fmt(pipe.signupsNoOnboard)} signups still to finish onboarding`} />
+              <Stat T={T} label="Eventual coins, estimate" value={fmt(pipe.eventualCoins)} sub={pipe.eventualCoins != null ? `${fmt(pipe.referrersNoCoin)} referrers without a coin, ${fmt(pipe.signupsNoCoin)} signups between them, at a ${Math.round(100 * pipe.baseline)}% chance each signup pays${cost(pipe.eventualCoins)}` : "n/a"} />
+            </div>
+          </div>
+        </div>
+        <Notes items={N.month} title={`Reading ${M.monthName}`} />
+      </section>
+    </>
+  );
+}
+
+// ============================================================================
 // APP
 // ============================================================================
 
-const TABS = [["overview", "Overview"], ["milestone", "Milestone campaign"], ["gold", "Gold coin"], ["referrers", "Referrers"], ["quality", "Referee quality"], ["campaigns", "Campaigns"]];
+const TABS = [["overview", "Overview"], ["month", `${(D.MONTH || PACE).monthShort} projection`], ["gold", "Gold coin"], ["milestone", "Milestone campaign"], ["referrers", "Referrers"], ["quality", "Referee quality"], ["campaigns", "Campaigns"]];
 const readHash = () => { const h = (window.location.hash || "").replace("#", ""); return TABS.some((t) => t[0] === h) ? h : "overview"; };
 
 function Freshness() {
@@ -1197,7 +1361,7 @@ export default function MilestoneDashboard() {
   useEffect(() => { const fn = () => setView(readHash()); window.addEventListener("hashchange", fn); return () => window.removeEventListener("hashchange", fn); }, []);
   const go = (v) => { setView(v); try { history.replaceState(null, "", "#" + v); } catch (e) { window.location.hash = v; } window.scrollTo({ top: 0, behavior: "smooth" }); };
   const cycle = () => { const next = pref === "auto" ? "dark" : pref === "dark" ? "light" : "auto"; setPref(next); setPrefState(next); };
-  const counts = { milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? `day ${GOLD.dayN}` : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.length) };
+  const counts = { month: MONTH ? `day ${MONTH.fullDays + 1}` : "", milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? `day ${GOLD.dayN}` : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.length) };
 
   return (
     <div className="app">
@@ -1219,6 +1383,7 @@ export default function MilestoneDashboard() {
 
       <div className="wrap">
         {view === "overview" && <Overview T={T} go={go} />}
+        {view === "month" && <MonthProjection T={T} />}
         {view === "milestone" && <Milestone T={T} />}
         {view === "gold" && <Gold T={T} />}
         {view === "referrers" && <Referrers />}

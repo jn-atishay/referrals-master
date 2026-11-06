@@ -31,8 +31,11 @@
     "start": "2026-10-16",
     "label": "Gold coin campaign",
     "reward": "24K gold coin",
-    "widget_type": "group_a_goldcoin2026"
+    "widget_type": "group_a_goldcoin2026",
+    "open_to_all": "2026-11-01",
+    "unit_cost_inr": null
   },
+  "referee_activation_baseline": 0.52,
   "milestone_widget_type": "moonshot_campaign",
   "campaign_history": [
     {

@@ -11,7 +11,7 @@ except Exception as e:
     print("data.json is not valid JSON:", e); sys.exit(1)
 
 need = ["SNAPSHOT", "PACE", "DAILY", "POPUP", "CLAIMS", "WEEKLY", "COHORTS", "COHORT_LABELS", "QUALITY",
-        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "REFERRER_DETAIL", "TRENDS", "GOLD", "CAMPAIGNS", "notes"]
+        "FX", "Q_FUNNEL", "Q_BT", "Q_VOL", "REFERRERS_RAW", "REFERRER_DETAIL", "TRENDS", "GOLD", "CAMPAIGNS", "MONTH", "notes"]
 for k in need:
     if k not in d: errors.append(f"missing key {k}")
 
@@ -67,8 +67,14 @@ if not errors:
     have = {x.get("id") for x in c}
     if want - have: errors.append(f"CAMPAIGNS missing ids {sorted(want - have)}")
 
+    mo = d["MONTH"]
+    if not mo.get("daily") or len(mo.get("prev", [])) != 3: errors.append("MONTH needs daily rows and three previous months")
+    for k in ("signups", "onboardings", "activations", "coins"):
+        pj = mo.get("proj", {}).get(k)
+        if not pj or not isinstance(pj.get("toDate"), int): errors.append(f"MONTH.proj.{k} missing")
+    if mo.get("fullDays") != d["SNAPSHOT"].get("fullDays"): errors.append("MONTH.fullDays does not match SNAPSHOT.fullDays")
     for k in ["pace", "daily", "ladder", "cohorts", "mix", "weeklyQuality", "claims", "popupHeader", "popup", "referrers", "refereeQuality",
-              "qualityHeader", "qualityWindow", "overview", "gold", "campaigns"]:
+              "qualityHeader", "qualityWindow", "overview", "gold", "campaigns", "month"]:
         if k not in d["notes"]: errors.append(f"notes.{k} missing")
     if "—" in raw: errors.append("em dash found in notes; use plain punctuation")
 
