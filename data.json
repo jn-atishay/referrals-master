@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "14 Nov 2026, 13:00 IST",
-  "asOfIso": "2026-11-14T13:00+05:30",
+  "asOf": "14 Nov 2026, 14:00 IST",
+  "asOfIso": "2026-11-14T14:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -13195,9 +13195,9 @@
  ],
  "qualityRefreshedOn": "2026-11-14",
  "notes": {
-  "pace": "No onboarding target is set for November, so this is projection only. Referral onboardings stand at 161 through 13 full days plus 2 so far today, running about 10 a day over the last week. The day-share projection lands the month near 403, in a range of roughly 371 to 432; a straight-line run rate points lower at 372. For context the last three months finished at 465 in August, 612 in September and 674 in October, so November is tracking well below recent full months as the milestone ladder campaign has wound down.",
+  "pace": "No onboarding target is set for November, so this is projection only. Referral onboardings stand at 161 through 13 full days plus 2 so far today, running about 10 a day over the last week. The day-share projection lands the month near 403, in a range of roughly 371 to 432; a straight-line run rate points lower at 372. For context the last three months finished at 465 in August, 612 in September and 674 in October, so November is tracking well below recent full months now that the milestone ladder campaign has wound down.",
   "daily": "These are the Moonshot milestone ladder signups, and that campaign closed on 2 November, so fresh campaign signups have essentially stopped: the week of 2 November logged 137 signups from 113 referrers and the week of 9 November just 99 from 72, against weeks of 200 to 290 through late October. The last full day, 13 November, had no new campaign signups but still saw 9 activations and 5 reward claims land from earlier referrals. No referrer sent more than 25 signups in the last 24 hours.",
-  "ladder": "The Moonshot ladder drew 996 referrers in total; 439 have unlocked at least one reward rung and 276 have claimed something. 352 referrers have signups still in the pipeline that have not yet activated. 45 referrers sit at three or more activations, while 19 are parked at exactly 2 (one activation short of the AirPods rung) and 9 at exactly 4 (one short of the Ray-Ban rung). Eight referrers have reached the top iPhone tier at 8 or more activations, led by exporter 133487 at 9 and seven others at 8, all of whom have claimed the iPhone 17.",
+  "ladder": "The Moonshot ladder drew 996 referrers in total; 439 have unlocked at least one reward rung and 276 have claimed something. 352 referrers have signups still in the pipeline that have not yet activated. 45 referrers sit at three or more activations, while 19 are parked at exactly 2 (one activation short of the AirPods rung) and 9 at exactly 4 (one short of the Ray-Ban rung), so 28 are a single activation from their next reward. Eight referrers have reached the top iPhone tier at 8 or more activations, led by exporter 133487 at 9 and seven others at 8, all of whom have claimed the iPhone 17.",
   "cohorts": "Referral rates are running below October across the board, partly because November is only 13 days in. Of users activated before the month began, 0.57 percent have referred so far against 0.82 percent in October. The lift is carried by repeat referrers (cohort 1b, 1.40 percent, the highest of the base cohorts) and those who transacted this month (cohort 1.1, 1.08 percent). The large never-referred base (cohort 1a, 17,916 users) is referring at just 0.36 percent so far, down from 0.46 percent in October, so the newly open gold coin offer is not yet moving never-referrers.",
   "mix": "First-time referrers are the bulk of the activity: 644 of them sent 1,142 signups, 1.77 each, with 59 percent onboarding and 359 activations. Returning referrers who skipped a campaign (97) send 1.64 each at a higher 68 percent onboarding and 52 activations. Those who referred in the last campaign (196) send 1.84 each at 69 percent onboarding and 139 activations. The small core of three-plus campaign veterans (59) is the most intense, 2.86 signups each with 65 activations, though onboarding dips to 60 percent.",
   "weeklyQuality": "Onboarding quality by signup week has held in a steady band: mature weeks land between 52 and 70 percent onboarded within the first week extending out, and activation of those onboarded runs roughly 50 to 60 percent. The most recent sizeable week, 26 October with 232 signups, shows 55.6 percent onboarded at seven days but only 33.8 percent activated so far, which is young and should rise. Median time to onboard on that week was a fast 7.7 days. Weeks from November carry too few signups to read.",
@@ -13443,7 +13443,7 @@
    "firstTimers": 110,
    "refOnboardings": 163,
    "refActivations": 250,
-   "allOnboardings": 1163,
+   "allOnboardings": 1168,
    "transactors": 8508,
    "sharers": 90,
    "shareRate": 1.06,
@@ -50962,9 +50962,22 @@
    "baseline": 0.52
   },
   "widgetDaily": {
+   "2026-10-14": 0,
+   "2026-10-15": 0,
+   "2026-10-16": 253,
+   "2026-10-17": 515,
+   "2026-10-18": 297,
+   "2026-10-19": 920,
+   "2026-10-20": 819,
+   "2026-10-21": 1080,
+   "2026-10-22": 976,
    "2026-10-11": 0,
    "2026-10-12": 0,
    "2026-10-13": 0,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -50974,7 +50987,6 @@
    "2026-11-07": 1924,
    "2026-11-08": 1220,
    "2026-11-09": 2320,
-   "2026-11-14": 1225,
    "2026-10-23": 889,
    "2026-10-24": 447,
    "2026-10-25": 284,
@@ -50984,19 +50996,7 @@
    "2026-10-29": 1326,
    "2026-10-30": 1480,
    "2026-10-31": 1018,
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
-   "2026-10-14": 0,
-   "2026-10-15": 0,
-   "2026-10-16": 253,
-   "2026-10-17": 515,
-   "2026-10-18": 297,
-   "2026-10-19": 920,
-   "2026-10-20": 819,
-   "2026-10-21": 1080,
-   "2026-10-22": 976
+   "2026-11-14": 1301
   }
  },
  "GRID": {
@@ -52772,7 +52772,7 @@
      19
     ],
     "2026-11": [
-     3623,
+     3628,
      16,
      16
     ]
