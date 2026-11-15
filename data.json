@@ -1,15 +1,15 @@
 {
  "SNAPSHOT": {
-  "asOf": "14 Nov 2026, 21:12 IST",
-  "asOfIso": "2026-11-14T21:12+05:30",
+  "asOf": "15 Nov 2026, 09:07 IST",
+  "asOfIso": "2026-11-15T09:07+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
   "campaignDays": 61,
   "daysLeft": 0,
   "campaignEnded": true,
-  "fullDays": 13,
-  "campaignFullDays": 74
+  "fullDays": 14,
+  "campaignFullDays": 75
  },
  "PACE": {
   "ym": "2026-11",
@@ -18,17 +18,17 @@
   "months": [
    {
     "month": "Aug",
-    "firstN": 202,
+    "firstN": 219,
     "full": 465
    },
    {
     "month": "Sep",
-    "firstN": 240,
+    "firstN": 253,
     "full": 612
    },
    {
     "month": "Oct",
-    "firstN": 251,
+    "firstN": 272,
     "full": 674
    }
   ],
@@ -45,10 +45,11 @@
    8,
    20,
    11,
-   12
+   12,
+   5
   ],
-  "sepToDate": 161,
-  "todaySoFar": 5,
+  "sepToDate": 166,
+  "todaySoFar": 0,
   "monthName": "November",
   "monthShort": "Nov",
   "daysInMonth": 30
@@ -719,14 +720,23 @@
    "onboardings": 0,
    "activations": 9,
    "claims": 5
+  },
+  {
+   "day": "14 Nov",
+   "dow": "Sat",
+   "signups": 0,
+   "referrers": 0,
+   "onboardings": 1,
+   "activations": 0,
+   "claims": 2
   }
  ],
  "POPUP": {
   "widgetUniqueUsers": 25077,
-  "claimCta": 241,
-  "claimConfirm": 225,
+  "claimCta": 242,
+  "claimConfirm": 226,
   "keepReferring": 10,
-  "window": "1 Sep to 13 Nov",
+  "window": "1 Sep to 14 Nov",
   "stale": false
  },
  "CLAIMS": [
@@ -904,9 +914,9 @@
   {
    "week": "9 Nov",
    "period": "campaign",
-   "signups": 105,
-   "referrers": 75,
-   "perRef": 1.4
+   "signups": 106,
+   "referrers": 76,
+   "perRef": 1.39
   }
  ],
  "COHORTS": [
@@ -915,55 +925,55 @@
    "label": "Activated before month start",
    "indent": 0,
    "base": 22547,
-   "refNow": 129,
-   "rateNow": 0.57,
-   "refPrev": 174,
-   "ratePrev": 0.82,
-   "delta": -30.5
+   "refNow": 133,
+   "rateNow": 0.59,
+   "refPrev": 187,
+   "ratePrev": 0.88,
+   "delta": -33.0
   },
   {
    "id": "1a",
    "label": "never referred before",
    "indent": 1,
    "base": 17916,
-   "refNow": 64,
-   "rateNow": 0.36,
-   "refPrev": 78,
-   "ratePrev": 0.46,
-   "delta": -21.7
+   "refNow": 67,
+   "rateNow": 0.37,
+   "refPrev": 84,
+   "ratePrev": 0.5,
+   "delta": -26.0
   },
   {
    "id": "1b",
    "label": "referred in the past",
    "indent": 1,
    "base": 4631,
-   "refNow": 65,
-   "rateNow": 1.4,
-   "refPrev": 96,
-   "ratePrev": 2.21,
-   "delta": -36.7
+   "refNow": 66,
+   "rateNow": 1.43,
+   "refPrev": 103,
+   "ratePrev": 2.37,
+   "delta": -39.7
   },
   {
    "id": "1.1",
    "label": "transacted this month",
    "indent": 1,
    "base": 6866,
-   "refNow": 74,
-   "rateNow": 1.08,
-   "refPrev": 73,
-   "ratePrev": 1.23,
-   "delta": -12.2
+   "refNow": 75,
+   "rateNow": 1.09,
+   "refPrev": 84,
+   "ratePrev": 1.3,
+   "delta": -16.2
   },
   {
    "id": "1.2",
    "label": "recently dormant (txn in prev 3 mo)",
    "indent": 1,
    "base": 7678,
-   "refNow": 42,
-   "rateNow": 0.55,
-   "refPrev": 81,
-   "ratePrev": 1.04,
-   "delta": -47.1
+   "refNow": 45,
+   "rateNow": 0.59,
+   "refPrev": 82,
+   "ratePrev": 1.12,
+   "delta": -47.3
   },
   {
    "id": "1.3",
@@ -972,9 +982,9 @@
    "base": 8003,
    "refNow": 13,
    "rateNow": 0.16,
-   "refPrev": 20,
-   "ratePrev": 0.27,
-   "delta": -40.7
+   "refPrev": 21,
+   "ratePrev": 0.28,
+   "delta": -42.9
   },
   {
    "id": "2",
@@ -983,27 +993,27 @@
    "base": 662,
    "refNow": 12,
    "rateNow": 1.81,
-   "refPrev": 31,
-   "ratePrev": 2.03,
-   "delta": -10.8
+   "refPrev": 34,
+   "ratePrev": 2.18,
+   "delta": -17.0
   },
   {
    "id": "3",
    "label": "Not activated, onboarded this month",
    "indent": 0,
-   "base": 980,
+   "base": 1027,
    "refNow": 11,
-   "rateNow": 1.12,
-   "refPrev": 7,
-   "ratePrev": 0.76,
-   "delta": 47.4
+   "rateNow": 1.07,
+   "refPrev": 8,
+   "ratePrev": 0.78,
+   "delta": 37.2
   },
   {
    "id": "4",
    "label": "Not activated, old onboarder",
    "indent": 0,
    "base": 37127,
-   "refNow": 28,
+   "refNow": 29,
    "rateNow": 0.08,
    "refPrev": 20,
    "ratePrev": 0.06,
@@ -1113,56 +1123,56 @@
    "n": 982,
    "ob1d": 47.6,
    "ob7d": 58.0,
-   "matureN": 607,
-   "act10": 22.1,
+   "matureN": 608,
+   "act10": 22.0,
    "medianFirstInr": 159046
   },
   {
    "src": "Nov, single-signup referrers",
-   "n": 164,
+   "n": 168,
    "ob1d": 51.8,
-   "ob7d": 57.9,
-   "matureN": 36,
-   "act10": 16.7,
+   "ob7d": 57.7,
+   "matureN": 48,
+   "act10": 20.8,
    "medianFirstInr": 436792
   },
   {
    "src": "Nov, 2+ signup referrers",
-   "n": 85,
-   "ob1d": 38.8,
-   "ob7d": 41.2,
-   "matureN": 6,
-   "act10": 33.3,
+   "n": 89,
+   "ob1d": 38.2,
+   "ob7d": 40.4,
+   "matureN": 9,
+   "act10": 44.4,
    "medianFirstInr": 186042
   }
  ],
  "Q_BT": [
   {
    "bt": "Freelancer",
-   "preN": 330,
-   "preShare": 53.3,
+   "preN": 331,
+   "preShare": 53.4,
    "preAct": 23.1,
-   "cN": 77,
-   "cShare": 58.8,
-   "cAct": 17.6
+   "cN": 80,
+   "cShare": 59.7,
+   "cAct": 20.8
   },
   {
    "bt": "Sole prop",
    "preN": 185,
-   "preShare": 29.9,
+   "preShare": 29.8,
    "preAct": 21.2,
    "cN": 39,
-   "cShare": 29.8,
-   "cAct": 15.0
+   "cShare": 29.1,
+   "cAct": 20.8
   },
   {
    "bt": "Company",
    "preN": 67,
    "preShare": 10.8,
-   "preAct": 15.6,
+   "preAct": 15.4,
    "cN": 7,
-   "cShare": 5.3,
-   "cAct": 66.7
+   "cShare": 5.2,
+   "cAct": 75.0
   },
   {
    "bt": "LLP",
@@ -1170,7 +1180,7 @@
    "preShare": 2.6,
    "preAct": 18.8,
    "cN": 6,
-   "cShare": 4.6,
+   "cShare": 4.5,
    "cAct": 0.0
   },
   {
@@ -1180,7 +1190,7 @@
    "preAct": 31.3,
    "cN": 2,
    "cShare": 1.5,
-   "cAct": 0.0
+   "cAct": 50.0
   },
   {
    "bt": "HUF",
@@ -1196,20 +1206,20 @@
   {
    "vol": "Not stated",
    "preN": 263,
-   "preShare": 42.5,
-   "preAct": 19.8,
+   "preShare": 42.4,
+   "preAct": 19.7,
    "cN": 51,
-   "cShare": 38.9,
-   "cAct": 16.7
+   "cShare": 38.1,
+   "cAct": 22.6
   },
   {
    "vol": "Under $10K a month",
-   "preN": 337,
-   "preShare": 54.4,
+   "preN": 338,
+   "preShare": 54.5,
    "preAct": 23.0,
-   "cN": 78,
-   "cShare": 59.5,
-   "cAct": 22.2
+   "cN": 81,
+   "cShare": 60.4,
+   "cAct": 26.9
   },
   {
    "vol": "$10K to 20K",
@@ -13193,18 +13203,18 @@
    "FT"
   ]
  ],
- "qualityRefreshedOn": "2026-11-14",
+ "qualityRefreshedOn": "2026-11-15",
  "notes": {
-  "pace": "No target is set for November, so this is a projection only. Referral onboardings stand at 161 over the first 13 full days plus 5 so far today, running about 10 a day over the last week. On a straight line that points to 372 for the month; weighting by how onboardings normally land across the days puts it near 403, in a 371 to 432 range. That would land short of October's 674 and September's 612, in line with the ladder having wound down.",
-  "daily": "The milestone ladder closed on 2 November, so there are no new campaign signups coming in: the last full day, Friday 13 Nov, logged 0 signups and 0 referrers, with 9 activations and 5 reward claims still trickling in from earlier signups. Weekly signups had been fading before the close, from 291 in the week of 26 October to 137 (2 Nov) and 105 (9 Nov). No referrer sent more than 25 signups in the last 24 hours.",
+  "pace": "No target is set for November, so this is a projection only. Referral onboardings stand at 166 over the first 14 full days, with nothing yet today, running about 10 a day over the last week. On a straight line that points to 356 for the month; weighting by how onboardings normally land across the days puts it near 387, in a 352 to 411 range. That would land short of October's 674 and September's 612, in line with the ladder having wound down.",
+  "daily": "The milestone ladder closed on 2 November, so there are no new campaign signups coming in: the last full day, Saturday 14 Nov, logged 0 signups and 0 referrers, with no activations and 2 reward claims still trickling in from earlier signups. Weekly signups had been fading before the close, from 291 in the week of 26 October to 137 (2 Nov) and 106 (9 Nov). No referrer sent more than 25 signups in the last 24 hours.",
   "ladder": "996 referrers took part in the ladder; 439 have unlocked at least the first rung and 276 have claimed a reward. 352 still have at least one referee signed up but not yet activated, so the pipeline is not empty even though the campaign is closed. 45 referrers have reached 3 or more achieved referrals and 8 have hit the 8-referral iPhone rung. 19 referrers sit at exactly 2, one activation short of the AirPods rung, and 9 sit at exactly 4, one short of the Ray-Ban rung.",
-  "cohorts": "The whole book is referring less this month than last. Activated-before-month-start customers are at a 0.57 percent share rate against 0.82 in October, down about 30 percent. Never-referrers (1a) are at 0.36 percent against 0.46, down about 22 percent, and past referrers (1b) dropped hardest, 1.40 against 2.21. The only cohorts up are newly onboarded-not-activated (3) and old onboarders (4), both off very small bases. November is still partial, so these are mid-month rates, but the direction is lower across the active base and the never-referrers are not the exception.",
+  "cohorts": "The whole book is referring less this month than last. Activated-before-month-start customers are at a 0.59 percent share rate against 0.88 in October, down about 33 percent. Never-referrers (1a) are at 0.37 percent against 0.50, down about 26 percent, and past referrers (1b) dropped hardest, 1.43 against 2.37. The only cohorts up are newly onboarded-not-activated (3) and old onboarders (4), both off very small bases. November is still partial, so these are mid-month rates, but the direction is lower across the active base and the never-referrers are not the exception.",
   "mix": "First-time referrers this campaign are the bulk: 644 of them brought 1,142 signups, about 1.77 each, 59 percent onboarded and 359 activated. The 196 one-time repeat referrers each brought 1.84 and onboarded at 69 percent, and the 59 heaviest repeat referrers brought 2.86 each. Heavier referrers send more and convert a little better, but the long tail of first-timers still carries most of the volume.",
   "weeklyQuality": "Onboarding quality held steady through the campaign: signup weeks from late September through 26 October onboarded in the mid-50s to low-70s percent once given time, and activations ran about half of onboardings. The 26 October week (232 signups) onboarded 55.6 percent so far with a fast 7.7-day median to onboard, though its activation share is still filling in at 33.6 percent. The 2 November week has a single signup because the campaign had closed, so ignore its 100 percent figures.",
   "claims": "Rewards claimed to date: 250 Polaroid cameras at the 1-referral rung, 16 AirPods at 3, 2 Meta Ray-Ban smartglasses at 5, and 8 iPhone 17s at 8. The top rung has been reached exactly at threshold (average 8.0 referrals), while the few Ray-Ban winners overshot to an average of 5.5.",
-  "popupHeader": "Reward pop-up, 1 Sep to 13 Nov",
+  "popupHeader": "Reward pop-up, 1 Sep to 14 Nov",
   "popup": [
-   "25,077 unique customers opened the referral widget over the window. Of those, 241 tapped to claim a reward and 225 confirmed the claim, a 93 percent follow-through once the claim screen is reached.",
+   "25,077 unique customers opened the referral widget over the window. Of those, 242 tapped to claim a reward and 226 confirmed the claim, a 93 percent follow-through once the claim screen is reached.",
    "Only 10 customers chose keep referring instead of claiming, so almost everyone who reaches a reward takes it rather than pushing for the next rung."
   ],
   "referrers": [
@@ -13217,41 +13227,41 @@
   ],
   "refereeQuality": [
    "October's referred signups (982) matured well: 58 percent onboarded within 7 days and 22 percent of the mature ones activated, with a median first payment near 1,692 dollars.",
-   "November's single-signup referrers brought 164 referees with a much larger median first payment of about 4,647 dollars, though only 36 are mature enough to judge.",
-   "November's 2-plus signup referrers brought 85 referees that onboarded slower (41 percent at 7 days) and smaller.",
+   "November's single-signup referrers brought 168 referees with a much larger median first payment of about 4,647 dollars, though only 48 are mature enough to judge.",
+   "November's 2-plus signup referrers brought 89 referees that onboarded slower (40 percent at 7 days) and smaller.",
    "By business type, freelancers and sole proprietors are the bulk of referees and activate in the high teens to low twenties percent; companies are few but a small batch activated strongly.",
    "By stated volume, most referees are under 10,000 dollars a month or did not state a figure; the handful above 50,000 dollars activate at a much higher rate."
   ],
-  "qualityHeader": "Referee quality, refreshed 14 Nov",
+  "qualityHeader": "Referee quality, refreshed 15 Nov",
   "qualityWindow": "Onboarding and activation measured on referrals; first payment converted at 94 rupees to the dollar",
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
-   "November is a partial month (13 full days) and reads lower than the last few on the headline counts: 257 signups and 166 onboardings so far against full months of 628 to 984 signups and 465 to 674 onboardings from August through October.",
-   "Activations are the exception: 250 referral activations already, above all of August (293) and September (357) and tracking toward October (422), as ladder signups finish converting after the campaign closed.",
-   "Share rate has slipped to 1.07 percent month to date from 2.78 to 3.21 in prior months, and the referral share of all onboardings sits at 14 percent against October's 19.6; the thing to watch is whether the gold coin can lift the active base back up now that the ladder is gone."
+   "November is a partial month (14 full days) and reads lower than the last few on the headline counts: 258 signups and 166 onboardings so far against full months of 628 to 984 signups and 465 to 674 onboardings from August through October.",
+   "Activations are the exception: 250 referral activations already this partial month, close to full August (293) and well ahead of the same first days of the prior months, as ladder signups finish converting after the campaign closed.",
+   "Share rate has slipped to 1.07 percent month to date from 2.78 to 3.21 in prior months, and the referral share of all onboardings sits at 13.9 percent against October's 19.6; the thing to watch is whether the gold coin can lift the active base back up now that the ladder is gone."
   ],
   "gold": [
-   "The gold coin reached day 30. Of the 10,062 never-referrers pinned on 16 October (91 of whom had ever referred before), the campaign has drawn 343 signups from 271 referrers, 194 onboarded, 53 achieved and 49 coins claimed, with 199 of the referrers referring for the first time ever.",
+   "The gold coin reached day 31. Of the 10,062 never-referrers pinned on 16 October (91 of whom had ever referred before), the campaign has drawn 344 signups from 272 referrers, 194 onboarded, 53 achieved and 49 coins claimed, with 199 of the referrers referring for the first time ever.",
    "The pinned group's weekly share rate jumped from a pre-pin average of 0.43 percent to 1.44 and 1.96 percent in the two weeks after the pin, then eased back to around 0.9 percent in early November as the novelty faded.",
    "First referrals came fairly slowly, clustering around 10 days after the pin rather than immediately, and achievement remains small: 53 achieved and 49 claimed off a 10,000-strong group is honestly a thin result so far."
   ],
   "campaigns": [
-   "The always-on 30-dollar default runs about 6.9 signups a day with strong 72 percent onboarding and 74 percent activation. The live gold coin is pulling more volume at 11.4 signups a day and claims nearly everything earned (93 percent), but onboards lower at 57 percent and activates at just 27 percent so far, partly because its November signups are still young.",
+   "The always-on 30-dollar default runs about 6.9 signups a day with strong 72 percent onboarding and 74 percent activation. The live gold coin is pulling more volume at 11.1 signups a day and claims nearly everything earned (93 percent), but onboards lower at 56 percent and activates at just 27 percent so far, partly because its November signups are still young.",
    "Against past gift campaigns, the gold coin's signups-per-day sit between the slower Alexa Echo Dot (2.0) and the stronger physical-gift runs like the Tommy bag (17.2) and power bank (11.6); the just-ended milestone ladder was the outlier at 28.6 a day. Claim rates on completed gift campaigns clustered in the low-90s percent, which the coin is matching."
   ],
   "month": [
-   "Resting on 13 full days, November projects to about 648 referral signups (602 to 702), 403 onboardings (371 to 432), 518 activations (496 to 549) and 67 gold coins on the seven-day run rate; 38 coins are in already. Against the same first 13 days of the prior three months, onboardings (161) run below August to October (202, 240, 251) while activations (250) already run well above (143, 180, 192).",
-   "With the coin now open to everyone, referrals split fairly evenly between the pinned pilot group (48 first-time plus 4 repeat referrers) and everyone else (65 first-time plus 76 repeat), so the open audience is now contributing more than the original pilot. Almost all signups carry the gold coin 2026 tag (249 signups, 188 referrers); only a handful still fall under the old default or ladder tags.",
+   "Resting on 14 full days, November projects to about 623 referral signups (600 to 669), 387 onboardings (352 to 411), 479 activations (447 to 505) and 65 gold coins on the seven-day run rate; 38 coins are in already. Against the same first 14 days of the prior three months, onboardings (166) run below August to October (219, 253, 272) while activations (250) already run well above (164, 182, 209).",
+   "With the coin now open to everyone, referrals split fairly evenly between the pinned pilot group (48 first-time plus 4 repeat referrers) and everyone else (65 first-time plus 77 repeat), so the open audience is now contributing more than the original pilot. Almost all signups carry the gold coin 2026 tag (250 signups, 189 referrers); only a handful still fall under the old default or ladder tags.",
    "The coin pipeline has 124 referrers with 141 referees signed up but not yet paid; 48 coins have been earned so far and the model estimates about 183 eventual coins, assuming the 0.52 referee activation baseline holds."
   ],
   "dailyRead": [
-   "Yesterday (13 Nov) brought 19 signups from 18 referrers, 8 of them first-timers, with 12 onboardings, 14 activations and 5 coins, against a prior-7-day daily average that was higher on signups and much higher on activations; it ran a touch below the same weekday last week (6 Nov: 22 signups, 28 activations). Widget views were 2,623.",
-   "The last seven days are softer than the seven before across the board: 112 signups versus 165, 92 referrers versus 145, 72 activations versus 178 and 12 coins versus 26. The live campaign is fading, not holding; the number to watch is daily signups, which have drifted into the teens."
+   "Yesterday (14 Nov) brought 8 signups from 7 referrers, 4 of them first-timers, with 5 onboardings, no activations and no coins, running below a prior-7-day daily average of about 16 signups and 10 activations a day, and roughly flat with the same weekday last week (7 Nov: 11 signups, 0 activations). Widget views were 1,777.",
+   "The last seven days are softer than the seven before across the board: 109 signups versus 148, 89 referrers versus 135, 72 activations versus 178 and 12 coins versus 26. The live campaign is fading, not holding; the number to watch is daily signups, which have drifted into the single digits to teens."
   ],
   "cohortGrid": [
    "In the latest full month (October), active never-referrers (1A) shared at 1.67 percent, down 0.23 points from the prior three-month average, while new activations (2A) rose 0.21 points to 4.48 and active repeat referrers (1B) rose 0.50 points to 5.84. The repeat base is doing the work; the never-referrers are drifting down.",
-   "Month to date (first 13 days), the live coin offer is not moving never-referrers: 1A is at 0.55 percent against a 0.82 prior-three-month pace (down 0.27 points), with both newer (1A:new 0.77 vs 1.07) and older (1A:old 0.21 vs 0.49) tenures lower, and repeat referrers (1B) also down, 1.95 against 2.71.",
-   "Total referrers were 569 in the latest full month against a 532 prior-three-month average, with 192 so far this month across 13 days; the 2A month-to-date cell is thin on referrers, so read it as directional only."
+   "Month to date (first 14 days), the live coin offer is not moving never-referrers: 1A is at 0.57 percent against a 0.89 prior-three-month pace (down 0.32 points), with both newer (1A:new 0.79 vs 1.14) and older (1A:old 0.21 vs 0.53) tenures lower, and repeat referrers (1B) also down, 1.99 against 2.85.",
+   "Total referrers were 569 in the latest full month against a 532 prior-three-month average, with 193 so far this month across 14 days; the 2A month-to-date cell is thin on referrers (10), so read it as directional only."
   ]
  },
  "TRENDS": [
@@ -13438,16 +13448,16 @@
   {
    "ym": "2026-11",
    "month": "Nov 26",
-   "signups": 257,
-   "referrers": 193,
+   "signups": 258,
+   "referrers": 194,
    "firstTimers": 113,
    "refOnboardings": 166,
    "refActivations": 250,
-   "allOnboardings": 1189,
+   "allOnboardings": 1194,
    "transactors": 8508,
    "sharers": 91,
    "shareRate": 1.07,
-   "refShare": 14.0,
+   "refShare": 13.9,
    "partial": true
   }
  ],
@@ -13457,8 +13467,8 @@
   "reward": "24K gold coin",
   "start": "2026-10-16",
   "startLabel": "16 Oct",
-  "dayN": 30,
-  "window": "16 Oct to 13 Nov",
+  "dayN": 31,
+  "window": "16 Oct to 14 Nov",
   "openToAll": "2026-11-01",
   "openToAllLabel": "1 Nov",
   "pinned": {
@@ -13468,8 +13478,8 @@
    "referredBefore": 91
   },
   "funnel": {
-   "signups": 343,
-   "referrers": 271,
+   "signups": 344,
+   "referrers": 272,
    "onboarded": 194,
    "achieved": 53,
    "claimed": 49,
@@ -13744,6 +13754,15 @@
     "referrers": 7,
     "onboarded": 3,
     "achieved": 0,
+    "partial": false
+   },
+   {
+    "day": "15 Nov",
+    "date": "2026-11-15",
+    "signups": 1,
+    "referrers": 1,
+    "onboarded": 0,
+    "achieved": 0,
     "partial": true
    }
   ],
@@ -13956,13 +13975,13 @@
    },
    {
     "date": "29 Oct",
-    "id": 236961,
+    "id": 25062,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "29 Oct",
-    "id": 25062,
+    "id": 236961,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -13986,25 +14005,13 @@
    },
    {
     "date": "2 Nov",
-    "id": 176172,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "2 Nov",
     "id": 253379,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
-    "date": "3 Nov",
-    "id": 73425,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "3 Nov",
-    "id": 151687,
+    "date": "2 Nov",
+    "id": 176172,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14016,7 +14023,19 @@
    },
    {
     "date": "3 Nov",
-    "id": 184564,
+    "id": 151687,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "3 Nov",
+    "id": 73425,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "3 Nov",
+    "id": 222330,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14028,31 +14047,13 @@
    },
    {
     "date": "3 Nov",
-    "id": 222330,
+    "id": 184564,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "4 Nov",
-    "id": 211048,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "4 Nov",
-    "id": 247164,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "4 Nov",
-    "id": 185731,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "4 Nov",
-    "id": 250509,
+    "id": 248297,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14064,13 +14065,31 @@
    },
    {
     "date": "4 Nov",
-    "id": 248297,
+    "id": 250509,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "4 Nov",
+    "id": 185731,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "4 Nov",
+    "id": 247164,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "4 Nov",
+    "id": 211048,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "5 Nov",
-    "id": 113310,
+    "id": 137368,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14100,13 +14119,25 @@
    },
    {
     "date": "5 Nov",
-    "id": 137368,
+    "id": 113310,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "6 Nov",
+    "id": 180842,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "6 Nov",
     "id": 260991,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "6 Nov",
+    "id": 283028,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14123,20 +14154,14 @@
     "source": "AUTO"
    },
    {
-    "date": "6 Nov",
-    "id": 283028,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "6 Nov",
-    "id": 180842,
+    "date": "9 Nov",
+    "id": 178467,
     "status": "CLAIMED",
     "source": "AUTO"
    },
    {
     "date": "9 Nov",
-    "id": 178467,
+    "id": 238052,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14147,8 +14172,8 @@
     "source": "AUTO"
    },
    {
-    "date": "9 Nov",
-    "id": 238052,
+    "date": "11 Nov",
+    "id": 223995,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14171,32 +14196,8 @@
     "source": "AUTO"
    },
    {
-    "date": "11 Nov",
-    "id": 223995,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
     "date": "12 Nov",
     "id": 29410,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "13 Nov",
-    "id": 148924,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "13 Nov",
-    "id": 770,
-    "status": "CLAIMED",
-    "source": "AUTO"
-   },
-   {
-    "date": "13 Nov",
-    "id": 226843,
     "status": "CLAIMED",
     "source": "AUTO"
    },
@@ -14208,7 +14209,25 @@
    },
    {
     "date": "13 Nov",
+    "id": 770,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "13 Nov",
     "id": 270856,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "13 Nov",
+    "id": 148924,
+    "status": "CLAIMED",
+    "source": "AUTO"
+   },
+   {
+    "date": "13 Nov",
+    "id": 226843,
     "status": "CLAIMED",
     "source": "AUTO"
    }
@@ -14327,7 +14346,7 @@
     "n": 3
    }
   ],
-  "widgetUsers": 13562,
+  "widgetUsers": 13790,
   "claimCta": 0,
   "claimConfirm": 0
  },
@@ -14342,13 +14361,13 @@
    "end": null,
    "endLabel": "live",
    "live": true,
-   "days": 549,
+   "days": 550,
    "signups": 3806,
    "referrers": 2552,
    "onboarded": 2738,
    "achieved": 2024,
    "claimed": 0,
-   "perDay": 6.93,
+   "perDay": 6.92,
    "obRate": 71.9,
    "actRate": 73.9,
    "claimRate": 0.0
@@ -14510,14 +14529,14 @@
    "end": null,
    "endLabel": "live",
    "live": true,
-   "days": 30,
-   "signups": 343,
-   "referrers": 271,
+   "days": 31,
+   "signups": 344,
+   "referrers": 272,
    "onboarded": 194,
    "achieved": 53,
    "claimed": 49,
-   "perDay": 11.43,
-   "obRate": 56.6,
+   "perDay": 11.1,
+   "obRate": 56.4,
    "actRate": 27.3,
    "claimRate": 92.5
   }
@@ -49449,8 +49468,8 @@
   "monthName": "November",
   "monthShort": "Nov",
   "daysInMonth": 30,
-  "fullDays": 13,
-  "daysLeft": 17,
+  "fullDays": 14,
+  "daysLeft": 16,
   "openToAll": "2026-11-01",
   "openToAllLabel": "1 Nov",
   "unitCostInr": null,
@@ -49636,24 +49655,23 @@
     "coins": 0,
     "goldSignups": 8,
     "firstTimers": 4,
+    "partial": false
+   },
+   {
+    "dom": 15,
+    "day": "15 Nov",
+    "date": "2026-11-15",
+    "signups": 1,
+    "referrers": 1,
+    "onboardings": 0,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 1,
+    "firstTimers": 0,
     "partial": true
    }
   ],
   "recent": [
-   {
-    "dom": 11,
-    "day": "11 Oct",
-    "date": "2026-10-11",
-    "dow": "Sun",
-    "signups": 8,
-    "referrers": 8,
-    "onboardings": 6,
-    "activations": 0,
-    "coins": 0,
-    "goldSignups": 0,
-    "firstTimers": 4,
-    "partial": false
-   },
    {
     "dom": 12,
     "day": "12 Oct",
@@ -50128,6 +50146,20 @@
     "coins": 0,
     "goldSignups": 8,
     "firstTimers": 4,
+    "partial": false
+   },
+   {
+    "dom": 15,
+    "day": "15 Nov",
+    "date": "2026-11-15",
+    "dow": "Sun",
+    "signups": 1,
+    "referrers": 1,
+    "onboardings": 0,
+    "activations": 0,
+    "coins": 0,
+    "goldSignups": 1,
+    "firstTimers": 0,
     "partial": true
    }
   ],
@@ -50144,10 +50176,10 @@
      "coins": 0
     },
     "firstN": {
-     "signups": 241,
-     "firstTimers": 154,
-     "onboardings": 202,
-     "activations": 143,
+     "signups": 267,
+     "firstTimers": 170,
+     "onboardings": 219,
+     "activations": 164,
      "coins": 0
     },
     "cum": {
@@ -50330,10 +50362,10 @@
      "coins": 0
     },
     "firstN": {
-     "signups": 393,
-     "firstTimers": 156,
-     "onboardings": 240,
-     "activations": 180,
+     "signups": 407,
+     "firstTimers": 166,
+     "onboardings": 253,
+     "activations": 182,
      "coins": 0
     },
     "cum": {
@@ -50511,10 +50543,10 @@
      "coins": 10
     },
     "firstN": {
-     "signups": 349,
-     "firstTimers": 134,
-     "onboardings": 251,
-     "activations": 192,
+     "signups": 378,
+     "firstTimers": 144,
+     "onboardings": 272,
+     "activations": 209,
      "coins": 0
     },
     "cum": {
@@ -50689,9 +50721,9 @@
   "proj": {
    "signups": {
     "label": "Referral signups",
-    "toDate": 249,
-    "todaySoFar": 8,
-    "avg7": 16.0,
+    "toDate": 257,
+    "todaySoFar": 1,
+    "avg7": 15.57,
     "cum": [
      15,
      41,
@@ -50706,16 +50738,17 @@
      200,
      230,
      249,
-     257
+     257,
+     258
     ],
-    "straight": 575,
-    "run7": 521,
+    "straight": 551,
+    "run7": 506,
     "dayShare": {
-     "mid": 648,
-     "low": 602,
-     "high": 702
+     "mid": 623,
+     "low": 600,
+     "high": 669
     },
-    "projected": 648,
+    "projected": 623,
     "method": "dayShare",
     "prev": {
      "Aug": 628,
@@ -50723,16 +50756,16 @@
      "Oct": 984
     },
     "prevFirstN": {
-     "Aug": 241,
-     "Sep": 393,
-     "Oct": 349
+     "Aug": 267,
+     "Sep": 407,
+     "Oct": 378
     }
    },
    "firstTimers": {
     "label": "First-time referrers",
-    "toDate": 109,
-    "todaySoFar": 4,
-    "avg7": 6.43,
+    "toDate": 113,
+    "todaySoFar": 0,
+    "avg7": 6.29,
     "cum": [
      8,
      17,
@@ -50747,16 +50780,17 @@
      89,
      101,
      109,
+     113,
      113
     ],
-    "straight": 252,
-    "run7": 218,
+    "straight": 242,
+    "run7": 214,
     "dayShare": {
-     "mid": 280,
-     "low": 261,
-     "high": 292
+     "mid": 269,
+     "low": 254,
+     "high": 279
     },
-    "projected": 280,
+    "projected": 269,
     "method": "dayShare",
     "prev": {
      "Aug": 412,
@@ -50764,15 +50798,15 @@
      "Oct": 356
     },
     "prevFirstN": {
-     "Aug": 154,
-     "Sep": 156,
-     "Oct": 134
+     "Aug": 170,
+     "Sep": 166,
+     "Oct": 144
     }
    },
    "onboardings": {
     "label": "Referral onboardings",
-    "toDate": 161,
-    "todaySoFar": 5,
+    "toDate": 166,
+    "todaySoFar": 0,
     "avg7": 10.14,
     "cum": [
      10,
@@ -50788,16 +50822,17 @@
      138,
      149,
      161,
+     166,
      166
     ],
-    "straight": 372,
-    "run7": 333,
+    "straight": 356,
+    "run7": 328,
     "dayShare": {
-     "mid": 403,
-     "low": 371,
-     "high": 432
+     "mid": 387,
+     "low": 352,
+     "high": 411
     },
-    "projected": 403,
+    "projected": 387,
     "method": "dayShare",
     "prev": {
      "Aug": 465,
@@ -50805,9 +50840,9 @@
      "Oct": 674
     },
     "prevFirstN": {
-     "Aug": 202,
-     "Sep": 240,
-     "Oct": 251
+     "Aug": 219,
+     "Sep": 253,
+     "Oct": 272
     }
    },
    "activations": {
@@ -50829,16 +50864,17 @@
      211,
      236,
      250,
+     250,
      250
     ],
-    "straight": 577,
-    "run7": 425,
+    "straight": 536,
+    "run7": 415,
     "dayShare": {
-     "mid": 518,
-     "low": 496,
-     "high": 549
+     "mid": 479,
+     "low": 447,
+     "high": 505
     },
-    "projected": 518,
+    "projected": 479,
     "method": "dayShare",
     "prev": {
      "Aug": 293,
@@ -50846,9 +50882,9 @@
      "Oct": 422
     },
     "prevFirstN": {
-     "Aug": 143,
-     "Sep": 180,
-     "Oct": 192
+     "Aug": 164,
+     "Sep": 182,
+     "Oct": 209
     }
    },
    "coins": {
@@ -50870,12 +50906,13 @@
      32,
      33,
      38,
+     38,
      38
     ],
-    "straight": 88,
-    "run7": 67,
+    "straight": 81,
+    "run7": 65,
     "dayShare": null,
-    "projected": 67,
+    "projected": 65,
     "method": "run7",
     "prev": {
      "Aug": 0,
@@ -50920,8 +50957,8 @@
    {
     "key": "open_repeat",
     "label": "Everyone else, repeat referrers",
-    "referrers": 76,
-    "signups": 118,
+    "referrers": 77,
+    "signups": 119,
     "onboarded": 53,
     "achieved": 11,
     "coins": 9
@@ -50930,8 +50967,8 @@
   "tags": [
    {
     "id": 29,
-    "signups": 249,
-    "referrers": 188,
+    "signups": 250,
+    "referrers": 189,
     "name": "group_a_goldcoin2026",
     "label": "Group A: Gold coin 2026"
    },
@@ -50953,19 +50990,15 @@
   "pipeline": {
    "referrersWaiting": 124,
    "refereesWaiting": 141,
-   "referrersNoOnboard": 99,
-   "signupsNoOnboard": 108,
+   "referrersNoOnboard": 100,
+   "signupsNoOnboard": 109,
    "coinsTotal": 48,
-   "referrersNoCoin": 223,
-   "signupsNoCoin": 281,
+   "referrersNoCoin": 224,
+   "signupsNoCoin": 282,
    "eventualCoins": 183,
    "baseline": 0.52
   },
   "widgetDaily": {
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -50975,10 +51008,15 @@
    "2026-11-07": 1924,
    "2026-11-08": 1220,
    "2026-11-09": 2320,
-   "2026-11-14": 1712,
-   "2026-10-11": 0,
-   "2026-10-12": 0,
-   "2026-10-13": 0,
+   "2026-10-23": 889,
+   "2026-10-24": 447,
+   "2026-10-25": 284,
+   "2026-10-26": 1009,
+   "2026-10-27": 1156,
+   "2026-10-28": 1232,
+   "2026-10-29": 1326,
+   "2026-10-30": 1480,
+   "2026-10-31": 1018,
    "2026-10-14": 0,
    "2026-10-15": 0,
    "2026-10-16": 253,
@@ -50988,15 +51026,14 @@
    "2026-10-20": 819,
    "2026-10-21": 1080,
    "2026-10-22": 976,
-   "2026-10-23": 889,
-   "2026-10-24": 447,
-   "2026-10-25": 284,
-   "2026-10-26": 1009,
-   "2026-10-27": 1156,
-   "2026-10-28": 1232,
-   "2026-10-29": 1326,
-   "2026-10-30": 1480,
-   "2026-10-31": 1018
+   "2026-11-15": 559,
+   "2026-10-12": 0,
+   "2026-10-13": 0,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
+   "2026-11-14": 1777
   }
  },
  "GRID": {
@@ -51027,18 +51064,18 @@
    "2026-08",
    "2026-09"
   ],
-  "fullDays": 13,
+  "fullDays": 14,
   "cells": {
    "1A": {
     "2025-06": [
      3507,
      81,
-     39
+     40
     ],
     "2025-07": [
      3870,
      94,
-     41
+     44
     ],
     "2025-08": [
      4228,
@@ -51048,77 +51085,77 @@
     "2025-09": [
      4657,
      95,
-     52
+     56
     ],
     "2025-10": [
      5062,
      128,
-     52
+     61
     ],
     "2025-11": [
      5283,
      78,
-     32
+     35
     ],
     "2025-12": [
      5483,
      84,
-     47
+     48
     ],
     "2026-01": [
      5815,
      82,
-     34
+     38
     ],
     "2026-02": [
      5925,
      99,
-     50
+     53
     ],
     "2026-03": [
      6169,
      126,
-     69
+     72
     ],
     "2026-04": [
      6881,
      115,
-     55
+     60
     ],
     "2026-05": [
      7471,
      176,
-     68
+     74
     ],
     "2026-06": [
      7809,
      182,
-     85
+     86
     ],
     "2026-07": [
      8595,
      153,
-     66
+     78
     ],
     "2026-08": [
      9249,
      184,
-     84
+     91
     ],
     "2026-09": [
      9725,
      189,
-     86
+     94
     ],
     "2026-10": [
      10518,
      176,
-     71
+     75
     ],
     "2026-11": [
      10596,
      60,
-     58
+     60
     ]
    },
    "1A:mid": {
@@ -51130,7 +51167,7 @@
     "2025-07": [
      911,
      14,
-     5
+     6
     ],
     "2025-08": [
      914,
@@ -51145,12 +51182,12 @@
     "2025-10": [
      1068,
      21,
-     7
+     8
     ],
     "2025-11": [
      1208,
      16,
-     8
+     9
     ],
     "2025-12": [
      1521,
@@ -51170,7 +51207,7 @@
     "2026-03": [
      1920,
      26,
-     11
+     12
     ],
     "2026-04": [
      2107,
@@ -51180,7 +51217,7 @@
     "2026-05": [
      2124,
      38,
-     16
+     20
     ],
     "2026-06": [
      1945,
@@ -51190,39 +51227,39 @@
     "2026-07": [
      2023,
      34,
-     13
+     18
     ],
     "2026-08": [
      1987,
      38,
-     11
+     14
     ],
     "2026-09": [
      1963,
      32,
-     12
+     13
     ],
     "2026-10": [
      2080,
      29,
-     15
+     17
     ],
     "2026-11": [
      2174,
      10,
-     9
+     10
     ]
    },
    "1A:new": {
     "2025-06": [
      2303,
      55,
-     28
+     29
     ],
     "2025-07": [
      2482,
      69,
-     32
+     34
     ],
     "2025-08": [
      2754,
@@ -51232,47 +51269,47 @@
     "2025-09": [
      2998,
      67,
-     36
+     40
     ],
     "2025-10": [
      3207,
      93,
-     38
+     46
     ],
     "2025-11": [
      3172,
      55,
-     23
+     25
     ],
     "2025-12": [
      2975,
      57,
-     27
+     28
     ],
     "2026-01": [
      3017,
      51,
-     16
+     20
     ],
     "2026-02": [
      2914,
      63,
-     31
+     34
     ],
     "2026-03": [
      2956,
      78,
-     47
+     48
     ],
     "2026-04": [
      3267,
      71,
-     38
+     43
     ],
     "2026-05": [
      3601,
      112,
-     39
+     41
     ],
     "2026-06": [
      3846,
@@ -51282,27 +51319,27 @@
     "2026-07": [
      4336,
      89,
-     40
+     43
     ],
     "2026-08": [
      4821,
      116,
-     60
+     63
     ],
     "2026-09": [
      5156,
      126,
-     61
+     66
     ],
     "2026-10": [
      5631,
      118,
-     44
+     46
     ],
     "2026-11": [
      5588,
      44,
-     43
+     44
     ]
    },
    "1A:old": {
@@ -51354,7 +51391,7 @@
     "2026-03": [
      1293,
      22,
-     11
+     12
     ],
     "2026-04": [
      1507,
@@ -51369,22 +51406,22 @@
     "2026-06": [
      2018,
      36,
-     14
+     15
     ],
     "2026-07": [
      2236,
      30,
-     13
+     17
     ],
     "2026-08": [
      2441,
      30,
-     13
+     14
     ],
     "2026-09": [
      2606,
      31,
-     13
+     15
     ],
     "2026-10": [
      2807,
@@ -51406,12 +51443,12 @@
     "2025-07": [
      584,
      48,
-     24
+     25
     ],
     "2025-08": [
      670,
      46,
-     20
+     25
     ],
     "2025-09": [
      707,
@@ -51421,12 +51458,12 @@
     "2025-10": [
      775,
      53,
-     32
+     34
     ],
     "2025-11": [
      792,
      38,
-     17
+     18
     ],
     "2025-12": [
      846,
@@ -51436,42 +51473,42 @@
     "2026-01": [
      929,
      45,
-     22
+     25
     ],
     "2026-02": [
      961,
      49,
-     25
+     26
     ],
     "2026-03": [
      1001,
      46,
-     17
+     18
     ],
     "2026-04": [
      1132,
      59,
-     32
+     34
     ],
     "2026-05": [
      1231,
      58,
-     25
+     28
     ],
     "2026-06": [
      1271,
      81,
-     45
+     46
     ],
     "2026-07": [
      1412,
      73,
-     31
+     33
     ],
     "2026-08": [
      1543,
      67,
-     33
+     36
     ],
     "2026-09": [
      1630,
@@ -51481,12 +51518,12 @@
     "2026-10": [
      1739,
      106,
-     53
+     58
     ],
     "2026-11": [
      1752,
-     37,
-     36
+     38,
+     37
     ]
    },
    "1Bb": {
@@ -51503,17 +51540,17 @@
     "2025-08": [
      375,
      19,
-     11
+     12
     ],
     "2025-09": [
      398,
      18,
-     9
+     10
     ],
     "2025-10": [
      448,
      30,
-     12
+     15
     ],
     "2025-11": [
      527,
@@ -51558,12 +51595,12 @@
     "2026-07": [
      868,
      48,
-     25
+     28
     ],
     "2026-08": [
      888,
      35,
-     19
+     20
     ],
     "2026-09": [
      939,
@@ -51573,7 +51610,7 @@
     "2026-10": [
      1033,
      56,
-     27
+     29
     ],
     "2026-11": [
      1015,
@@ -51585,17 +51622,17 @@
     "2025-06": [
      738,
      35,
-     12
+     13
     ],
     "2025-07": [
      745,
      33,
-     20
+     21
     ],
     "2025-08": [
      790,
      27,
-     9
+     11
     ],
     "2025-09": [
      868,
@@ -51605,67 +51642,67 @@
     "2025-10": [
      820,
      42,
-     18
+     19
     ],
     "2025-11": [
      737,
      35,
-     16
+     18
     ],
     "2025-12": [
      832,
      30,
-     13
+     14
     ],
     "2026-01": [
      743,
      26,
-     7
+     8
     ],
     "2026-02": [
      784,
      47,
-     22
+     23
     ],
     "2026-03": [
      1026,
      57,
-     21
+     23
     ],
     "2026-04": [
      1244,
      60,
-     19
+     20
     ],
     "2026-05": [
      1201,
      87,
-     39
+     41
     ],
     "2026-06": [
      1376,
      58,
-     21
+     22
     ],
     "2026-07": [
      1509,
      62,
-     21
+     23
     ],
     "2026-08": [
      1410,
      65,
-     28
+     32
     ],
     "2026-09": [
      1586,
      65,
-     26
+     27
     ],
     "2026-10": [
      1541,
      69,
-     24
+     26
     ],
     "2026-11": [
      699,
@@ -51911,7 +51948,7 @@
     "2026-04": [
      1078,
      10,
-     4
+     5
     ],
     "2026-05": [
      1245,
@@ -51931,7 +51968,7 @@
     "2026-08": [
      1655,
      13,
-     4
+     5
     ],
     "2026-09": [
      1902,
@@ -51941,12 +51978,12 @@
     "2026-10": [
      1916,
      12,
-     7
+     8
     ],
     "2026-11": [
      2459,
      4,
-     3
+     4
     ]
    },
    "3Ba": {
@@ -51993,7 +52030,7 @@
     "2026-02": [
      147,
      9,
-     3
+     4
     ],
     "2026-03": [
      167,
@@ -52013,12 +52050,12 @@
     "2026-06": [
      205,
      8,
-     4
+     5
     ],
     "2026-07": [
      209,
      7,
-     5
+     6
     ],
     "2026-08": [
      205,
@@ -52182,7 +52219,7 @@
     "2026-03": [
      3708,
      9,
-     4
+     5
     ],
     "2026-04": [
      4080,
@@ -52202,7 +52239,7 @@
     "2026-07": [
      4996,
      16,
-     2
+     3
     ],
     "2026-08": [
      5475,
@@ -52217,7 +52254,7 @@
     "2026-10": [
      6383,
      15,
-     5
+     6
     ],
     "2026-11": [
      7031,
@@ -52269,17 +52306,17 @@
     "2026-02": [
      382,
      4,
-     3
+     4
     ],
     "2026-03": [
      411,
      4,
-     1
+     3
     ],
     "2026-04": [
      458,
      6,
-     1
+     2
     ],
     "2026-05": [
      495,
@@ -52341,7 +52378,7 @@
     "2025-10": [
      163,
      3,
-     0
+     1
     ],
     "2025-11": [
      189,
@@ -52401,7 +52438,7 @@
     "2026-10": [
      527,
      7,
-     4
+     5
     ],
     "2026-11": [
      596,
@@ -52438,7 +52475,7 @@
     "2025-11": [
      16124,
      15,
-     5
+     6
     ],
     "2025-12": [
      17077,
@@ -52448,7 +52485,7 @@
     "2026-01": [
      18165,
      9,
-     1
+     2
     ],
     "2026-02": [
      19274,
@@ -52463,17 +52500,17 @@
     "2026-04": [
      21902,
      8,
-     3
+     4
     ],
     "2026-05": [
      23486,
      19,
-     4
+     5
     ],
     "2026-06": [
      25168,
      13,
-     5
+     6
     ],
     "2026-07": [
      27049,
@@ -52483,22 +52520,22 @@
     "2026-08": [
      28918,
      52,
-     14
+     16
     ],
     "2026-09": [
      30862,
      38,
-     14
+     15
     ],
     "2026-10": [
      32861,
      29,
-     8
+     9
     ],
     "2026-11": [
      35323,
      17,
-     16
+     17
     ]
    },
    "5Ba": {
@@ -52632,7 +52669,7 @@
     "2026-01": [
      224,
      1,
-     0
+     1
     ],
     "2026-02": [
      241,
@@ -52699,7 +52736,7 @@
     "2025-08": [
      2893,
      28,
-     8
+     9
     ],
     "2025-09": [
      2696,
@@ -52709,7 +52746,7 @@
     "2025-10": [
      2665,
      28,
-     6
+     7
     ],
     "2025-11": [
      2843,
@@ -52729,7 +52766,7 @@
     "2026-02": [
      3654,
      27,
-     10
+     12
     ],
     "2026-03": [
      4039,
@@ -52739,12 +52776,12 @@
     "2026-04": [
      4464,
      43,
-     11
+     12
     ],
     "2026-05": [
      4999,
      67,
-     19
+     23
     ],
     "2026-06": [
      5192,
@@ -52754,12 +52791,12 @@
     "2026-07": [
      5365,
      50,
-     13
+     14
     ],
     "2026-08": [
      5693,
      77,
-     20
+     22
     ],
     "2026-09": [
      5894,
@@ -52769,10 +52806,10 @@
     "2026-10": [
      5700,
      50,
-     19
+     20
     ],
     "2026-11": [
-     3649,
+     3654,
      16,
      16
     ]
@@ -52970,27 +53007,27 @@
     "2025-07": [
      940,
      66,
-     37
+     38
     ],
     "2025-08": [
      1045,
      65,
-     31
+     37
     ],
     "2025-09": [
      1105,
      58,
-     32
+     33
     ],
     "2025-10": [
      1223,
      83,
-     44
+     49
     ],
     "2025-11": [
      1319,
      63,
-     33
+     34
     ],
     "2025-12": [
      1375,
@@ -53000,42 +53037,42 @@
     "2026-01": [
      1447,
      64,
-     30
+     33
     ],
     "2026-02": [
      1482,
      68,
-     34
+     35
     ],
     "2026-03": [
      1566,
      70,
-     28
+     29
     ],
     "2026-04": [
      1768,
      78,
-     43
+     45
     ],
     "2026-05": [
      1898,
      93,
-     38
+     41
     ],
     "2026-06": [
      2050,
      122,
-     71
+     72
     ],
     "2026-07": [
      2280,
      121,
-     56
+     61
     ],
     "2026-08": [
      2431,
      102,
-     52
+     56
     ],
     "2026-09": [
      2569,
@@ -53045,12 +53082,12 @@
     "2026-10": [
      2772,
      162,
-     80
+     87
     ],
     "2026-11": [
      2767,
-     55,
-     54
+     56,
+     55
     ]
    },
    "2B": {
@@ -53189,7 +53226,7 @@
     "2026-02": [
      258,
      11,
-     4
+     5
     ],
     "2026-03": [
      290,
@@ -53209,12 +53246,12 @@
     "2026-06": [
      325,
      10,
-     5
+     6
     ],
     "2026-07": [
      331,
      10,
-     5
+     6
     ],
     "2026-08": [
      332,
@@ -53261,7 +53298,7 @@
     "2025-10": [
      372,
      6,
-     0
+     1
     ],
     "2025-11": [
      429,
@@ -53281,17 +53318,17 @@
     "2026-02": [
      651,
      6,
-     3
+     4
     ],
     "2026-03": [
      705,
      8,
-     2
+     4
     ],
     "2026-04": [
      788,
      8,
-     3
+     4
     ],
     "2026-05": [
      852,
@@ -53321,7 +53358,7 @@
     "2026-10": [
      1316,
      21,
-     13
+     14
     ],
     "2026-11": [
      1490,
@@ -53368,7 +53405,7 @@
     "2026-01": [
      298,
      1,
-     0
+     1
     ],
     "2026-02": [
      319,
