@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "15 Nov 2026, 17:09 IST",
-  "asOfIso": "2026-11-15T17:09+05:30",
+  "asOf": "15 Nov 2026, 18:01 IST",
+  "asOfIso": "2026-11-15T18:01+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -744,7 +744,7 @@
    "reward": "Polaroid Camera",
    "threshold": 1,
    "status": "Claimed",
-   "count": 252,
+   "count": 253,
    "first": "1 Sep",
    "last": "15 Nov",
    "avgAchieved": 1.0
@@ -2387,7 +2387,7 @@
    3,
    1,
    1,
-   "",
+   "P",
    "R1"
   ],
   [
@@ -13207,11 +13207,11 @@
  "notes": {
   "pace": "No onboarding target is set for November. Through 14 full days there are 166 referral onboardings, with the last seven days averaging about 10 a day. Straight-line that gets to roughly 356 by month end, while the day-share model, which weights where past Novembers sat by this date, points to about 387 with a range of 352 to 411. Either way November finishes well below August's 465, September's 612 and October's 674, which fits the milestone ladder having closed on 2 Nov and the gold coin now carrying the program. Week by week the onboardings eased from the mid-20s early in the month to single digits this past week. 16 days remain including today.",
   "daily": "The milestone ladder campaign closed on 2 Nov, so its signup line has gone quiet: the last full day, Saturday 14 Nov, logged no new campaign signups, 1 onboarding and 2 claims. Week by week the campaign built from 251 signups the week of 31 Aug to a 291 peak the week of 26 Oct, then fell to 137 the week of 2 Nov and 108 the week of 9 Nov as it wound down. No referrer sent more than 25 campaign signups in the last 24 hours.",
-  "ladder": "996 people have referred into the ladder. 439 have unlocked at least one reward tier and 279 have claimed something, which leaves 352 with signups in the pipeline who have not yet landed their first activation. 45 referrers have reached 3 or more activations, 9 sit at exactly 4, and 8 have hit 8 activations and all eight have claimed the iPhone 17. 19 referrers are at exactly 2 activations, one short of the AirPods rung.",
+  "ladder": "996 people have referred into the ladder. 439 have unlocked at least one reward tier and 280 have claimed something, which leaves 352 with signups in the pipeline who have not yet landed their first activation. 45 referrers have reached 3 or more activations, 9 sit at exactly 4, and 8 have hit 8 activations and all eight have claimed the iPhone 17. 19 referrers are at exactly 2 activations, one short of the AirPods rung.",
   "cohorts": "This is a partial month against a full October, so every rate is naturally lower and the read is directional. The lift is still clear: repeat referrers who have referred before (1b) are referring at 1.43 percent versus 0.37 percent for those who never have (1a), roughly four to one. Never-referrers (1a) are down to 0.37 percent from 0.50 percent in October. The group that carries the volume, people active before the month began, sits at 0.59 percent against 0.88 percent last month. The one cohort up is people onboarded this month but not yet activated, at 1.07 percent on a thin base.",
   "mix": "First-time referrers are the bulk of the activity: 644 of them brought 1,142 signups, about 1.77 each, onboarding at 59 percent with 359 activations. Repeat referrers convert a little better, with one-time-before referrers at 196 people, 1.84 signups each and 69 percent onboarding, and the most frequent referrers, 59 people with three-plus past referrals, averaging 2.86 signups each at 60 percent onboarding and 65 activations.",
   "weeklyQuality": "Onboarding quality has held in a steady band through the campaign: signups land near 43 to 54 percent onboarded within a day and 50 to 65 percent within a week, settling around 57 to 60 percent once a cohort matures. The most recent sizeable cohort, the week of 26 Oct with 232 signups, onboarded 55.6 percent within a week but shows only 33.6 percent of those activating so far, with a fast 7.7 day median to onboard. The 2 Nov week has just 1 signup as the campaign closed.",
-  "claims": "Ladder rewards claimed to date: 252 Polaroid cameras at the one-activation rung, 17 AirPods at three, 2 Meta Ray-Ban smartglasses at five, and 8 iPhone 17s at eight. The iPhone claims run from 8 Oct to 13 Nov and every one was earned at exactly the eight-activation threshold.",
+  "claims": "Ladder rewards claimed to date: 253 Polaroid cameras at the one-activation rung, 17 AirPods at three, 2 Meta Ray-Ban smartglasses at five, and 8 iPhone 17s at eight. The iPhone claims run from 8 Oct to 13 Nov and every one was earned at exactly the eight-activation threshold.",
   "popupHeader": "Referral widget popup, 1 Sep to 14 Nov",
   "popup": [
    "25,077 unique exporters opened the referral widget over the window. 242 clicked through to claim a reward and 226 confirmed a claim, a clean step from intent to confirmation.",
@@ -13453,7 +13453,7 @@
    "firstTimers": 113,
    "refOnboardings": 166,
    "refActivations": 250,
-   "allOnboardings": 1204,
+   "allOnboardings": 1206,
    "transactors": 8510,
    "sharers": 92,
    "shareRate": 1.08,
@@ -14513,11 +14513,11 @@
    "referrers": 996,
    "onboarded": 1130,
    "achieved": 615,
-   "claimed": 279,
+   "claimed": 280,
    "perDay": 28.61,
    "obRate": 61.7,
    "actRate": 54.4,
-   "claimRate": 45.4
+   "claimRate": 45.5
   },
   {
    "id": 29,
@@ -51001,6 +51001,11 @@
   "widgetDaily": {
    "2026-10-12": 0,
    "2026-10-13": 0,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
+   "2026-11-14": 1777,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -51010,16 +51015,6 @@
    "2026-11-07": 1924,
    "2026-11-08": 1220,
    "2026-11-09": 2320,
-   "2026-11-15": 984,
-   "2026-10-23": 889,
-   "2026-10-24": 447,
-   "2026-10-25": 284,
-   "2026-10-26": 1009,
-   "2026-10-27": 1156,
-   "2026-10-28": 1232,
-   "2026-10-29": 1326,
-   "2026-10-30": 1480,
-   "2026-10-31": 1018,
    "2026-10-14": 0,
    "2026-10-15": 0,
    "2026-10-16": 253,
@@ -51029,11 +51024,16 @@
    "2026-10-20": 819,
    "2026-10-21": 1080,
    "2026-10-22": 976,
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
-   "2026-11-14": 1777
+   "2026-10-23": 889,
+   "2026-10-24": 447,
+   "2026-10-25": 284,
+   "2026-10-26": 1009,
+   "2026-10-27": 1156,
+   "2026-10-28": 1232,
+   "2026-10-29": 1326,
+   "2026-10-30": 1480,
+   "2026-10-31": 1018,
+   "2026-11-15": 1020
   }
  },
  "GRID": {
@@ -52809,7 +52809,7 @@
      20
     ],
     "2026-11": [
-     3664,
+     3666,
      16,
      16
     ]
