@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "15 Nov 2026, 15:00 IST",
-  "asOfIso": "2026-11-15T15:00+05:30",
+  "asOf": "15 Nov 2026, 16:00 IST",
+  "asOfIso": "2026-11-15T16:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -13237,7 +13237,7 @@
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
    "November is a partial month. On the full months, referral signups climbed from 628 in August to 950 in September and 984 in October; onboardings rose 465 to 612 to 674; activations rose 293 to 357 to 422. November so far stands at 260 signups, 166 onboardings and already 250 activations, the activations boosted by the ladder cohort maturing after the campaign closed.",
-   "Share rate, the percent of active exporters who refer, ran 2.99, 3.21 then 2.78 across August to October and sits at 1.08 for the partial month; the referral share of all onboardings climbed 12.6 to 15.9 to 19.6 percent then reads 13.9 percent so far in November.",
+   "Share rate, the percent of active exporters who refer, ran 2.99, 3.21 then 2.78 across August to October and sits at 1.08 for the partial month; the referral share of all onboardings climbed 12.6 to 15.9 to 19.6 percent then reads 13.8 percent so far in November.",
    "The thing to watch is whether the gold coin can replace the milestone ladder's volume. The ladder drove October's record onboardings and it ended on 2 Nov, so the next few weeks test whether the always-on gold coin holds the referral share near its recent highs."
   ],
   "gold": [
@@ -13453,11 +13453,11 @@
    "firstTimers": 113,
    "refOnboardings": 166,
    "refActivations": 250,
-   "allOnboardings": 1197,
+   "allOnboardings": 1202,
    "transactors": 8510,
    "sharers": 92,
    "shareRate": 1.08,
-   "refShare": 13.9,
+   "refShare": 13.8,
    "partial": true
   }
  ],
@@ -50999,6 +50999,15 @@
    "baseline": 0.52
   },
   "widgetDaily": {
+   "2026-11-01": 1533,
+   "2026-11-02": 3892,
+   "2026-11-03": 3826,
+   "2026-11-04": 3369,
+   "2026-11-05": 3290,
+   "2026-11-06": 2912,
+   "2026-11-07": 1924,
+   "2026-11-08": 1220,
+   "2026-11-09": 2320,
    "2026-10-12": 0,
    "2026-10-13": 0,
    "2026-10-23": 889,
@@ -51010,21 +51019,7 @@
    "2026-10-29": 1326,
    "2026-10-30": 1480,
    "2026-10-31": 1018,
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
-   "2026-11-14": 1777,
-   "2026-11-15": 890,
-   "2026-11-01": 1533,
-   "2026-11-02": 3892,
-   "2026-11-03": 3826,
-   "2026-11-04": 3369,
-   "2026-11-05": 3290,
-   "2026-11-06": 2912,
-   "2026-11-07": 1924,
-   "2026-11-08": 1220,
-   "2026-11-09": 2320,
+   "2026-11-15": 931,
    "2026-10-14": 0,
    "2026-10-15": 0,
    "2026-10-16": 253,
@@ -51033,7 +51028,12 @@
    "2026-10-19": 920,
    "2026-10-20": 819,
    "2026-10-21": 1080,
-   "2026-10-22": 976
+   "2026-10-22": 976,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
+   "2026-11-14": 1777
   }
  },
  "GRID": {
@@ -52809,7 +52809,7 @@
      20
     ],
     "2026-11": [
-     3657,
+     3662,
      16,
      16
     ]
