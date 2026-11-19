@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "19 Nov 2026, 14:00 IST",
-  "asOfIso": "2026-11-19T14:00+05:30",
+  "asOf": "19 Nov 2026, 15:00 IST",
+  "asOfIso": "2026-11-19T15:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -53,7 +53,7 @@
    12
   ],
   "sepToDate": 230,
-  "todaySoFar": 2,
+  "todaySoFar": 3,
   "monthName": "November",
   "monthShort": "Nov",
   "daysInMonth": 30
@@ -1149,8 +1149,8 @@
    "signups": 232,
    "ob1d": 47.4,
    "ob7d": 55.6,
-   "obSoFar": 58.6,
-   "actOfOb": 36.8,
+   "obSoFar": 59.1,
+   "actOfOb": 36.5,
    "medianDays": 8.1
   },
   {
@@ -1304,7 +1304,7 @@
    "2025-10-20",
    "2025-11-12",
    19,
-   15,
+   16,
    10,
    "iPhone 17",
    "R3"
@@ -13252,8 +13252,8 @@
  ],
  "qualityRefreshedOn": "2026-11-19",
  "notes": {
-  "pace": "No target is set for November, so this is a projection only. Referral onboardings stand at 230 through 18 full days, plus 2 so far today, running about 13 a day over the last week. A straight line to month end lands near 383; the day-share model, which weights where the month usually sits by this day, points to about 429 with a range of 405 to 472. Twelve days are left including today.",
-  "daily": "The milestone ladder closed on 2 November, so there are no new campaign signups to report: the last full day, 18 November, saw zero ladder signups and zero fresh referrers, with 1 onboarding, 9 activations and 4 claims still landing from earlier referees. Weekly campaign signups had already tapered through the final run, from mid-200s in late September and October down to 137, 112 and 87 in the first three weeks of November. No referrer crossed 25 signups in the last 24 hours.",
+  "pace": "No target is set for November, so this is a projection only. Referral onboardings stand at 230 through 18 full days, plus 3 so far today, running about 13 a day over the last week. A straight line to month end lands near 383; the day-share model, which weights where the month usually sits by this day, points to about 429 with a range of 405 to 472. Twelve days are left including today.",
+  "daily": "The milestone ladder closed on 2 November, so there are no new campaign signups to report: the last full day, 18 November, saw zero ladder signups and zero fresh referrers, with 1 onboarding, 9 activations and 4 claims still landing from earlier referees. Weekly campaign signups had already tapered through the final run, from the mid-200s in late September and October down to 137, 112 and 87 in the first three weeks of November. No referrer crossed 25 signups in the last 24 hours.",
   "ladder": "Of 996 milestone referrers, 455 have unlocked at least the first reward and 292 have claimed something, leaving 330 with onboarded referees still waiting to activate. Forty-seven sit at 3 or more activations. On the cusp: 21 are at exactly 2 activations, one short of the AirPods rung, 9 are at exactly 4, one short of Ray-Ban, and 8 have reached the 8-activation iPhone tier. Exporter 39465 is at 7, one activation from the top rung.",
   "cohorts": "November is a partial month, so these share rates read low against full October. Repeat referrers carry the program as always, at 1.94 percent this month against 0.46 percent for never-referrers. Never-referrers (cohort 1a) are down from 0.62 percent, a 25.8 percent drop, and the dormant tails are falling fastest. New activations hold near steady at 2.43 percent, essentially flat on last month's 2.53.",
   "mix": "First-time referrers dominate the pool: 644 of them sent 1,144 signups, about 1.78 each, 59 percent onboarded and 378 activated. Returning referrers are fewer but denser: the 59 heaviest, with three or more prior referrals, average 2.86 signups each. One-time repeat referrers, 196 of them, onboard at 69 percent, the best of any group.",
@@ -13265,7 +13265,7 @@
    "Only 11 chose keep referring over claiming, so almost everyone who reached the claim step took the reward rather than pushing for the next rung."
   ],
   "referrers": [
-   "996 people referred through the milestone program, sending 1,833 signups that produced 1,136 onboardings and 639 activations.",
+   "996 people referred through the milestone program, sending 1,833 signups that produced 1,137 onboardings and 639 activations.",
    "Single-signup referrers, 777 of them, onboard at 71 percent, well above the 56 percent for the 219 multi-signup referrers who sent 1,056 signups between them.",
    "The multi-signup group still drove the bulk of activations, 303 of the 639.",
    "Top by volume is exporter 260681 with 64 signups, 17 onboarded and 9 activated, followed by 5561 at 56 signups and 38154 at 46.",
@@ -13283,7 +13283,7 @@
   "qualityWindow": "Figures compare October referrals against November referrers split by volume, using a 94-rupee dollar rate.",
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
-   "November is partial, 18 days in. On the full-month pace, signups (351 so far) are tracking below October's 984 and September's 950, and referral onboardings (232) sit under recent months too; but referral activations are already 285, ahead of where August, September and October stood at this point.",
+   "November is partial, 18 days in. On the full-month pace, signups (351 so far) are tracking below October's 984 and September's 950, and referral onboardings (233) sit under recent months too; but referral activations are already 285, ahead of where August, September and October stood at this point.",
    "Share rate reads 1.45 percent so far against 2.78 percent for full October, as expected mid-month, while the referral share of all onboardings is holding near 14.6 percent, down from October's 19.7 percent peak but in line with the summer.",
    "The one thing to watch is first-time referrer supply: 155 so far, which projects below the 356 to 412 the last three full months each delivered."
   ],
@@ -13498,10 +13498,10 @@
    "signups": 351,
    "referrers": 266,
    "firstTimers": 155,
-   "refOnboardings": 232,
+   "refOnboardings": 233,
    "refActivations": 285,
-   "allOnboardings": 1587,
-   "transactors": 9787,
+   "allOnboardings": 1594,
+   "transactors": 9788,
    "sharers": 142,
    "shareRate": 1.45,
    "refShare": 14.6,
@@ -14666,7 +14666,7 @@
    "days": 64,
    "signups": 1833,
    "referrers": 996,
-   "onboarded": 1136,
+   "onboarded": 1137,
    "achieved": 639,
    "claimed": 292,
    "perDay": 28.64,
@@ -16800,12 +16800,12 @@
      "Navadiya Dhruvika Devrajbhai",
      "F",
      "2026-10-31",
-     null,
+     "2026-11-19",
      null,
      "UNDER_10L_INR",
      0,
      0,
-     "SIGNUP_COMPLETE"
+     "ONBOARDING_COMPLETE"
     ],
     [
      281799,
@@ -49894,7 +49894,7 @@
     "date": "2026-11-19",
     "signups": 10,
     "referrers": 9,
-    "onboardings": 2,
+    "onboardings": 3,
     "activations": 2,
     "coins": 0,
     "goldSignups": 10,
@@ -50386,7 +50386,7 @@
     "dow": "Thu",
     "signups": 10,
     "referrers": 9,
-    "onboardings": 2,
+    "onboardings": 3,
     "activations": 2,
     "coins": 0,
     "goldSignups": 10,
@@ -51045,7 +51045,7 @@
    "onboardings": {
     "label": "Referral onboardings",
     "toDate": 230,
-    "todaySoFar": 2,
+    "todaySoFar": 3,
     "avg7": 13.14,
     "cum": [
      10,
@@ -51066,7 +51066,7 @@
      199,
      218,
      230,
-     232
+     233
     ],
     "straight": 383,
     "run7": 388,
@@ -51250,6 +51250,13 @@
    "baseline": 0.52
   },
   "widgetDaily": {
+   "2026-10-16": 253,
+   "2026-10-17": 515,
+   "2026-10-18": 297,
+   "2026-10-19": 920,
+   "2026-10-20": 819,
+   "2026-10-21": 1080,
+   "2026-10-22": 976,
    "2026-10-23": 889,
    "2026-10-24": 447,
    "2026-10-25": 284,
@@ -51259,14 +51266,15 @@
    "2026-10-29": 1326,
    "2026-10-30": 1480,
    "2026-10-31": 1018,
-   "2026-10-16": 253,
-   "2026-10-17": 515,
-   "2026-10-18": 297,
-   "2026-10-19": 920,
-   "2026-10-20": 819,
-   "2026-10-21": 1080,
-   "2026-10-22": 976,
-   "2026-11-19": 1679,
+   "2026-11-01": 1533,
+   "2026-11-02": 3892,
+   "2026-11-03": 3826,
+   "2026-11-04": 3369,
+   "2026-11-05": 3289,
+   "2026-11-06": 2912,
+   "2026-11-07": 1924,
+   "2026-11-08": 1220,
+   "2026-11-09": 2320,
    "2026-11-10": 2621,
    "2026-11-11": 2782,
    "2026-11-12": 2818,
@@ -51276,15 +51284,7 @@
    "2026-11-16": 2819,
    "2026-11-17": 2759,
    "2026-11-18": 2577,
-   "2026-11-01": 1533,
-   "2026-11-02": 3892,
-   "2026-11-03": 3826,
-   "2026-11-04": 3369,
-   "2026-11-05": 3289,
-   "2026-11-06": 2912,
-   "2026-11-07": 1924,
-   "2026-11-08": 1220,
-   "2026-11-09": 2320
+   "2026-11-19": 1785
   }
  },
  "GRID": {
@@ -51956,7 +51956,7 @@
      33
     ],
     "2026-11": [
-     883,
+     884,
      19,
      19
     ]
@@ -52784,7 +52784,7 @@
      10
     ],
     "2026-11": [
-     35258,
+     35257,
      23,
      23
     ]
@@ -53060,7 +53060,7 @@
      25
     ],
     "2026-11": [
-     3928,
+     3935,
      23,
      22
     ]
