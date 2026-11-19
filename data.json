@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "19 Nov 2026, 10:00 IST",
-  "asOfIso": "2026-11-19T10:00+05:30",
+  "asOf": "19 Nov 2026, 11:00 IST",
+  "asOfIso": "2026-11-19T11:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -784,9 +784,9 @@
    "reward": "Polaroid Camera",
    "threshold": 1,
    "status": "Claimed",
-   "count": 262,
+   "count": 263,
    "first": "1 Sep",
-   "last": "18 Nov",
+   "last": "19 Nov",
    "avgAchieved": 1.0
   },
   {
@@ -5650,7 +5650,7 @@
    1,
    1,
    1,
-   "",
+   "P",
    "FT"
   ],
   [
@@ -13254,11 +13254,11 @@
  "notes": {
   "pace": "No referral target is set for November, so this is a projection only. With 18 full days done, referral onboardings stand at 230. The straight-line path lands near 383 for the month, while weighting by how much of a typical month usually lands by this day puts it around 429, in a range of 405 to 472. That reflects about 13 onboardings a day over the last week, with 12 days left.",
   "daily": "Week-by-week campaign signups have come down from a peak of 291 in the week of 26 October to 137, 112 and 81 over the first three weeks of November, as the milestone ladder closed on 2 November and the gold coin became the main live offer, running about 1.1 signups per referrer last week. The last full day, 18 November, logged no new ladder signups, with activity now running through the gold coin and 9 activations and 4 claims landing that day from earlier referrals. No referrer sent more than 25 signups in the last 24 hours.",
-  "ladder": "996 people have referred into the ladder, 454 have unlocked at least one reward tier and 289 have claimed something. 331 referrers have signups in flight but have not activated anyone yet. 46 sit at three or more activations; 21 are at exactly two, one activation short of the AirPods rung, and 9 are at exactly four, one short of the Ray-Ban rung. Eight referrers have reached the eight-activation iPhone tier.",
+  "ladder": "996 people have referred into the ladder, 454 have unlocked at least one reward tier and 290 have claimed something. 331 referrers have signups in flight but have not activated anyone yet. 46 sit at three or more activations; 21 are at exactly two, one activation short of the AirPods rung, and 9 are at exactly four, one short of the Ray-Ban rung. Eight referrers have reached the eight-activation iPhone tier.",
   "cohorts": "This is a partial month at 18 of 30 days, so every rate reads low against full October. Among exporters active before the month started, 0.77 percent have referred, down from 1.07 percent. The lift is still carried by past referrers (cohort 1b) at 1.94 percent and by exporters who transacted this month (cohort 1.1) at 1.41 percent, while new activations this month (cohort 2) hold at 2.48 percent, flat versus October. Never-referrers (cohort 1a) sit at 0.46 percent, 83 of 17,915, down from 0.62 percent.",
   "mix": "First-time referrers drove the bulk of activity: 644 of them sent 1,142 signups, 1.77 each, 59 percent onboarded and 375 activations. Returning referrers who had paused (RN) number 97 at 1.64 signups each and 69 percent onboarded. One-time-prior referrers (R1) are 196 at 1.84 each and 69 percent onboarded. The heaviest are the three-plus-prior referrers (R3): 59 people averaging 2.86 signups each, 60 percent onboarded, 65 activations.",
   "weeklyQuality": "Onboarding quality by signup week has held in a familiar band. The week of 26 October brought 232 signups onboarding at 47 percent within a day and 56 percent within a week, with 36 percent of onboarded referees activating and a median of 8 days to onboard, the fastest in the run. Earlier autumn weeks sat near 50 to 65 percent seven-day onboarding and 50 to 61 percent activation. From 2 November the ladder had effectively stopped taking new signups, so later weeks carry too few to read.",
-  "claims": "Reward claims to date: 262 Polaroid cameras at the one-activation rung, 17 AirPods at three, 2 Meta Ray-Ban smartglasses at five, and 8 iPhone 17s at eight activations. The iPhone claimers averaged exactly eight activations and the smartglasses claimers 5.5.",
+  "claims": "Reward claims to date: 263 Polaroid cameras at the one-activation rung, 17 AirPods at three, 2 Meta Ray-Ban smartglasses at five, and 8 iPhone 17s at eight activations. The iPhone claimers averaged exactly eight activations and the smartglasses claimers 5.5.",
   "popupHeader": "Referral widget, 1 September to 18 November",
   "popup": [
    "25,076 unique exporters opened the referral widget over the window. Of those, 253 tapped a claim call to action and 236 went on to confirm a claim.",
@@ -13285,7 +13285,7 @@
   "overview": [
    "November is partial at 18 of 30 days. Referral signups are tracking to about 628 for the month, level with August but below September's 950 and October's 984, as the big milestone ladder has ended. Referral onboardings project near 429, under the 612 and 675 of the last two months.",
    "Referral activations are the bright spot, projecting near 453 against 293, 357 and 422 in the prior three months, which would be a record even with onboardings lower, as earlier referees mature and activate.",
-   "Share rate sits at 1.45 percent for the partial month against 2.78 to 3.21 in recent full months, and referrals are 14.8 percent of all onboardings, down from October's 19.7. The thing to watch is whether anything replaces the ladder's signup volume now that it has closed."
+   "Share rate sits at 1.45 percent for the partial month against 2.78 to 3.21 in recent full months, and referrals are 14.7 percent of all onboardings, down from October's 19.7. The thing to watch is whether anything replaces the ladder's signup volume now that it has closed."
   ],
   "gold": [
    "On day 35 of the gold coin campaign, 10,062 never-referrers were pinned on 16 October. Through the broader open offer 428 signups have come in from 340 referrers, 241 of them referring for the first time ever. Of the pinned group specifically, about 65 have referred, 60 of them for the first time.",
@@ -13500,11 +13500,11 @@
    "firstTimers": 154,
    "refOnboardings": 230,
    "refActivations": 283,
-   "allOnboardings": 1559,
+   "allOnboardings": 1566,
    "transactors": 9667,
    "sharers": 140,
    "shareRate": 1.45,
-   "refShare": 14.8,
+   "refShare": 14.7,
    "partial": true
   }
  ],
@@ -14668,11 +14668,11 @@
    "referrers": 996,
    "onboarded": 1134,
    "achieved": 635,
-   "claimed": 289,
+   "claimed": 290,
    "perDay": 28.61,
    "obRate": 61.9,
    "actRate": 56.0,
-   "claimRate": 45.5
+   "claimRate": 45.7
   },
   {
    "id": 29,
@@ -51226,15 +51226,16 @@
    "baseline": 0.52
   },
   "widgetDaily": {
-   "2026-10-23": 889,
-   "2026-10-24": 447,
-   "2026-10-25": 284,
-   "2026-10-26": 1009,
-   "2026-10-27": 1156,
-   "2026-10-28": 1232,
-   "2026-10-29": 1326,
-   "2026-10-30": 1480,
-   "2026-10-31": 1018,
+   "2026-11-19": 1153,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
+   "2026-11-14": 1778,
+   "2026-11-15": 1247,
+   "2026-11-16": 2819,
+   "2026-11-17": 2759,
+   "2026-11-18": 2577,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -51244,7 +51245,6 @@
    "2026-11-07": 1924,
    "2026-11-08": 1220,
    "2026-11-09": 2320,
-   "2026-11-19": 1004,
    "2026-10-16": 253,
    "2026-10-17": 515,
    "2026-10-18": 297,
@@ -51252,15 +51252,15 @@
    "2026-10-20": 819,
    "2026-10-21": 1080,
    "2026-10-22": 976,
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
-   "2026-11-14": 1778,
-   "2026-11-15": 1247,
-   "2026-11-16": 2819,
-   "2026-11-17": 2759,
-   "2026-11-18": 2577
+   "2026-10-23": 889,
+   "2026-10-24": 447,
+   "2026-10-25": 284,
+   "2026-10-26": 1009,
+   "2026-10-27": 1156,
+   "2026-10-28": 1232,
+   "2026-10-29": 1326,
+   "2026-10-30": 1480,
+   "2026-10-31": 1018
   }
  },
  "GRID": {
@@ -53036,7 +53036,7 @@
      25
     ],
     "2026-11": [
-     3912,
+     3919,
      23,
      22
     ]
