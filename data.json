@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "23 Nov 2026, 09:00 IST",
-  "asOfIso": "2026-11-23T09:00+05:30",
+  "asOf": "23 Nov 2026, 10:00 IST",
+  "asOfIso": "2026-11-23T10:00+05:30",
   "campaignStart": "2026-09-01",
   "campaignEnd": "2026-10-31",
   "campaignDay": 61,
@@ -13299,8 +13299,8 @@
  ],
  "qualityRefreshedOn": "2026-11-23",
  "notes": {
-  "pace": "November referral onboardings stand at 257 across 22 full days, with 1 more so far today and 8 days left in the month. Straight line that puts the month near 350; the day-share projection lands at 384, in a range of 365 to 396. The last seven days have averaged 12.4 onboardings a day. Week by week the run has eased, roughly 95 onboardings in the first seven days, 71 in the next, 88 in the third, then just 3 on 22 Nov. No target is set for November, so this is a projection only.",
-  "daily": "Campaign signups have wound down as the milestone ladder closed on 2 Nov. Week by week the counts fell from 142 signups off 113 referrers in the week of 16 Nov to just 2 in the current partial week. The last full day, 22 Nov, brought no new campaign signups and one reward claim. No referrer sent more than 25 signups in the last 24 hours, and there is nothing to flag.",
+  "pace": "November referral onboardings stand at 257 across 22 full days, with 1 more so far today and 8 days left in the month. A straight line puts the month near 350; the day-share projection lands at 384, in a range of 365 to 396. The last seven days have averaged 12.4 onboardings a day. Week by week the run eased, roughly 95 onboardings in the first seven days, 71 in the next, 88 in the third, then just 3 on 22 Nov. No target is set for November, so this is a projection only.",
+  "daily": "Campaign signups have wound down since the milestone ladder closed on 2 Nov. Week by week the counts fell from 142 signups off 113 referrers in the week of 16 Nov to just 2 in the current partial week. The last full day, 22 Nov, brought no new campaign signups and one reward claim. No referrer sent more than 25 signups in the last 24 hours, and there is nothing to flag.",
   "ladder": "The milestone ladder has closed, so these are the final standings. Of 996 referrers, 459 have unlocked at least the first reward and 297 have claimed something, while 317 still hold referred signups that have not activated and sit in the pipeline. 48 referrers reached three or more activations and 9 reached four. 21 sit one activation below the AirPods rung and 9 sit one below the Ray-Ban rung; 8 referrers have climbed all the way to the iPhone tier.",
   "cohorts": "Against October, referral share rates are down across the board this partial month. The lift is still carried by repeat referrers at 2.25% and by this month's new activations at 2.95%, both well above the base. Never-referrers (1a) are referring at 0.51%, down from 0.78% in October. The one cohort moving up is older onboarders who have not activated, from 0.08% to 0.12%, off a tiny base.",
   "mix": "First-time referrers are the engine: 644 of them sent 1,144 signups, about 1.78 each, onboarding at 59% for 380 activations. Repeat referrers are fewer but denser, with the heaviest group (three or more past referrals) sending 2.86 signups each. New repeaters onboard best at 69%, matching one-time repeaters.",
@@ -51469,15 +51469,6 @@
    "baseline": 0.52
   },
   "widgetDaily": {
-   "2026-10-23": 889,
-   "2026-10-24": 447,
-   "2026-10-25": 284,
-   "2026-10-26": 1009,
-   "2026-10-27": 1156,
-   "2026-10-28": 1232,
-   "2026-10-29": 1326,
-   "2026-10-30": 1480,
-   "2026-10-31": 1018,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -51487,7 +51478,7 @@
    "2026-11-07": 1924,
    "2026-11-08": 1220,
    "2026-11-09": 2320,
-   "2026-11-23": 542,
+   "2026-11-23": 662,
    "2026-11-19": 2469,
    "2026-11-20": 2608,
    "2026-11-21": 1629,
@@ -51503,7 +51494,16 @@
    "2026-11-18": 2577,
    "2026-10-20": 819,
    "2026-10-21": 1080,
-   "2026-10-22": 976
+   "2026-10-22": 976,
+   "2026-10-23": 889,
+   "2026-10-24": 447,
+   "2026-10-25": 284,
+   "2026-10-26": 1009,
+   "2026-10-27": 1156,
+   "2026-10-28": 1232,
+   "2026-10-29": 1326,
+   "2026-10-30": 1480,
+   "2026-10-31": 1018
   }
  },
  "GRID": {
