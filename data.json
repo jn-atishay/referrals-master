@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "26 Nov 2026, 12:00 IST",
-  "asOfIso": "2026-11-26T12:00+05:30",
+  "asOf": "26 Nov 2026, 13:00 IST",
+  "asOfIso": "2026-11-26T13:00+05:30",
   "campaignStart": "2026-11-23",
   "campaignEnd": "2026-12-31",
   "campaignDay": 4,
@@ -264,7 +264,7 @@
    "id": "3",
    "label": "Not activated, onboarded this month",
    "indent": 0,
-   "base": 1733,
+   "base": 1732,
    "refNow": 21,
    "rateNow": 1.21,
    "refPrev": 15,
@@ -1247,7 +1247,7 @@
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
    "November is partial at 25 full days. Referral signups are at 498, onboardings 324 and activations 345, against full October at 984 signups, 676 onboardings and 423 activations. Signups and onboardings are behind October's pace; activations are already 82% of October's total because earlier ladder and gold coin referrals are still paying in.",
-   "The share of transactors who refer is 1.9% this partial month against 2.78% in October and 3.21% in September, and referrals are 14.7% of all onboardings against 19.7% in October.",
+   "The share of transactors who refer is 1.9% this partial month against 2.78% in October and 3.21% in September, and referrals are 14.6% of all onboardings against 19.7% in October.",
    "Worth attention: referrals are converting well but coming from fewer people. The November ladder replaced the gold coin on 23 Nov, so watch whether signups hold once the launch push fades."
   ],
   "gold": [
@@ -1463,11 +1463,11 @@
    "firstTimers": 217,
    "refOnboardings": 324,
    "refActivations": 345,
-   "allOnboardings": 2203,
-   "transactors": 11350,
+   "allOnboardings": 2213,
+   "transactors": 11353,
    "sharers": 216,
    "shareRate": 1.9,
-   "refShare": 14.7,
+   "refShare": 14.6,
    "partial": true
   }
  ],
@@ -2055,7 +2055,7 @@
     "signups": 26,
     "onboarded": 15,
     "achieved": 0,
-    "transactors": 1819,
+    "transactors": 1822,
     "shareRate": 1.37
    }
   ],
@@ -6760,6 +6760,16 @@
    "2026-10-29": 1326,
    "2026-10-30": 1480,
    "2026-10-31": 1018,
+   "2026-11-26": 1581,
+   "2026-11-10": 2621,
+   "2026-11-11": 2782,
+   "2026-11-12": 2818,
+   "2026-11-13": 2623,
+   "2026-11-14": 1778,
+   "2026-11-15": 1247,
+   "2026-11-16": 2819,
+   "2026-11-17": 2759,
+   "2026-11-18": 2577,
    "2026-11-01": 1533,
    "2026-11-02": 3892,
    "2026-11-03": 3826,
@@ -6775,17 +6785,7 @@
    "2026-11-22": 1131,
    "2026-11-23": 2597,
    "2026-11-24": 2594,
-   "2026-11-25": 2833,
-   "2026-11-26": 1407,
-   "2026-11-10": 2621,
-   "2026-11-11": 2782,
-   "2026-11-12": 2818,
-   "2026-11-13": 2623,
-   "2026-11-14": 1778,
-   "2026-11-15": 1247,
-   "2026-11-16": 2819,
-   "2026-11-17": 2759,
-   "2026-11-18": 2577
+   "2026-11-25": 2833
   }
  },
  "GRID": {
@@ -8561,7 +8561,7 @@
      36
     ],
     "2026-11": [
-     4366,
+     4376,
      29,
      29
     ]
