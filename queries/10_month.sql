@@ -1,8 +1,8 @@
 -- Month projection block: the current month and the previous three, day by day, plus who is referring this month.
 -- Rows (all text): g, k, v1..v7.
 --   'day'      k = date. v1 signups (all campaigns, {{EXCLUDED}}), v2 distinct referrers, v3 referral onboardings (target definition,
---              {{ALWAYS_EXCLUDED}} only), v4 referral activations (same definition), v5 gold coins claimed ({{GOLD_CAMPAIGN_ID}}),
---              v6 signups tagged to the gold coin campaign, v7 first-ever referrers (first referral that day).
+--              {{ALWAYS_EXCLUDED}} only), v4 referral activations (same definition), v5 gold coins claimed (gold coin campaign + coin rung of the November ladder),
+--              v6 signups tagged to a coin campaign (gold coin, then the November ladder), v7 first-ever referrers (first referral that day).
 --   'group'    k = pinned_first | pinned_repeat | open_first | open_repeat: referrers this month by whether they were pinned to the gold
 --              coin campaign before it opened to everyone, and whether this month holds their first ever referral.
 --              v1 referrers, v2 signups, v3 onboarded, v4 achieved, v5 referrers with a coin claimed this month.
@@ -32,16 +32,16 @@ act AS (SELECT exporter_id, MIN(settlement_date AT TIME ZONE 'UTC' AT TIME ZONE 
 robs AS (SELECT ob.fo d, COUNT(*) n FROM rd JOIN ob ON ob.exporter_id = rd.referee, m WHERE ob.fo >= m.m3 GROUP BY 1),
 racts AS (SELECT act.fa d, COUNT(*) n FROM rd JOIN act ON act.exporter_id = rd.referee, m WHERE act.fa >= m.m3 GROUP BY 1),
 coins AS (SELECT (claimed_at AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Kolkata')::date d, referrer_exporter_id ref FROM referral_milestone_claim
-          WHERE campaign_id = {{GOLD_CAMPAIGN_ID}} AND is_deleted = false AND status = 'CLAIMED' AND referrer_exporter_id NOT IN ({{EXCLUDED}})),
+          WHERE {{COIN_CLAIM}} AND is_deleted = false AND status = 'CLAIMED' AND referrer_exporter_id NOT IN ({{EXCLUDED}})),
 days AS (SELECT g::date d FROM m, today, generate_series(m.m3, today.d, INTERVAL '1 day') g),
-p AS (SELECT exporter_id FROM user_referral_data WHERE pinned_campaign_id = {{GOLD_CAMPAIGN_ID}} AND is_deleted = false),
+p AS (SELECT unnest(ARRAY[{{GOLD_PILOT_IDS}}]::bigint[]) exporter_id),
 mrr AS (SELECT rr.*, EXISTS (SELECT 1 FROM p WHERE p.exporter_id = rr.ref) pinned, f.first_sd >= m.m0 first_month FROM rr JOIN firsts f USING (ref), m WHERE rr.sd >= m.m0),
 gref AS (SELECT ref, COUNT(*) signups, COUNT(*) FILTER (WHERE st IN ('ONBOARDING_COMPLETE','ACHIEVED')) onboarded, COUNT(*) FILTER (WHERE st = 'ACHIEVED') achieved,
                 EXISTS (SELECT 1 FROM coins c WHERE c.ref = rr.ref) coin
-         FROM rr WHERE campaign_id = {{GOLD_CAMPAIGN_ID}} GROUP BY 1)
+         FROM rr WHERE campaign_id IN ({{COIN_CAMPAIGN_IDS}}) GROUP BY 1)
 SELECT 'day' g, d::text k, (SELECT COUNT(*) FROM rr WHERE sd = d)::text v1, (SELECT COUNT(DISTINCT ref) FROM rr WHERE sd = d)::text v2,
   COALESCE((SELECT n FROM robs WHERE robs.d = days.d), 0)::text v3, COALESCE((SELECT n FROM racts WHERE racts.d = days.d), 0)::text v4,
-  (SELECT COUNT(*) FROM coins WHERE coins.d = days.d)::text v5, (SELECT COUNT(*) FROM rr WHERE sd = d AND campaign_id = {{GOLD_CAMPAIGN_ID}})::text v6,
+  (SELECT COUNT(*) FROM coins WHERE coins.d = days.d)::text v5, (SELECT COUNT(*) FROM rr WHERE sd = d AND campaign_id IN ({{COIN_CAMPAIGN_IDS}}))::text v6,
   (SELECT COUNT(*) FROM firsts WHERE first_sd = d)::text v7
 FROM days
 UNION ALL

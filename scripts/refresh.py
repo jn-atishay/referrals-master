@@ -141,14 +141,29 @@ def pct(a, b, digits=1):
     return round(100.0 * a / b, digits) if b else None
 
 
+def pilot_ids(cfg):
+    """The gold coin pilot group (pinned 16 Oct 2026). Pins were removed on 23 Nov, so the list is frozen in a file."""
+    path = ROOT / cfg["gold_coin"].get("pilot_file", "gold_pilot_exporters.txt")
+    ids = [l.strip() for l in path.read_text().splitlines() if l.strip() and not l.startswith("#")]
+    if len(ids) < 10000:
+        raise SystemExit(f"gold pilot list has only {len(ids)} ids")
+    return ",".join(ids)
+
+
 def fill(sql, cfg):
+    coin_ids = cfg.get("coin_campaign_ids") or [cfg["gold_coin"]["campaign_id"]]
     always = ",".join(str(x) for x in cfg["always_excluded_referrers"])
     excluded = ",".join(str(x) for x in cfg["always_excluded_referrers"] + cfg["flagged_referrers"])
     reps = {
         "{{EXCLUDED}}": excluded, "{{ALWAYS_EXCLUDED}}": always, "{{CAMPAIGN_ID}}": str(cfg["campaign_id"]),
         "{{CAMPAIGN_START}}": cfg["campaign_start"], "{{SHOW_NAMES}}": "true" if cfg.get("show_customer_names") else "false",
         "{{GOLD_CAMPAIGN_ID}}": str(cfg["gold_coin"]["campaign_id"]), "{{GOLD_START}}": cfg["gold_coin"]["start"],
-        "{{CAMPAIGN_HISTORY_IDS}}": ",".join(str(c["id"]) for c in cfg["campaign_history"]),
+        "{{CAMPAIGN_HISTORY_IDS}}": ",".join(str(c["id"]) for c in cfg["campaign_history"] + cfg.get("partner_campaigns", [])),
+        "{{GOLD_PILOT_IDS}}": pilot_ids(cfg),
+        "{{PARTNER_IDS}}": ",".join(str(c["id"]) for c in cfg.get("partner_campaigns", [])) or "0",
+        "{{COIN_CAMPAIGN_IDS}}": ",".join(str(x) for x in coin_ids),
+        # A coin claim = any claim on the gold coin campaign, or the first rung of a later ladder that also gives the coin.
+        "{{COIN_CLAIM}}": f"(campaign_id = {cfg['gold_coin']['campaign_id']} OR milestone_id IN (SELECT id FROM referral_campaign_milestone WHERE campaign_id IN ({','.join(str(x) for x in coin_ids)}) AND threshold = 1 AND label ILIKE '%coin%'))",
     }
     for k, v in reps.items():
         sql = sql.replace(k, v)
@@ -267,6 +282,7 @@ def build_gold(rows, cfg, today, src):
         "campaignId": gc["campaign_id"], "label": gc["label"], "reward": gc["reward"], "start": gc["start"], "startLabel": lbl(gc["start"]),
         "dayN": (today - start).days + 1, "window": f"{lbl(gc['start'])} to {lbl(yesterday.isoformat())}",
         "openToAll": gc.get("open_to_all"), "openToAllLabel": lbl(gc["open_to_all"]) if gc.get("open_to_all") else None,
+        "end": gc.get("end"), "endLabel": lbl(gc["end"]) if gc.get("end") else None,
         "pinned": {"n": num(p[2]), "date": lbl(p[3]) if p[3] else None, "active90d": num(p[4]), "referredBefore": num(p[5])},
         "funnel": {"signups": num(f[2]), "referrers": num(f[3]), "onboarded": num(f[4]), "achieved": num(f[5]), "claimed": num(f[6]), "firstEverReferrers": num(f[7])},
         "daily": daily, "weekly": weekly,
@@ -277,18 +293,18 @@ def build_gold(rows, cfg, today, src):
 
 
 def build_campaigns(rows, cfg, today):
-    meta = {c["id"]: c for c in cfg["campaign_history"]}
+    meta = {c["id"]: c for c in cfg["campaign_history"]} | {c["id"]: {**c, "partner": True} for c in cfg.get("partner_campaigns", [])}
     out = []
     for r in rows:
         cid, name, active, created_d, first_d, last_d, signups, referrers, onboarded, achieved, claimed, gifts = r
         start = d(created_d)
         last = d(last_d) if last_d else None
-        live = bool(active) and last is not None and (today - last).days <= 3
-        end = today if live else (last or start)
-        days = max(1, (end - start).days + 1)
         m = meta.get(cid, {})
+        live = bool(active) and last is not None and (today - last).days <= 3 and not m.get("end")
+        end = today if live else (d(m["end"]) if m.get("end") else (last or start))
+        days = max(1, (end - start).days + 1)
         out.append({"id": cid, "name": name, "label": m.get("label", name), "gift": m.get("gift", gifts or ""), "start": created_d, "startLabel": f"{start.day} {MONTHS[start.month - 1]} {str(start.year)[2:]}",
-                    "end": None if live else end.isoformat(), "endLabel": "live" if live else f"{end.day} {MONTHS[end.month - 1]} {str(end.year)[2:]}", "live": live, "days": days,
+                    "partner": bool(m.get("partner")), "end": None if live else end.isoformat(), "endLabel": "live" if live else f"{end.day} {MONTHS[end.month - 1]} {str(end.year)[2:]}", "live": live, "days": days,
                     "signups": signups, "referrers": referrers, "onboarded": onboarded, "achieved": achieved, "claimed": claimed,
                     "perDay": round(signups / days, 2), "obRate": pct(onboarded, signups), "actRate": pct(achieved, onboarded), "claimRate": pct(claimed, achieved)})
     return out
@@ -475,8 +491,9 @@ def summarise(data, top24h, cfg, today):
                   "campaignWeeks": [{"week": w["week"], "signups": w["signups"], "referrers": w["referrers"], "perRef": w["perRef"]} for w in data["WEEKLY"] if w["period"] == "campaign"],
                   "top24h": top24h, "flagThreshold": 25},
         "ladder": {"referrers": len(refs), "unlocked": sum(1 for r in refs if acts(r) >= 1), "claimedAny": sum(1 for r in refs if r[8]),
-                   "pipelineUnderZero": sum(r[6] for r in refs if acts(r) == 0), "atLeast3": sum(1 for r in refs if acts(r) >= 3), "exactly2": sum(1 for r in refs if acts(r) == 2),
-                   "exactly4": sum(1 for r in refs if acts(r) == 4), "atLeast8": [r[0] for r in refs if acts(r) >= 8],
+                   "pipelineUnderZero": sum(r[6] for r in refs if acts(r) == 0),
+                   "rungs": [{"at": g["at"], "gift": g["gift"], "reached": sum(1 for r in refs if acts(r) >= g["at"]),
+                              "oneAway": sum(1 for r in refs if acts(r) == g["at"] - 1)} for g in (cfg.get("milestone") or {}).get("rungs", [])],
                    "top": [{"id": r[0], "activations": acts(r), "onboarded": r[6], "signups": r[5], "claimed": r[8]} for r in sorted(refs, key=lambda r: (-acts(r), -r[6]))[:10]]},
         "cohorts": data["COHORTS"], "cohortLabels": data["COHORT_LABELS"],
         "mix": cohorts_mix,
@@ -556,10 +573,15 @@ def main():
     data["CAMPAIGNS"] = build_campaigns(hist_rows, cfg, today)
     data["MONTH"] = build_month(month_rows, cfg, today)
     data["GRID"] = build_grid(grid_rows, today)
+    ms = cfg.get("milestone") or {}
+    data["MILESTONE"] = {**ms, "campaignId": cfg["campaign_id"], "start": cfg["campaign_start"], "end": cfg["campaign_end"],
+                         "startLabel": lbl(cfg["campaign_start"]), "endLabel": lbl(cfg["campaign_end"]),
+                         "deadlineLabel": lbl(ms["activation_deadline"]) + " " + ms["activation_deadline"][:4] if ms.get("activation_deadline") else None}
     data["EVENTS"] = [{**e, "label": lbl(e["date"]) + " " + str(d(e["date"]).year)[2:], "ym": e["date"][:7]} for e in cfg.get("events", [])]
     try:
-        wt = cfg["gold_coin"]["widget_type"]
-        data["MONTH"]["widgetDaily"] = src.mixpanel_daily("referral_widget_loaded", f'properties["type"] == "{wt}"', today - dt.timedelta(days=34), today)
+        wts = [cfg["gold_coin"]["widget_type"], cfg.get("milestone_widget_type")]
+        where = " or ".join(f'properties["type"] == "{w}"' for w in wts if w)
+        data["MONTH"]["widgetDaily"] = src.mixpanel_daily("referral_widget_loaded", where, today - dt.timedelta(days=34), today)
     except Exception as e:  # noqa: BLE001
         data["MONTH"]["widgetDaily"] = (old.get("MONTH") or {}).get("widgetDaily") or {}
         data["MONTH"]["widgetDailyError"] = str(e)[:200]

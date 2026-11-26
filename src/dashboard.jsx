@@ -28,6 +28,7 @@ const TRENDS = D.TRENDS || [];
 const GOLD = D.GOLD || null;
 const MONTH = D.MONTH || null;
 const CAMPAIGNS = D.CAMPAIGNS || [];
+const MS = D.MILESTONE || { label: "Milestone ladder", rungs: [] };
 const N = D.notes || {};
 const LBL = D.COHORT_LABELS || { now: PACE.monthShort, prev: "" };
 
@@ -70,19 +71,18 @@ const HEADLINE = (() => {
     rewardsClaimed: REFERRERS.filter((r) => r.gift).length,
   };
 })();
-const RUNGS = [
-  { rung: "Nothing unlocked yet", range: "0", lo: 0, hi: 0 },
-  { rung: "Polaroid", range: "1-2", lo: 1, hi: 2 },
-  { rung: "AirPods 4", range: "3-4", lo: 3, hi: 4 },
-  { rung: "Ray-Ban Meta", range: "5-7", lo: 5, hi: 7 },
-  { rung: "iPhone 17", range: "8+", lo: 8, hi: 1e9 },
-];
+// Ladder rungs come from config.json "milestone.rungs" via data.json.
+const RUNGS = [{ rung: "Nothing unlocked yet", range: "0", lo: 0, hi: 0 }].concat(MS.rungs.map((g, i) => {
+  const nx = MS.rungs[i + 1];
+  return { rung: g.short || g.gift, lo: g.at, hi: nx ? nx.at - 1 : 1e9, range: nx ? (nx.at - 1 === g.at ? `${g.at}` : `${g.at}-${nx.at - 1}`) : `${g.at}+` };
+}));
+const LADDER_TEXT = MS.rungs.map((g) => `${g.gift} at ${g.at}`).join(", ");
 const LADDER = RUNGS.map((g) => {
   const rs = REFERRERS.filter((r) => r.acts >= g.lo && r.acts <= g.hi);
   return { rung: g.rung, range: g.range, referrers: rs.length, signups: sumBy(rs, "signups"), onboarded: sumBy(rs, "obs"),
     achieved: sumBy(rs, "acts"), waiting: sumBy(rs, "obs") - sumBy(rs, "acts"), claimed: rs.filter((r) => r.gift).length };
 });
-const nextRung = (a) => (a < 1 ? [1, "Polaroid"] : a < 3 ? [3, "AirPods"] : a < 5 ? [5, "Ray-Ban"] : a < 8 ? [8, "iPhone"] : [null, "maxed"]);
+const nextRung = (a) => { const g = MS.rungs.find((x) => a < x.at); return g ? [g.at, g.short || g.gift] : [null, "maxed"]; };
 const NUDGE = REFERRERS.filter((r) => r.acts >= 1)
   .sort((a, b) => b.acts - a.acts || b.obs - a.obs || b.signups - a.signups)
   .slice(0, 12)
@@ -629,12 +629,12 @@ function Overview({ T, go }) {
             <span className="pill">projection</span>
           </button>}
           <button className="livecard" onClick={() => go("milestone")}>
-            <div><b>Milestone ladder campaign</b><span>{SNAPSHOT.campaignEnded ? `Ended ${SNAPSHOT.campaignEnd}` : `Day ${SNAPSHOT.campaignDay} of ${SNAPSHOT.campaignDays || 61}, ${SNAPSHOT.daysLeft} days left`}. {fmt(HEADLINE.signups)} signups, {fmt(HEADLINE.activations)} activations, {rewards} rewards claimed.</span></div>
+            <div><b>{MS.label}</b><span>{SNAPSHOT.campaignEnded ? `Ended ${SNAPSHOT.campaignEnd}` : `Day ${SNAPSHOT.campaignDay} of ${SNAPSHOT.campaignDays}, ${SNAPSHOT.daysLeft} days left for signups`}. {LADDER_TEXT}. {fmt(HEADLINE.signups)} signups, {fmt(HEADLINE.activations)} activations, {rewards} rewards claimed.</span></div>
             <span className={`pill ${SNAPSHOT.campaignEnded ? "ended" : "live"}`}>{SNAPSHOT.campaignEnded ? "ended" : "live"}</span>
           </button>
           {GOLD && <button className="livecard" onClick={() => go("gold")}>
-            <div><b>{GOLD.label}</b><span>Day {GOLD.dayN}, since {GOLD.startLabel}{GOLD.openToAllLabel ? `, open to everyone since ${GOLD.openToAllLabel}` : ""}. {GOLD.funnel.referrers} referrers, {fmt(GOLD.funnel.signups)} signups, {GOLD.funnel.achieved} activated, {GOLD.funnel.claimed} coins claimed.</span></div>
-            <span className="pill live">live</span>
+            <div><b>{GOLD.label}</b><span>{GOLD.endLabel ? `${GOLD.startLabel} to ${GOLD.endLabel}, now the first rung of the ${MS.short || "new ladder"}; referees tagged earlier still earn the coin` : `Day ${GOLD.dayN}, since ${GOLD.startLabel}`}{GOLD.openToAllLabel && !GOLD.endLabel ? `, open to everyone since ${GOLD.openToAllLabel}` : ""}. {GOLD.funnel.referrers} referrers, {fmt(GOLD.funnel.signups)} signups, {GOLD.funnel.achieved} activated, {GOLD.funnel.claimed} coins claimed.</span></div>
+            <span className={`pill ${GOLD.endLabel ? "ended" : "live"}`}>{GOLD.endLabel ? "ended" : "live"}</span>
           </button>}
         </div>
       </section>
@@ -714,11 +714,11 @@ function Milestone({ T }) {
     <>
       <div className="pagehead">
         <div>
-          <h2 style={{ fontSize: 18 }}>Milestone ladder campaign</h2>
-          <p className="sub">1 Sep to 31 Oct 2026. Ladder: 1 Polaroid, 3 AirPods 4, 5 Ray-Ban Meta, 8 iPhone 17. Campaign 26 signups only, except the monthly target block.</p>
+          <h2 style={{ fontSize: 18 }}>{MS.label}</h2>
+          <p className="sub">Referee signups {MS.startLabel} to {MS.endLabel} 2026{MS.deadlineLabel ? `, first payments until ${MS.deadlineLabel}` : ""}. Gifts by activated referrals: {LADDER_TEXT}. {MS.rules || ""} Campaign {MS.campaignId} signups only, except the monthly target block. The September to October ladder (campaign 26) is on the Campaigns and Reads tabs.</p>
         </div>
         <div className="count">
-          <b>{SNAPSHOT.campaignEnded ? "Campaign ended" : `Day ${SNAPSHOT.campaignDay} of ${SNAPSHOT.campaignDays || 61}`}</b>
+          <b>{SNAPSHOT.campaignEnded ? "Campaign ended" : `Day ${SNAPSHOT.campaignDay} of ${SNAPSHOT.campaignDays}`}</b>
           <span className="sub">{SNAPSHOT.campaignEnded ? `on ${SNAPSHOT.campaignEnd}` : `${SNAPSHOT.daysLeft} days left`}</span>
         </div>
       </div>
@@ -733,7 +733,7 @@ function Milestone({ T }) {
       </section>
 
       <section>
-        <div className="sechead"><h2>Campaign totals</h2><span className="note">Signups on campaign 26 only.</span></div>
+        <div className="sechead"><h2>Campaign totals</h2><span className="note">Signups on campaign {MS.campaignId} only.</span></div>
         <div className="stats">
           <Stat T={T} label="Signups" value={fmt(HEADLINE.signups)} />
           <Stat T={T} label="Referrers" value={fmt(HEADLINE.referrers)} sub={`${HEADLINE.signupsPerReferrer} signups each`} />
@@ -951,9 +951,9 @@ function Gold({ T }) {
       <div className="pagehead">
         <div>
           <h2 style={{ fontSize: 18 }}>{GOLD.label}</h2>
-          <p className="sub">{fmt(p.n)} activated users who had never referred were pinned to campaign {GOLD.campaignId} on {p.date} as a pilot.{GOLD.openToAllLabel ? ` Since ${GOLD.openToAllLabel} the coin is the offer for everyone (referrers still inside an Alexa window that month see the $30 default instead).` : ""} The first referee who completes a payment earns the referrer a {GOLD.reward}. One coin per referrer.</p>
+          <p className="sub">{fmt(p.n)} activated users who had never referred were pinned to campaign {GOLD.campaignId} on {p.date} as a pilot.{GOLD.openToAllLabel ? ` Since ${GOLD.openToAllLabel} the coin is the offer for everyone (referrers still inside an Alexa window that month see the $30 default instead).` : ""} The first referee who completes a payment earns the referrer a {GOLD.reward}. One coin per referrer.{GOLD.endLabel ? ` New tagging stopped on ${GOLD.endLabel} when the ${MS.short || "November ladder"} went live with the coin as its first rung; the pins were removed that day, so the pilot group here is the frozen 16 Oct list. Referees already tagged to the coin still earn it when they pay.` : ""}</p>
         </div>
-        <div className="count"><b>Day {GOLD.dayN}</b><span className="sub">since {GOLD.startLabel}</span></div>
+        <div className="count"><b>{GOLD.endLabel ? "Tagging ended" : `Day ${GOLD.dayN}`}</b><span className="sub">{GOLD.endLabel ? `${GOLD.startLabel} to ${GOLD.endLabel}` : `since ${GOLD.startLabel}`}</span></div>
       </div>
 
       <section className="first">
@@ -1122,7 +1122,8 @@ function Quality() {
 }
 
 function Campaigns({ T }) {
-  const rows = CAMPAIGNS.filter((c) => c.signups > 0 || c.live);
+  const rows = CAMPAIGNS.filter((c) => !c.partner && (c.signups > 0 || c.live));
+  const partners = CAMPAIGNS.filter((c) => c.partner);
   const chartRows = rows.filter((c) => c.id !== 16).map((c) => ({ ...c, name: c.label.replace("Group A: ", "").replace(" (Moonshot)", "") }));
   return (
     <>
@@ -1183,6 +1184,14 @@ function Campaigns({ T }) {
         </div>
         <Notes items={N.campaigns} title="How the campaigns compare" />
       </section>
+      {partners.length > 0 && <section>
+        <div className="sechead"><h2>Partner and community links</h2><span className="note">Referral links handed to partners and communities, each with its own campaign tag. Not gift campaigns, so not in the charts above.</span></div>
+        <div className="tablewrap short"><table>
+          <thead><tr><th>Link</th><th>Created</th><th className="num">Signups</th><th className="num">Onboarded</th><th className="num">OB %</th><th className="num">Activated</th><th className="num">Act %</th></tr></thead>
+          <tbody>{partners.map((c) => (
+            <tr key={c.id}><td>{c.label} <span className="muted">{c.id}</span></td><td>{c.startLabel}</td><td className="num">{fmt(c.signups)}</td><td className="num">{fmt(c.onboarded)}</td><td className="num">{c.obRate == null ? "n/a" : `${c.obRate}%`}</td><td className="num">{fmt(c.achieved)}</td><td className="num">{c.actRate == null ? "n/a" : `${c.actRate}%`}</td></tr>))}
+          </tbody></table></div>
+      </section>}
     </>
   );
 }
@@ -1230,7 +1239,7 @@ function MonthProjection({ T }) {
       <div className="pagehead">
         <div>
           <h2 style={{ fontSize: 18 }}>{M.monthName}: where the month lands</h2>
-          <p className="sub">{M.openToAllLabel ? `The gold coin has been the offer for everyone since ${M.openToAllLabel}. ` : ""}{M.fullDays} full day{M.fullDays === 1 ? "" : "s"} in, {M.daysLeft} to go including today. Projections scale the days so far by how much of each of the last three months had landed by the same day; where those months have nothing to compare with, the last seven days are run forward instead. Early in the month every number here is a guess.</p>
+          <p className="sub">{`The gold coin was the offer for everyone from ${M.openToAllLabel || "1 Nov"}; since ${MS.startLabel} it is the first rung of the ${MS.short || "November ladder"}, and coins here count both. `}{M.fullDays} full day{M.fullDays === 1 ? "" : "s"} in, {M.daysLeft} to go including today. Projections scale the days so far by how much of each of the last three months had landed by the same day; where those months have nothing to compare with, the last seven days are run forward instead. Early in the month every number here is a guess.</p>
         </div>
         <div className="count"><b>Day {M.fullDays + 1}</b><span className="sub">of {M.daysInMonth}</span></div>
       </div>
@@ -1380,7 +1389,7 @@ function Daily({ T }) {
       <div className="pagehead">
         <div>
           <h2 style={{ fontSize: 18 }}>The live campaign, day by day</h2>
-          <p className="sub">Gold coin for everyone since {M.openToAllLabel || "1 Nov"}. Yesterday against the seven days before it, then the last seven days against the seven before that. Signups are referee signups from every referrer; gold coin signups are the ones tagged to the coin. Activations and coins can come from referrals made weeks earlier.</p>
+          <p className="sub">Gold coin for everyone from {M.openToAllLabel || "1 Nov"}, {MS.short || "November ladder"} since {MS.startLabel}. Yesterday against the seven days before it, then the last seven days against the seven before that. Signups are referee signups from every referrer; coin campaign signups are the ones tagged to the gold coin or the {MS.short || "November ladder"}. Activations and coins can come from referrals made weeks earlier.</p>
         </div>
         <div className="count"><b>{y ? y.day : ""}</b><span className="sub">{y ? `${y.dow}, last full day` : ""}</span></div>
       </div>
@@ -1463,7 +1472,7 @@ function Daily({ T }) {
               <thead><tr><th>Week</th><th className="num">Signups</th><th className="num">Coin-tagged</th><th className="num">Referrers</th><th className="num">First-timers</th>{hasWidget && <th className="num">Saw widget</th>}<th className="num">Onboarded</th><th className="num">Activated</th><th className="num">Coins</th></tr></thead>
               <tbody>{weeks.slice().reverse().map((w, i) => <tr key={w.weekOf} className={i === 0 ? "hl" : ""}><td>{w.weekOf} to {w.to}</td><td className="num">{fmt(w.signups)}</td><td className="num">{fmt(w.goldSignups)}</td><td className="num">{fmt(w.referrers)}</td><td className="num">{fmt(w.firstTimers)}</td>{hasWidget && <td className="num">{fmt(w.widget)}</td>}<td className="num">{fmt(w.onboardings)}</td><td className="num">{fmt(w.activations)}</td><td className="num">{fmt(w.coins)}</td></tr>)}</tbody>
             </table></div>
-            <p className="note" style={{ marginTop: 8 }}>The ladder ended on 31 Oct and the coin opened to everyone on 1 Nov, so the week of 23 Oct still carries ladder signups. Widget views count unique exporters who loaded the gold coin widget that day.</p>
+            <p className="note" style={{ marginTop: 8 }}>The September ladder ended on 31 Oct, the coin opened to everyone on 1 Nov and the November ladder replaced it on 23 Nov. Widget views count unique exporters who loaded the gold coin or November ladder widget that day.</p>
           </div>
         </div>
       </section>
@@ -1852,7 +1861,7 @@ export default function MilestoneDashboard() {
   useEffect(() => { const fn = () => setView(readHash()); window.addEventListener("hashchange", fn); return () => window.removeEventListener("hashchange", fn); }, []);
   const go = (v) => { setView(v); try { history.replaceState(null, "", "#" + v); } catch (e) { window.location.hash = v; } window.scrollTo({ top: 0, behavior: "smooth" }); };
   const cycle = () => { const next = pref === "auto" ? "dark" : pref === "dark" ? "light" : "auto"; setPref(next); setPrefState(next); };
-  const counts = { daily: MONTH && MONTH.recent ? MONTH.recent[MONTH.recent.length - 2].day : "", cohorts: GRID ? fmt(GRID.months.length) + " mo" : "", reads: fmt(READS.length), month: MONTH ? `day ${MONTH.fullDays + 1}` : "", milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? `day ${GOLD.dayN}` : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.length) };
+  const counts = { daily: MONTH && MONTH.recent ? MONTH.recent[MONTH.recent.length - 2].day : "", cohorts: GRID ? fmt(GRID.months.length) + " mo" : "", reads: fmt(READS.length), month: MONTH ? `day ${MONTH.fullDays + 1}` : "", milestone: SNAPSHOT.campaignEnded ? "ended" : `day ${SNAPSHOT.campaignDay}`, gold: GOLD ? (GOLD.endLabel ? "ended" : `day ${GOLD.dayN}`) : "", referrers: fmt(REFERRERS.length), campaigns: fmt(CAMPAIGNS.filter((c) => !c.partner).length) };
 
   return (
     <div className="app">

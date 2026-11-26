@@ -4,7 +4,9 @@ WITH c AS (SELECT id, name, is_active, created_at AT TIME ZONE 'UTC' AT TIME ZON
 rr AS (
   SELECT r.campaign_id, r.referrer_exporter_id ref, r.referee_exporter_id referee, r.referral_state::text st, r.referral_date AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Kolkata' sat
   FROM referral_relation r
-  WHERE r.is_deleted = false AND r.referrer_exporter_id IS NOT NULL AND r.referrer_exporter_id NOT IN ({{EXCLUDED}})
+  WHERE r.is_deleted = false
+    -- Partner and community links (config partner_campaigns) have no referring exporter, so keep them without one.
+    AND (r.campaign_id IN ({{PARTNER_IDS}}) OR (r.referrer_exporter_id IS NOT NULL AND r.referrer_exporter_id NOT IN ({{EXCLUDED}})))
     AND r.referral_state IN ('SIGNUP_COMPLETE','ONBOARDING_COMPLETE','ACHIEVED') AND r.campaign_id IN ({{CAMPAIGN_HISTORY_IDS}})
 ),
 cl AS (SELECT k.campaign_id, COUNT(*) FILTER (WHERE k.status = 'CLAIMED') claimed, string_agg(DISTINCT m.label, ', ') gifts

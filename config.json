@@ -1,9 +1,9 @@
 {
   "metabase_database_id": 6,
-  "campaign_id": 26,
-  "campaign_start": "2026-09-01",
-  "campaign_end": "2026-10-31",
-  "campaign_days": 61,
+  "campaign_id": 37,
+  "campaign_start": "2026-11-23",
+  "campaign_end": "2026-12-31",
+  "campaign_days": 39,
   "always_excluded_referrers": [
     2,
     3,
@@ -33,10 +33,12 @@
     "reward": "24K gold coin",
     "widget_type": "group_a_goldcoin2026",
     "open_to_all": "2026-11-01",
-    "unit_cost_inr": null
+    "unit_cost_inr": null,
+    "end": "2026-11-23",
+    "pilot_file": "gold_pilot_exporters.txt"
   },
   "referee_activation_baseline": 0.52,
-  "milestone_widget_type": "moonshot_campaign",
+  "milestone_widget_type": "moonshot_november_2026",
   "campaign_history": [
     {
       "id": 16,
@@ -76,12 +78,19 @@
     {
       "id": 26,
       "label": "Milestone ladder (Moonshot)",
-      "gift": "Polaroid / AirPods / Ray-Ban / iPhone"
+      "gift": "Polaroid / AirPods / Ray-Ban / iPhone",
+      "end": "2026-10-31"
     },
     {
       "id": 29,
-      "label": "Group A: Gold coin 2026",
-      "gift": "24K gold coin"
+      "label": "Gold coin 2026",
+      "gift": "24K gold coin",
+      "end": "2026-11-23"
+    },
+    {
+      "id": 37,
+      "label": "November ladder (coin / speaker / Thailand)",
+      "gift": "Gold coin / Marshall speaker / Thailand trip"
     }
   ],
   "events": [
@@ -156,6 +165,77 @@
       "title": "Gold coin for everyone",
       "note": "The coin becomes the offer for every referrer; the ladder ends. Referrers still inside an Alexa window that month see the $30 default",
       "who": "All referrers"
+    },
+    {
+      "date": "2026-11-23",
+      "title": "November ladder",
+      "note": "Gold coin at 1 activated referral, Marshall speaker at 4, Thailand trip at 10; one gift per referrer; gold coin pins removed and the coin campaign stops tagging",
+      "who": "All referrers"
+    }
+  ],
+  "milestone": {
+    "label": "November milestone ladder",
+    "short": "November ladder",
+    "activation_deadline": "2027-03-31",
+    "rungs": [
+      {
+        "at": 1,
+        "gift": "24K gold coin",
+        "short": "Gold coin"
+      },
+      {
+        "at": 4,
+        "gift": "Marshall Emberton III speaker",
+        "short": "Marshall speaker"
+      },
+      {
+        "at": 10,
+        "gift": "Thailand trip",
+        "short": "Thailand trip"
+      }
+    ],
+    "rules": "One gift per referrer: claiming ends the climb and gives the highest gift reached."
+  },
+  "coin_campaign_ids": [
+    29,
+    37
+  ],
+  "partner_campaigns": [
+    {
+      "id": 27,
+      "label": "CA partner program"
+    },
+    {
+      "id": 28,
+      "label": "IndiaMART affiliate"
+    },
+    {
+      "id": 30,
+      "label": "Toptal"
+    },
+    {
+      "id": 31,
+      "label": "AI Collective"
+    },
+    {
+      "id": 32,
+      "label": "One of Ten"
+    },
+    {
+      "id": 33,
+      "label": "HSRFC"
+    },
+    {
+      "id": 34,
+      "label": "Toptal community"
+    },
+    {
+      "id": 35,
+      "label": "Remote Indian community"
+    },
+    {
+      "id": 36,
+      "label": "MJ community"
     }
   ]
 }

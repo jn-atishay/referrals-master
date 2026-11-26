@@ -1,7 +1,8 @@
 -- Gold coin campaign ({{GOLD_CAMPAIGN_ID}}): never-referrers pinned to the campaign get a gold coin for their first activated referral.
 -- Rows: g = day | funnel | pinned | claims | days_to_first | week. Columns g, k, v1..v6 (text).
 WITH today AS (SELECT (now() AT TIME ZONE 'Asia/Kolkata')::date d),
-p AS (SELECT exporter_id, updated_at AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Kolkata' pinned_at FROM user_referral_data WHERE pinned_campaign_id = {{GOLD_CAMPAIGN_ID}} AND is_deleted = false),
+-- Pilot group = the frozen 16 Oct pin list (gold_pilot_exporters.txt); live pins were removed on 23 Nov 2026.
+p AS (SELECT unnest(ARRAY[{{GOLD_PILOT_IDS}}]::bigint[]) exporter_id, TIMESTAMP '{{GOLD_START}} 00:00' pinned_at),
 rr AS (
   SELECT r.referrer_exporter_id ref, r.referee_exporter_id referee, r.referral_state::text st, r.referral_date AT TIME ZONE 'UTC' AT TIME ZONE 'Asia/Kolkata' sat
   FROM referral_relation r
