@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "26 Nov 2026, 18:00 IST",
-  "asOfIso": "2026-11-26T18:00+05:30",
+  "asOf": "26 Nov 2026, 19:00 IST",
+  "asOfIso": "2026-11-26T19:00+05:30",
   "campaignStart": "2026-11-23",
   "campaignEnd": "2026-12-31",
   "campaignDay": 4,
@@ -1343,7 +1343,7 @@
   "excluded": "Excluded from every campaign number on this page: exporter 85276 (freelancer, onboarded May 2025, never transacted), who has sent 2,218 campaign signups since 23 Sep, 93 of them in the last seven days, with 31 onboarded and none activated. The first burst on 24 Sep came in at one signup every 56 seconds from distinct phone numbers, the pattern of a link posted into a large group rather than personal referrals. Flagged referrers like 85276 are left out of campaign metrics but their onboardings still count toward the monthly target. Exporter 272788 sent 1,067 signups between 18 and 24 Oct, 18 onboarded and none activated, and is flagged the same way: out of the campaign numbers, but its 18 October onboardings count toward the monthly target.",
   "overview": [
    "November is a partial month of 25 full days. Referral signups stand at 507 against 984 in all of October, onboardings at 334 and activations at 345. Activations are already close to October's full 423 with days still left, holding strong even as signups run lighter.",
-   "The referral share rate has slipped to 1.93% from 2.78% in October and the low threes earlier in the year, and the referral share of all onboardings is at 14.8%, down from October's 19.7%.",
+   "The referral share rate has slipped to 1.93% from 2.78% in October and the low threes earlier in the year, and the referral share of all onboardings is at 14.7%, down from October's 19.7%.",
    "The one thing to watch is that share rate and signup volume are both below the last three months, likely as the gold coin campaign wound down and the new ladder ramps up. Activation quality is the bright spot."
   ],
   "gold": [
@@ -1559,11 +1559,11 @@
    "firstTimers": 221,
    "refOnboardings": 334,
    "refActivations": 345,
-   "allOnboardings": 2261,
+   "allOnboardings": 2269,
    "transactors": 11394,
    "sharers": 220,
    "shareRate": 1.93,
-   "refShare": 14.8,
+   "refShare": 14.7,
    "partial": true
   }
  ],
@@ -7059,6 +7059,15 @@
    "baseline": 0.52
   },
   "widgetDaily": {
+   "2026-11-01": 1533,
+   "2026-11-02": 3892,
+   "2026-11-03": 3826,
+   "2026-11-04": 3369,
+   "2026-11-05": 3289,
+   "2026-11-06": 2912,
+   "2026-11-07": 1924,
+   "2026-11-08": 1220,
+   "2026-11-09": 2320,
    "2026-11-19": 2469,
    "2026-11-20": 2608,
    "2026-11-21": 1630,
@@ -7066,6 +7075,7 @@
    "2026-11-23": 2597,
    "2026-11-24": 2594,
    "2026-11-25": 2833,
+   "2026-11-26": 2234,
    "2026-11-10": 2621,
    "2026-11-11": 2782,
    "2026-11-12": 2818,
@@ -7083,17 +7093,7 @@
    "2026-10-28": 1232,
    "2026-10-29": 1325,
    "2026-10-30": 1480,
-   "2026-10-31": 1018,
-   "2026-11-26": 2156,
-   "2026-11-01": 1533,
-   "2026-11-02": 3892,
-   "2026-11-03": 3826,
-   "2026-11-04": 3369,
-   "2026-11-05": 3289,
-   "2026-11-06": 2912,
-   "2026-11-07": 1924,
-   "2026-11-08": 1220,
-   "2026-11-09": 2320
+   "2026-10-31": 1018
   }
  },
  "GRID": {
@@ -8869,7 +8869,7 @@
      36
     ],
     "2026-11": [
-     4421,
+     4429,
      29,
      29
     ]
