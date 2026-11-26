@@ -1,7 +1,7 @@
 {
  "SNAPSHOT": {
-  "asOf": "26 Nov 2026, 15:00 IST",
-  "asOfIso": "2026-11-26T15:00+05:30",
+  "asOf": "26 Nov 2026, 16:00 IST",
+  "asOfIso": "2026-11-26T16:00+05:30",
   "campaignStart": "2026-11-23",
   "campaignEnd": "2026-12-31",
   "campaignDay": 4,
@@ -264,7 +264,7 @@
    "id": "3",
    "label": "Not activated, onboarded this month",
    "indent": 0,
-   "base": 1732,
+   "base": 1731,
    "refNow": 21,
    "rateNow": 1.21,
    "refPrev": 15,
@@ -1308,7 +1308,7 @@
    "Against past gift campaigns, the ladder's early pace sits below the Moonshot ladder at about 30 a day but near the Tommy bag at 17 and above the coffee and power bank runs. The gold coin's 93% claim rate matches the strong physical-gift campaigns, while its 31% activation is lower because the bar is an activated referral, not just an onboarding."
   ],
   "month": [
-   "On 25 full days the month projects to about 623 referral signups (range 574 to 678), 412 onboardings (396 to 437), 413 activations (394 to 453) and 216 gold coins. Against the same 25 days of the last three months, signups so far (488) sit between September and October, onboardings (320) trail all three, but activations (337) are well ahead of August 249, September 305 and October 315.",
+   "On 25 full days the month projects to about 623 referral signups (range 574 to 678), 412 onboardings (396 to 437), 413 activations (394 to 453) and 216 gold coins. Against the same 25 days of the last three months, signups so far (488) are about level with August 490 and below September 808 and October 708, onboardings (320) trail all three, but activations (337) are well ahead of August 249, September 305 and October 315.",
    "Now that the coin is open to everyone, referrers split fairly evenly: 95 are from the pinned pilot (86 first-ever, 9 repeat) and 269 from everyone else (133 first-ever, 136 repeat). By tag, the old gold coin carries 402 signups, the new ladder 89, the default $30 program 10 and the old Moonshot ladder 1.",
    "The coin pipeline has 194 referrers with a referee waiting to pay, 252 referees in all; at the assumed 0.52 baseline pay rate that points to about 294 eventual coins. 84 coins are in hand so far."
   ],
@@ -1511,7 +1511,7 @@
    "firstTimers": 219,
    "refOnboardings": 328,
    "refActivations": 345,
-   "allOnboardings": 2230,
+   "allOnboardings": 2237,
    "transactors": 11355,
    "sharers": 217,
    "shareRate": 1.91,
@@ -6917,6 +6917,7 @@
    "2026-10-29": 1325,
    "2026-10-30": 1480,
    "2026-10-31": 1018,
+   "2026-11-26": 1932,
    "2026-11-19": 2469,
    "2026-11-20": 2608,
    "2026-11-21": 1630,
@@ -6924,7 +6925,6 @@
    "2026-11-23": 2597,
    "2026-11-24": 2594,
    "2026-11-25": 2833,
-   "2026-11-26": 1814,
    "2026-11-10": 2621,
    "2026-11-11": 2782,
    "2026-11-12": 2818,
@@ -8709,7 +8709,7 @@
      36
     ],
     "2026-11": [
-     4393,
+     4400,
      29,
      29
     ]
